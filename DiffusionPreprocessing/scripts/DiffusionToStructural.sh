@@ -33,8 +33,8 @@ regimg="nodif"
 fslroi "$DiffusionInput" "$WorkingDirectory"/"$regimg" 0 1
 
 "$GlobalScripts"/epi_reg.sh "$WorkingDirectory"/"$regimg" "$T1wImage" "$WorkingDirectory"/"$T1wBrainImageFile" "$WorkingDirectory"/"$regimg"2T1w_initII
-applywarp --interp=spline  -i "$WorkingDirectory"/"$regimg" -r "$T1wImage" --premat="$WorkingDirectory"/"$regimg"2T1w_initII_init.mat -o "$WorkingDirectory"/"$regimg"2T1w_init.nii.gz
-applywarp --interp=spline -i "$WorkingDirectory"/"$regimg" -r "$T1wImage" --premat="$WorkingDirectory"/"$regimg"2T1w_initII.mat -o "$WorkingDirectory"/"$regimg"2T1w_initII.nii.gz
+applywarp --rel --interp=spline  -i "$WorkingDirectory"/"$regimg" -r "$T1wImage" --premat="$WorkingDirectory"/"$regimg"2T1w_initII_init.mat -o "$WorkingDirectory"/"$regimg"2T1w_init.nii.gz
+applywarp --rel --interp=spline -i "$WorkingDirectory"/"$regimg" -r "$T1wImage" --premat="$WorkingDirectory"/"$regimg"2T1w_initII.mat -o "$WorkingDirectory"/"$regimg"2T1w_initII.nii.gz
 fslmaths "$WorkingDirectory"/"$regimg"2T1w_initII.nii.gz -div "$BiasField" "$WorkingDirectory"/"$regimg"2T1w_restore_initII.nii.gz
 
 SUBJECTS_DIR="$FreeSurferSubjectFolder"
@@ -42,19 +42,19 @@ export SUBJECTS_DIR
 bbregister --s "$FreeSurferSubjectID" --mov "$WorkingDirectory"/"$regimg"2T1w_restore_initII.nii.gz --surf white.deformed --init-reg "$FreeSurferSubjectFolder"/"$FreeSurferSubjectID"/mri/transforms/eye.dat --bold --reg "$WorkingDirectory"/EPItoT1w.dat --o "$WorkingDirectory"/"$regimg"2T1w.nii.gz
 tkregister2 --noedit --reg "$WorkingDirectory"/EPItoT1w.dat --mov "$WorkingDirectory"/"$regimg"2T1w_restore_initII.nii.gz --targ "$T1wImage".nii.gz --fslregout "$WorkingDirectory"/diff2str_fs.mat
 convert_xfm -omat "$WorkingDirectory"/diff2str.mat -concat "$WorkingDirectory"/diff2str_fs.mat "$WorkingDirectory"/"$regimg"2T1w_initII.mat
-applywarp --interp=spline -i "$WorkingDirectory"/"$regimg" -r "$T1wImage".nii.gz --premat="$WorkingDirectory"/diff2str.mat -o "$WorkingDirectory"/"$regimg"2T1w
+applywarp --rel --interp=spline -i "$WorkingDirectory"/"$regimg" -r "$T1wImage".nii.gz --premat="$WorkingDirectory"/diff2str.mat -o "$WorkingDirectory"/"$regimg"2T1w
 fslmaths "$WorkingDirectory"/"$regimg"2T1w -div "$BiasField" "$WorkingDirectory"/"$regimg"2T1w_restore
 
 cp "$WorkingDirectory"/diff2str.mat $OutputTransform
 convert_xfm -omat $OutputInvTransform -inverse "$WorkingDirectory"/diff2str.mat
-convertwarp --premat="$WorkingDirectory"/diff2str.mat --warp1="$InputAtlasTransform" --ref="$T1wImage" --out="$OutputAtlasTransform"
-invwarp -w "$OutputAtlasTransform" -o "$OutputInvAtlasTransform" -r "$T1wImage"
+convertwarp --relout --rel --premat="$WorkingDirectory"/diff2str.mat --warp1="$InputAtlasTransform" --ref="$T1wImage" --out="$OutputAtlasTransform"
+invwarp --rel -w "$OutputAtlasTransform" -o "$OutputInvAtlasTransform" -r "$T1wImage"
 
 cp "$WorkingDirectory"/"$regimg"2T1w_restore.nii.gz "$RegOutput".nii.gz
 
 fslmaths "$T1wRestoreImage".nii.gz -mul "$WorkingDirectory"/"$regimg"2T1w_restore.nii.gz -sqrt "$QAImage"_"$regimg".nii.gz
 
-applywarp --interp=nn -i "$InputBrainMask" -r "$WorkingDirectory"/"$regimg" --premat=$OutputInvTransform -o "$OutputBrainMask"
+applywarp --rel --interp=nn -i "$InputBrainMask" -r "$WorkingDirectory"/"$regimg" --premat=$OutputInvTransform -o "$OutputBrainMask"
 
 fslmaths "$DiffusionInput" -mas "$OutputBrainMask" "$DiffusionInput"
 
