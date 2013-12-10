@@ -73,7 +73,7 @@ cp "$SubjectDIR"/"$SubjectID"/mri/brainmask.auto.mgz "$SubjectDIR"/"$SubjectID"/
 
 recon-all -subjid $SubjectID -sd $SubjectDIR -autorecon2 -nosmooth2 -noinflate2 -nocurvstats -nosegstats -openmp 8
 
-#Highres white stuff and Fine Tune T2w to T1w Reg
+#Highres white stuff and Fine Tune T2w to T1w Reg (if available)
 "$PipelineScripts"/FreeSurferHiresWhite.sh "$SubjectID" "$SubjectDIR" "$T1wImage" "$T2wImage"
 
 #Intermediate Recon-all Steps
@@ -84,7 +84,6 @@ if [ -f "$T2wImage" ] ; then
      "$PipelineScripts"/FreeSurferHiresPial.sh "$SubjectID" "$SubjectDIR" "$T1wImage" "$T2wImage"
 else
      echo "Running script without T2 image, no adjustment of the pial surface based on T2w"
-     "$PipelineScripts"/FreeSurferHiresPial_noT2.sh "$SubjectID" "$SubjectDIR" "$T1wImage"
 fi
 
 #Final Recon-all Steps
