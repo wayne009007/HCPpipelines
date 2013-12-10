@@ -106,6 +106,7 @@ echo "$StudyFolder $Subject"
 PipelineScripts=${HCPPIPEDIR_PreFS}
 GlobalScripts=${HCPPIPEDIR_Global}
 
+# Set the Modalities and Inform
 if [ $T2wInputImages = "NONE" ] ; then
  echo "RUNNING PROTOCOL WITHOUT T2w"
    Modalities="T1w"
@@ -341,16 +342,19 @@ if [ ! $T2wInputImages = "NONE" ] ; then
       --oT2im=${T1wFolder}/${T2wImage}_acpc_dc_restore \
       --oT2brain=${T1wFolder}/${T2wImage}_acpc_dc_restore_brain
 else
-#RS# #CODE FOR DISTORTION CORRECTION WHEN NO T2. use FAST or check other options
+#RS# #DISTORTION CORRECTION WHEN NO T2. use FSL-FAST
   ${RUN} ${FSLDIR}/bin/fast --nopve -b -B -o ${T1wFolder}/${T1wImage}_acpc_dc ${T1wFolder}/${T1wImage}_acpc_dc
   rm ${T1wFolder}/${T1wImage}_acpc_dc_seg.nii.gz
   mv ${T1wFolder}/${T1wImage}_acpc_dc_bias.nii.gz ${T1wFolder}/BiasField_acpc_dc.nii.gz
-  # CHANGE NAME OF BIAS FIELD OUTPUT
+  # Change name of Bias Field to match the pipelines
   ${RUN} ${FSLDIR}/bin/fslmaths ${T1wFolder}/${T1wImage}_acpc_dc_restore -mul ${T1wFolder}/${T1wImage}_acpc_brain_mask ${T1wFolder}/${T1wImage}_acpc_dc_restore_brain    
 fi
 
 #### Atlas Registration to MNI152: FLIRT + FNIRT  #Also applies registration to T1w and T2w images ####
 #Consider combining all transforms and recreating files with single resampling steps
+
+#RS# set the inputs of the script for the T2 /no T2 versions
+
 if [ ! $T2wInputImages = "NONE" ] ; then
     regT2=${T1wFolder}/${T2wImage}_acpc_dc                        
     regT2rest=${T1wFolder}/${T2wImage}_acpc_dc_restore            
