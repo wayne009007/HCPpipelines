@@ -1,0 +1,125 @@
+/home/fs0/rosas/scratch/Pipelines/Examples test_subj
+USING T1w AND T2w SCANS
+/home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T2w /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/MNINonLinear
+mkdir -p /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/xfms/
+mkdir -p /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T2w/xfms/
+mkdir -p /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/MNINonLinear/xfms/
+POSIXLY_CORRECT=y
+processing T1w images
+mkdir -p /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/T1w1_GradientDistortionUnwarp
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40 . . . . . . . . . 50 . . . . . . . . . 60 . . . . . . . . . 70 . . . . . . . . . 80 . . . . . . . . . 90 . . . . . . . . . 100 . . . . . . . . . 110 . . . . . . . . . 120 . . . . . . . . . 130 . . . . . . . . . 140 . . . . . . . . . 150 . . . . . . . . . 160 . . . . . . . . . 170 . . . . . . . . . 180 . . . . . . . . . 190 . . . . . . . . . 200 . . . . . . . . . 210 . . . . . . . . . 220 . . . . . . . . . 230 . . . . . . . . . 240 . . . . . . . . . 250 . . . . . . . . . 260 . . . . . . . . . 270 . . . . . . . . . 280 . . . . . . . . . 290 . . . . . . . . . 300 . . . . . . . . . 310 . . . . . . . . . 320
+ 
+ END: GradientDistortionUnwarp
+mkdir -p /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/T1w2_GradientDistortionUnwarp
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40 . . . . . . . . . 50 . . . . . . . . . 60 . . . . . . . . . 70 . . . . . . . . . 80 . . . . . . . . . 90 . . . . . . . . . 100 . . . . . . . . . 110 . . . . . . . . . 120 . . . . . . . . . 130 . . . . . . . . . 140 . . . . . . . . . 150 . . . . . . . . . 160 . . . . . . . . . 170 . . . . . . . . . 180 . . . . . . . . . 190 . . . . . . . . . 200 . . . . . . . . . 210 . . . . . . . . . 220 . . . . . . . . . 230 . . . . . . . . . 240 . . . . . . . . . 250 . . . . . . . . . 260 . . . . . . . . . 270 . . . . . . . . . 280 . . . . . . . . . 290 . . . . . . . . . 300 . . . . . . . . . 310 . . . . . . . . . 320
+ 
+ END: GradientDistortionUnwarp
+PERFORMING SIMPLE AVERAGING
+Images:  /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/T1w1_gdc /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/T1w2_gdc  Output: /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/T1w
+Final FOV is: 
+0.000000 256.000000 0.000000 320.000000 62.000000 214.000000 
+
+Final FOV is: 
+0.000000 256.000000 0.000000 320.000000 64.000000 214.000000 
+
+0.999872 0.004968 -0.000504 -0.149885 
+-0.004970 0.999868 -0.002701 0.563923 
+0.000804 0.002873 1.000108 -0.441322 
+0.000000 0.000000 0.000000 1.000000 
+
+ 
+ START: ACPCAlignment
+Final FOV is: 
+0.000000 256.000000 0.000000 320.000000 62.000000 214.000000 
+
+ 
+ END: ACPCAlignment
+ 
+ START: BrainExtrtaction_FNIRT
+ 
+ END: BrainExtrtaction_FNIRT
+processing T2w images
+mkdir -p /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T2w/T2w1_GradientDistortionUnwarp
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40 . . . . . . . . . 50 . . . . . . . . . 60 . . . . . . . . . 70 . . . . . . . . . 80 . . . . . . . . . 90 . . . . . . . . . 100 . . . . . . . . . 110 . . . . . . . . . 120 . . . . . . . . . 130 . . . . . . . . . 140 . . . . . . . . . 150 . . . . . . . . . 160 . . . . . . . . . 170 . . . . . . . . . 180 . . . . . . . . . 190 . . . . . . . . . 200 . . . . . . . . . 210 . . . . . . . . . 220 . . . . . . . . . 230 . . . . . . . . . 240 . . . . . . . . . 250 . . . . . . . . . 260 . . . . . . . . . 270 . . . . . . . . . 280 . . . . . . . . . 290 . . . . . . . . . 300 . . . . . . . . . 310 . . . . . . . . . 320
+ 
+ END: GradientDistortionUnwarp
+mkdir -p /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T2w/T2w2_GradientDistortionUnwarp
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40 . . . . . . . . . 50 . . . . . . . . . 60 . . . . . . . . . 70 . . . . . . . . . 80 . . . . . . . . . 90 . . . . . . . . . 100 . . . . . . . . . 110 . . . . . . . . . 120 . . . . . . . . . 130 . . . . . . . . . 140 . . . . . . . . . 150 . . . . . . . . . 160 . . . . . . . . . 170 . . . . . . . . . 180 . . . . . . . . . 190 . . . . . . . . . 200 . . . . . . . . . 210 . . . . . . . . . 220 . . . . . . . . . 230 . . . . . . . . . 240 . . . . . . . . . 250 . . . . . . . . . 260 . . . . . . . . . 270 . . . . . . . . . 280 . . . . . . . . . 290 . . . . . . . . . 300 . . . . . . . . . 310 . . . . . . . . . 320
+ 
+ END: GradientDistortionUnwarp
+PERFORMING SIMPLE AVERAGING
+Images:  /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T2w/T2w1_gdc /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T2w/T2w2_gdc  Output: /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T2w/T2w
+Final FOV is: 
+0.000000 256.000000 0.000000 320.000000 64.000000 214.000000 
+
+Final FOV is: 
+0.000000 256.000000 0.000000 320.000000 64.000000 214.000000 
+
+0.999970 0.002322 -0.003225 -0.038615 
+-0.002327 0.999996 -0.001791 0.199077 
+0.003098 0.001672 1.000096 -0.519113 
+0.000000 0.000000 0.000000 1.000000 
+
+ 
+ START: ACPCAlignment
+Final FOV is: 
+0.000000 256.000000 0.000000 320.000000 64.000000 214.000000 
+
+ 
+ END: ACPCAlignment
+ 
+ START: BrainExtrtaction_FNIRT
+ 
+ END: BrainExtrtaction_FNIRT
+PERFORMING FIELDMAP READOUT DISTORTION CORRECTION OF T1w
+ 
+ START: T1wDistortionCorrection
+ 
+ 
+ 
+ 
+ START: Field Map Preprocessing and Gradient Unwarping
+Loading volumes
+Phase loaded
+Magnitude loaded
+Mask loaded
+Rewrapping phase range to [-pi,pi]
+Number of phase splits = 8
+Calculating starting matrices (7373 by 7373)
+Finished connection_matrices
+21035 constraints left
+11135 constraints left
+9367 constraints left
+7462 constraints left
+5585 constraints left
+3796 constraints left
+2138 constraints left
+466 constraints left
+Did while loop 7372 times
+Done. Created /home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/T1wDistortionCorrect/FieldMap/FieldMap for use with FEAT.
+DONE: fmrib_prepare_fieldmap.sh
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40 . . . . . . . . . 50 . . . . . . . . . 60 . . . . . . . . . 70 . .
+ 
+ END: GradientDistortionUnwarp
+ 
+ END: Field Map Preprocessing and Gradient Unwarping
+ 
+ END: T1wDistortionCorrect
+parsed args
+default params
+/home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/T1w_acpc_dc_restore
+T1w_acpc_dc_restore
+ 
+ START: AtlasRegistration to MNI152
+ 
+ END: AtlasRegistration to MNI152

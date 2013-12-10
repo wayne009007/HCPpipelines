@@ -1,0 +1,63 @@
+/home/fs0/rosas/scratch/FUNC 07
+RUNNING PROTOCOL WITHOUT T2w
+/home/fs0/rosas/scratch/FUNC/07/T1w  /home/fs0/rosas/scratch/FUNC/07/MNINonLinear
+mkdir -p /home/fs0/rosas/scratch/FUNC/07/T1w/xfms/
+POSIXLY_CORRECT=y
+processing T1w images
+mkdir -p /home/fs0/rosas/scratch/FUNC/07/T1w/T1w1_GradientDistortionUnwarp
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40 . . . . . . . . . 50 . . . . . . . . . 60 . . . . . . . . . 70 . . . . . . . . . 80 . . . . . . . . . 90 . . . . . . . . . 100 . . . . . . . . . 110 . . . . . . . . . 120 . . . . . . . . . 130 . . . . . . . . . 140 . . . . . . . . . 150 . . . . . . . . . 160 . . . . . . . . . 170 . . . . . . . . . 180 . . . . . . . . . 190 . .
+ 
+ END: GradientDistortionUnwarp
+ONLY ONE AVERAGE FOUND: COPYING
+ 
+ START: ACPCAlignment
+Final FOV is: 
+0.000000 174.000000 0.000000 192.000000 34.000000 150.000000 
+
+ 
+ END: ACPCAlignment
+ 
+ START: BrainExtrtaction_FNIRT
+ 
+ END: BrainExtrtaction_FNIRT
+PERFORMING FIELDMAP READOUT DISTORTION CORRECTION OF T1w
+ 
+ START: T1wDistortionCorrection
+ 
+ 
+ 
+ 
+ START: Field Map Preprocessing and Gradient Unwarping
+Loading volumes
+Phase loaded
+Magnitude loaded
+Mask loaded
+Rewrapping phase range to [-pi,pi]
+Number of phase splits = 8
+Calculating starting matrices (2210 by 2210)
+Finished connection_matrices
+6143 constraints left
+1848 constraints left
+291 constraints left
+Did while loop 2209 times
+Done. Created /home/fs0/rosas/scratch/FUNC/07/T1w/T1wDistortionCorrect/FieldMap/FieldMap for use with FEAT.
+DONE: fmrib_prepare_fieldmap.sh
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40
+ 
+ END: GradientDistortionUnwarp
+ 
+ END: Field Map Preprocessing and Gradient Unwarping
+ 
+ END: T1wDistortionCorrect
+parsed args
+default params
+/home/fs0/rosas/scratch/FUNC/07/T1w/T1w_acpc_dc_restore
+T1w_acpc_dc_restore
+ 
+ START: AtlasRegistration to MNI152
+ 
+ END: AtlasRegistration to MNI152

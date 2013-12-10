@@ -1,7 +1,7 @@
 #!/bin/bash 
 
-Subjlist="test_subj" #Space delimited list of subject IDs
-StudyFolder="/home/fs0/rosas/scratch/Pipelines/Examples" #Location of Subject folders (named by subjectID)
+Subjlist="07" #Space delimited list of subject IDs
+StudyFolder="/home/fs0/rosas/scratch/FUNC" #Location of Subject folders (named by subjectID)
 EnvironmentScript="/home/fs0/rosas/scratch/Pipelines/Examples/Scripts/SetUpHCPPipeline.sh" #Pipeline environment script
 
 # Requirements for this script
@@ -25,17 +25,14 @@ PRINTCOM=""
 
 ########################################## INPUTS ########################################## 
 
-#Scripts called by this script do NOT assume anything about the form of the input names or paths.
-#This batch script assumes the HCP raw data naming convention, e.g.
+#
+#Naming conventions
 
-#	${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR1/${Subject}_3T_T1w_MPR1.nii.gz
-#	${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR2/${Subject}_3T_T1w_MPR2.nii.gz
-
-#	${StudyFolder}/${Subject}/unprocessed/3T/T2w_SPC1/${Subject}_3T_T2w_SPC1.nii.gz
-#	${StudyFolder}/${Subject}/unprocessed/3T/T2w_SPC2/${Subject}_3T_T2w_SPC2.nii.gz
-
-#	${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR1/${Subject}_3T_FieldMap_Magnitude.nii.gz
-#	${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR1/${Subject}_3T_FieldMap_Phase.nii.gz
+# ONLY ONE T1 IMAGE AND GRADIENT FIELD MAP
+#	${StudyFolder}/${Subject}/T1.nii.gz
+#	
+#	${StudyFolder}/${Subject}/b_mag_brain.nii.gz
+#	${StudyFolder}/${Subject}/b_ph.nii.gz
 
 #Change Scan Settings: FieldMap Delta TE, Sample Spacings, and $UnwarpDir to match your images
 #These are set to match the HCP Protocol by default
@@ -52,26 +49,11 @@ for Subject in $Subjlist ; do
   echo $Subject
   
   #Input Images
-  #Detect Number of T1w Images
-  numT1ws=`ls ${StudyFolder}/${Subject}/unprocessed/3T | grep T1w_MPR | wc -l`
-  T1wInputImages=""
-  i=1
-  while [ $i -le $numT1ws ] ; do
-    T1wInputImages=`echo "${T1wInputImages}${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR${i}/${Subject}_3T_T1w_MPR${i}.nii.gz@"`
-    i=$(($i+1))
-  done
-  
-  # RS: if no T2 this will be empty!
-  #Detect Number of T2w Images
-  numT2ws=`ls ${StudyFolder}/${Subject}/unprocessed/3T | grep T2w_SPC | wc -l`
+  #Define inputs as they are in the study
+  T1wInputImages=${StudyFolder}/${Subject}/T1.nii.gz
   T2wInputImages=""
-  i=1
-  while [ $i -le $numT2ws ] ; do
-    T2wInputImages=`echo "${T2wInputImages}${StudyFolder}/${Subject}/unprocessed/3T/T2w_SPC${i}/${Subject}_3T_T2w_SPC${i}.nii.gz@"`
-    i=$(($i+1))
-  done
-  MagnitudeInputName="${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR1/${Subject}_3T_FieldMap_Magnitude.nii.gz" #Expects 4D magitude volume with two 3D timepoints or "NONE" if not used
-  PhaseInputName="${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR1/${Subject}_3T_FieldMap_Phase.nii.gz" #Expects 3D phase difference volume or "NONE" if not used
+  MagnitudeInputName="${StudyFolder}/${Subject}/mag_raw_concat_${Subject}.nii.gz" #Expects 4D magitude volume with two 3D timepoints or "NONE" if not used
+  PhaseInputName="${StudyFolder}/${Subject}/ph_MB_${Subject}.nii.gz" #Expects 3D phase difference volume or "NONE" if not used
 
   #Templates
   T1wTemplate="${HCPPIPEDIR_Templates}/MNI152_T1_0.7mm.nii.gz" #MNI0.7mm template
@@ -83,8 +65,8 @@ for Subject in $Subjlist ; do
   #Scan Settings
   TE="2.46" #delta TE in ms for field map or "NONE" if not used
   T1wSampleSpacing="0.0000074" #DICOM field (0019,1018) in s or "NONE" if not used
-  UnwarpDir="z" #z appears to be best or "NONE" if not used
-  GradientDistortionCoeffs="${HCPPIPEDIR_Config}/coeff_SC72C_Skyra.grad" #Location of Coeffs file or "NONE" to skip
+  UnwarpDir="y" #z appears to be best or "NONE" if not used
+  GradientDistortionCoeffs="/home/fs0/rosas/scratch/analysis/coeff_verio.grad.grad" #Location of Coeffs file or "NONE" to skip
   
   # RS: Configure Templates and Scan settings for T2 (if it exists) 
   if [ ! $T2wInputImages = "" ] ; then
@@ -132,7 +114,7 @@ for Subject in $Subjlist ; do
       --gdcoeffs="$GradientDistortionCoeffs" \
       --avgrdcmethod="$AvgrdcSTRING" \
       --topupconfig="$TopupConfig" \
-      --printcom=""
+      --printcom=$PRINTCOM
       
   # The following lines are used for interactive debugging to set the positional parameters: $1 $2 $3 ...
 
@@ -164,4 +146,3 @@ for Subject in $Subjlist ; do
   echo ". ${EnvironmentScript}"
 
 done
-

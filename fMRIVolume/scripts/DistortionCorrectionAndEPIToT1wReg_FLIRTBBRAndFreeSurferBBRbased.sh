@@ -139,6 +139,7 @@ cp ${T1wBrainImage}.nii.gz ${WD}/${T1wBrainImageFile}.nii.gz
 ###### FIELDMAP VERSION (GE FIELDMAPS) ######
 if [ $DistortionCorrection = "FIELDMAP" ] ; then
   # process fieldmap with gradient non-linearity distortion correction
+  echo "doing distortion correction with FIELDMAP option OK"
   ${GlobalScripts}/FieldMapPreprocessingAll.sh \
       --workingdir=${WD}/FieldMap \
       --fmapmag=${MagnitudeInputName} \
@@ -199,8 +200,8 @@ else
   exit
 fi
 
-
-### FREESURFER BBR - found to be an improvement, probably due to better GM/WM boundary
+echo "all distortion correction OK. going to FS-BBR....."
+# FREESURFER BBR - found to be an improvement, probably due to better GM/WM boundary
 SUBJECTS_DIR=${FreeSurferSubjectFolder}
 export SUBJECTS_DIR
 ${FREESURFER_HOME}/bin/bbregister --s ${FreeSurferSubjectID} --mov ${WD}/${ScoutInputFile}_undistorted2T1w_init.nii.gz --surf white.deformed --init-reg ${FreeSurferSubjectFolder}/${FreeSurferSubjectID}/mri/transforms/eye.dat --bold --reg ${WD}/EPItoT1w.dat --o ${WD}/${ScoutInputFile}_undistorted2T1w.nii.gz

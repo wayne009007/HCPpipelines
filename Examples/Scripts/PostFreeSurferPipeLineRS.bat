@@ -1,7 +1,7 @@
 #!/bin/bash 
 
-Subjlist="test_subj test_subj_noT2" #Space delimited list of subject IDs
-StudyFolder="/home/fs0/rosas/scratch/Pipelines/Examples" #Location of Subject folders (named by subjectID)
+Subjlist="07" #Space delimited list of subject IDs
+StudyFolder="/home/fs0/rosas/scratch/FUNC" #Location of Subject folders (named by subjectID)
 EnvironmentScript="/home/fs0/rosas/scratch/Pipelines/Examples/Scripts/SetUpHCPPipeline.sh" #Pipeline environment script
 
 # Requirements for this script

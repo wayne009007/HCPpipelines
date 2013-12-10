@@ -1,6 +1,5 @@
 #!/bin/bash 
 set -e
-
 # Requirements for this script
 #  installed versions of: FSL5.0.1+
 #  environment: FSLDIR
@@ -66,10 +65,10 @@ defaultopt() {
 ################################################## OPTION PARSING #####################################################
 
 # Just give usage if no arguments specified
-if [ $# -eq 0 ] ; then Usage; exit 0; fi
+# if [ $# -eq 0 ] ; then Usage; exit 0; fi
 # check for correct options
 #if [ $# -lt 17 ] ; then Usage; exit 1; fi
-
+ \
 # parse arguments
 WD=`getopt1 "--workingdir" $@`  # "$1"
 T1wImage=`getopt1 "--t1" $@`  # "$2"
@@ -92,6 +91,7 @@ OutputT2wImage=`getopt1 "--ot2" $@`  # "${18}"
 OutputT2wImageRestore=`getopt1 "--ot2rest" $@`  # "${19}"
 OutputT2wImageRestoreBrain=`getopt1 "--ot2restbrain" $@`  # "${20}"
 FNIRTConfig=`getopt1 "--fnirtconfig" $@`  # "${21}"
+echo "parsed args"
 
 # default parameters
 WD=`defaultopt $WD .`
@@ -99,10 +99,13 @@ Reference2mm=`defaultopt $Reference2mm ${HCPPIPEDIR_Templates}/MNI152_T1_2mm.nii
 Reference2mmMask=`defaultopt $Reference2mmMask ${HCPPIPEDIR_Templates}/MNI152_T1_2mm_brain_mask_dil.nii.gz`
 FNIRTConfig=`defaultopt $FNIRTConfig ${HCPPIPEDIR_Config}/T1_2_MNI152_2mm.cnf`
 
+echo "default params"
 
-T1wRestoreBasename=`remove_ext $T1wRestore`;
+T1wRestoreBasename=`${FSLDIR}/bin/remove_ext $T1wRestore`;
+echo "$T1wRestoreBasename"
 T1wRestoreBasename=`basename $T1wRestoreBasename`;
-T1wRestoreBrainBasename=`remove_ext $T1wRestoreBrain`;
+echo "$T1wRestoreBasename"
+T1wRestoreBrainBasename=`${FSLDIR}/bin/remove_ext $T1wRestoreBrain`;
 T1wRestoreBrainBasename=`basename $T1wRestoreBrainBasename`;
 
 echo " "

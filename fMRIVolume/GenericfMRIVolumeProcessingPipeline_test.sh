@@ -108,49 +108,6 @@ if [ ! -e "$fMRIFolder" ] ; then
 fi
 cp "$fMRITimeSeries" "$fMRIFolder"/"$OrigTCSName".nii.gz
 
-#Create fake "Scout" if it doesn't exist
-if [ $fMRIScout = "NONE" ] ; then
-  ${RUN} ${FSLDIR}/bin/fslroi "$fMRIFolder"/"$OrigTCSName" "$fMRIFolder"/"$OrigScoutName" 0 1
-else
-cp "$fMRIScout" "$fMRIFolder"/"$OrigScoutName".nii.gz
-fi
-
-#Gradient Distortion Correction of fMRI
-if [ ! $GradientDistortionCoeffs = "NONE" ] ; then
-mkdir -p "$fMRIFolder"/GradientDistortionUnwarp
-    ${RUN} "$GlobalScripts"/GradientDistortionUnwarp.sh \
-        --workingdir="$fMRIFolder"/GradientDistortionUnwarp \
-        --coeffs="$GradientDistortionCoeffs" \
-        --in="$fMRIFolder"/"$OrigTCSName" \
-        --out="$fMRIFolder"/"$NameOffMRI"_gdc \
-        --owarp="$fMRIFolder"/"$NameOffMRI"_gdc_warp
-        
-     mkdir -p "$fMRIFolder"/"$ScoutName"_GradientDistortionUnwarp
-     ${RUN} "$GlobalScripts"/GradientDistortionUnwarp.sh \
-         --workingdir="$fMRIFolder"/"$ScoutName"_GradientDistortionUnwarp \
-         --coeffs="$GradientDistortionCoeffs" \
-         --in="$fMRIFolder"/"$OrigScoutName" \
-         --out="$fMRIFolder"/"$ScoutName"_gdc \
-         --owarp="$fMRIFolder"/"$ScoutName"_gdc_warp
-else
-echo "NOT PERFORMING GRADIENT DISTORTION CORRECTION"
-    ${RUN} ${FSLDIR}/bin/imcp "$fMRIFolder"/"$OrigTCSName" "$fMRIFolder"/"$NameOffMRI"_gdc
-    ${RUN} ${FSLDIR}/bin/fslroi "$fMRIFolder"/"$NameOffMRI"_gdc "$fMRIFolder"/"$NameOffMRI"_gdc_warp 0 3
-    ${RUN} ${FSLDIR}/bin/fslmaths "$fMRIFolder"/"$NameOffMRI"_gdc_warp -mul 0 "$fMRIFolder"/"$NameOffMRI"_gdc_warp
-    ${RUN} ${FSLDIR}/bin/imcp "$fMRIFolder"/"$OrigScoutName" "$fMRIFolder"/"$ScoutName"_gdc
-fi
-
-mkdir -p "$fMRIFolder"/MotionCorrection_FLIRTbased
-${RUN} "$PipelineScripts"/MotionCorrection_FLIRTbased.sh \
-    "$fMRIFolder"/MotionCorrection_FLIRTbased \
-    "$fMRIFolder"/"$NameOffMRI"_gdc \
-    "$fMRIFolder"/"$ScoutName"_gdc \
-    "$fMRIFolder"/"$NameOffMRI"_mc \
-    "$fMRIFolder"/"$MovementRegressor" \
-    "$fMRIFolder"/"$MotionMatrixFolder" \
-    "$MotionMatrixPrefix" 
-
-
 #EPI Distortion Correction and EPI to T1w Registration
 if [ -e ${fMRIFolder}/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased ] ; then
   rm -r ${fMRIFolder}/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased

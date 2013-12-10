@@ -1,0 +1,376 @@
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'ln(spherereg / sphere) / ln(2)' as '(ln((spherereg/sphere))/ln(2))'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'var * -1' as '(var*-1)'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'var * -1' as '(var*-1)'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'var * -1' as '(var*-1)'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'abs(thickness)' as 'abs(thickness)'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'thickness > 0' as '(thickness>0)'
+
+reading colortable from annotation file...
+colortable with 36 entries read (originally /autofs/space/terrier_001/users/nicks/freesurfer/average/colortable_desikan_killiany.txt)
+reading colortable from annotation file...
+colortable with 76 entries read (originally /autofs/space/birn_044/users/christophe_atlas_rebuild//scripts_2008/Simple_surface_labels2009.txt)
+reading colortable from annotation file...
+colortable with 14 entries read (originally /usr/local/freesurfer-5.3.0/average/colortable_BA.txt)
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'ln(spherereg / sphere) / ln(2)' as '(ln((spherereg/sphere))/ln(2))'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'var * -1' as '(var*-1)'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'var * -1' as '(var*-1)'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'var * -1' as '(var*-1)'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'abs(thickness)' as 'abs(thickness)'
+
+
+Level: INFO
+Method: caret::CaretMathExpression::CaretMathExpression(const caret::AString &)
+File:   /home/caret/caret7_dev/caret7_source/src/Common/CaretMathExpression.cxx
+Line:   43
+Text:   parsed 'thickness > 0' as '(thickness>0)'
+
+reading colortable from annotation file...
+colortable with 36 entries read (originally /autofs/space/terrier_001/users/nicks/freesurfer/average/colortable_desikan_killiany.txt)
+reading colortable from annotation file...
+colortable with 76 entries read (originally /autofs/space/birn_044/users/christophe_atlas_rebuild//scripts_2008/Simple_surface_labels2009.txt)
+reading colortable from annotation file...
+colortable with 14 entries read (originally /usr/local/freesurfer-5.3.0/average/colortable_BA.txt)
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-LH-UNKNOWN', changing one to 'CTX-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'CTX-RH-UNKNOWN', changing one to 'CTX-RH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-LH-UNKNOWN', changing one to 'WM-LH-UNKNOWN_1'
+
+
+Level: WARNING
+Method: static void caret::OperationVolumeLabelImport::useParameters(caret::OperationParameters *, caret::ProgressObject *)
+File:   /home/caret/caret7_dev/caret7_source/src/Operations/OperationVolumeLabelImport.cxx
+Line:   177
+Text:   name collision in input name 'WM-RH-UNKNOWN', changing one to 'WM-RH-UNKNOWN_1'
+

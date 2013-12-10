@@ -1,0 +1,36 @@
+/usr/lib/python2.6/site-packages/argparse.py:1575: DeprecationWarning: The "version" argument to ArgumentParser is deprecated. Please use "add_argument(..., action='version', version="N", ...)" instead
+  """instead""", DeprecationWarning)
+gradunwarp-INFO: Parsing /vols/Scratch/eduff/FC/analysis/coeff_verio.grad.grad for harmonics coeffs
+gradunwarp-INFO: Evaluating spherical harmonics
+gradunwarp-INFO: on a 60^3 grid
+gradunwarp-INFO: with extents -300.0mm to 300.0mm
+gradunwarp-INFO: along x...
+gradunwarp-INFO: along y...
+gradunwarp-INFO: along z...
+gradunwarp-INFO: Evaluating the jacobian multiplier
+gradunwarp-INFO: Unwarping slice by slice
+gradunwarp-INFO: Writing output to trilinear.nii.gz
+/usr/lib/python2.6/site-packages/argparse.py:1575: DeprecationWarning: The "version" argument to ArgumentParser is deprecated. Please use "add_argument(..., action='version', version="N", ...)" instead
+  """instead""", DeprecationWarning)
+gradunwarp-INFO: Parsing /vols/Scratch/eduff/FC/analysis/coeff_verio.grad.grad for harmonics coeffs
+gradunwarp-INFO: Evaluating spherical harmonics
+gradunwarp-INFO: on a 60^3 grid
+gradunwarp-INFO: with extents -300.0mm to 300.0mm
+gradunwarp-INFO: along x...
+gradunwarp-INFO: along y...
+gradunwarp-INFO: along z...
+gradunwarp-INFO: Evaluating the jacobian multiplier
+gradunwarp-INFO: Unwarping slice by slice
+gradunwarp-INFO: Writing output to trilinear.nii.gz
+/usr/lib/python2.6/site-packages/argparse.py:1575: DeprecationWarning: The "version" argument to ArgumentParser is deprecated. Please use "add_argument(..., action='version', version="N", ...)" instead
+  """instead""", DeprecationWarning)
+gradunwarp-INFO: Parsing /vols/Scratch/eduff/FC/analysis/coeff_verio.grad.grad for harmonics coeffs
+gradunwarp-INFO: Evaluating spherical harmonics
+gradunwarp-INFO: on a 60^3 grid
+gradunwarp-INFO: with extents -300.0mm to 300.0mm
+gradunwarp-INFO: along x...
+gradunwarp-INFO: along y...
+gradunwarp-INFO: along z...
+gradunwarp-INFO: Evaluating the jacobian multiplier
+gradunwarp-INFO: Unwarping slice by slice
+gradunwarp-INFO: Writing output to trilinear.nii.gz

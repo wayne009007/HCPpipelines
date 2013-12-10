@@ -1,7 +1,7 @@
-#!/bin/bash 
+#!/bin/bash
 
-Subjlist="test_subj" #Space delimited list of subject IDs
-StudyFolder="/home/fs0/rosas/scratch/Pipelines/Examples" #Location of Subject folders (named by subjectID)
+Subjlist="07" #Space delimited list of subject IDs
+StudyFolder="/home/fs0/rosas/scratch/FUNC" #Location of Subject folders (named by subjectID)
 EnvironmentScript="/home/fs0/rosas/scratch/Pipelines/Examples/Scripts/SetUpHCPPipeline.sh" #Pipeline environment script
 
 # Requirements for this script
@@ -20,7 +20,7 @@ fi
 
 PRINTCOM=""
 #PRINTCOM="echo"
-#QUEUE="-q veryshort.q"
+#QUEUE="-q bigmem.q"
 
 
 ########################################## INPUTS ########################################## 
@@ -38,7 +38,7 @@ for Subject in $Subjlist ; do
   T2wImage="${StudyFolder}/${Subject}/T1w/T2w_acpc_dc_restore.nii.gz" #T2w FreeSurfer Input (Full Resolution)
 
   ${FSLDIR}/bin/fsl_sub ${QUEUE} \
-     ${HCPPIPEDIR}/FreeSurfer/FreeSurferPipeline.sh \
+     ${HCPPIPEDIR}/FreeSurfer/FreeSurferPipeline_laststep.sh \
       --subject="$Subject" \
       --subjectDIR="$SubjectDIR" \
       --t1="$T1wImage" \

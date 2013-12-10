@@ -1,0 +1,3 @@
+/home/fs0/rosas/scratch/Pipelines/PreFreeSurfer/PreFreeSurferPipeline.sh: line 252: [: too many arguments
+/home/fs0/rosas/scratch/Pipelines/PreFreeSurfer/PreFreeSurferPipeline.sh: line 332: [: too many arguments
+rm: cannot remove `/home/fs0/rosas/scratch/Pipelines/Examples/test_subj/T1w/T1w_acpc_dc_seg.nii.gz': No such file or directory

@@ -1,8 +1,8 @@
 #!/bin/bash 
 
-Subjlist="792564" #Space delimited list of subject IDs
-StudyFolder="/media/myelin/brainmappers/Connectome_Project/TestStudyFolder" #Location of Subject folders (named by subjectID)
-EnvironmentScript="/media/2TBB/Connectome_Project/Pipelines/Examples/Scripts/SetUpHCPPipeline.sh" #Pipeline environment script
+Subjlist="21 22" #Space delimited list of subject IDs
+StudyFolder="/home/fs0/rosas/scratch/analysis" #Location of Subject folders (named by subjectID)
+EnvironmentScript="/home/fs0/rosas/scratch/Pipelines/Examples/Scripts/SetUpHCPPipeline.sh" #Pipeline environment script
 
 # Requirements for this script
 #  installed versions of: FSL5.0.2 or higher , FreeSurfer (version 5.2 or higher) , gradunwarp (python code from MGH)
@@ -25,11 +25,11 @@ PRINTCOM=""
 ########################################## INPUTS ########################################## 
 
 #Scripts called by this script do assume they run on the outputs of the FreeSurfer Pipeline
-
+# SAME INPUTS AS FMRI VOLUME PROCESSING
 ######################################### DO WORK ##########################################
 
 
-Tasklist="tfMRI_EMOTION_RL tfMRI_EMOTION_LR"
+Tasklist="v t"
 
 for Subject in $Subjlist ; do
   for fMRIName in $Tasklist ; do

@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-Subjlist="test_subj" #Space delimited list of subject IDs
+Subjlist="792564" #Space delimited list of subject IDs
 StudyFolder="/home/fs0/rosas/scratch/Pipelines/Examples" #Location of Subject folders (named by subjectID)
 EnvironmentScript="/home/fs0/rosas/scratch/Pipelines/Examples/Scripts/SetUpHCPPipeline.sh" #Pipeline environment script
 
@@ -61,7 +61,7 @@ for Subject in $Subjlist ; do
     i=$(($i+1))
   done
   
-  # RS: if no T2 this will be empty!
+  # RS: OK! if no T2 this will be empty!
   #Detect Number of T2w Images
   numT2ws=`ls ${StudyFolder}/${Subject}/unprocessed/3T | grep T2w_SPC | wc -l`
   T2wInputImages=""
@@ -108,7 +108,7 @@ for Subject in $Subjlist ; do
   TopupConfig="NONE" #Config for topup or "NONE" if not used
 
   ${FSLDIR}/bin/fsl_sub ${QUEUE} \
-     ${HCPPIPEDIR}/PreFreeSurfer/PreFreeSurferPipeline.sh \
+     ${HCPPIPEDIR}/PreFreeSurfer/PreFreeSurferPipeline_RSpart1.sh \
       --path="$StudyFolder" \
       --subject="$Subject" \
       --t1="$T1wInputImages" \
@@ -132,7 +132,7 @@ for Subject in $Subjlist ; do
       --gdcoeffs="$GradientDistortionCoeffs" \
       --avgrdcmethod="$AvgrdcSTRING" \
       --topupconfig="$TopupConfig" \
-      --printcom=""
+      --printcom=$PRINTCOM
       
   # The following lines are used for interactive debugging to set the positional parameters: $1 $2 $3 ...
 

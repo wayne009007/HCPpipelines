@@ -1,0 +1,512 @@
+Running script without T2 image, no adjustment of the pial surface based on T2w
+
+ START: FreeSurferHighResPial_noT2
+mri_convert /home/fs0/rosas/scratch/FUNC/07/T1w/07/mri/wm.hires.mgz /home/fs0/rosas/scratch/FUNC/07/T1w/07/mri/wm.hires.nii.gz 
+$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+reading from /home/fs0/rosas/scratch/FUNC/07/T1w/07/mri/wm.hires.mgz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+writing to /home/fs0/rosas/scratch/FUNC/07/T1w/07/mri/wm.hires.nii.gz...
+mri_convert /home/fs0/rosas/scratch/FUNC/07/T1w/07/mri/T1w_hires.norm.nii.gz /home/fs0/rosas/scratch/FUNC/07/T1w/07/mri/T1w_hires.norm.mgz 
+$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+reading from /home/fs0/rosas/scratch/FUNC/07/T1w/07/mri/T1w_hires.norm.nii.gz...
+TR=1000.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+writing to /home/fs0/rosas/scratch/FUNC/07/T1w/07/mri/T1w_hires.norm.mgz...
+using aseg volume aseg.hires to prevent surfaces crossing the midline
+using /home/fs0/rosas/scratch/FUNC/07/T1w as SUBJECTS_DIR...
+INFO: assuming MGZ format for volumes.
+using T1w_hires.norm as T1 volume...
+$Id: mris_make_surfaces.c,v 1.127.2.6 2013/05/12 22:28:01 nicks Exp $
+$Id: mrisurf.c,v 1.693.2.7 2013/05/12 22:28:01 nicks Exp $
+smoothing contralateral hemisphere...
+changing type of input wm volume to UCHAR...
+using class modes intead of means, discounting robust sigmas....
+intensity peaks found at WM=110,    GM=71
+mean inside = 102.4, mean outside = 82.0
+smoothing surface for 5 iterations...
+inhibiting deformation at non-cortical midline structures...
+deleting segment 1 with 76 points - only 57.89% unknown
+removing 2 vertex label from ripped group
+deleting segment 4 with 2 points - only 0.00% unknown
+deleting segment 5 with 265 points - only 0.00% unknown
+deleting segment 7 with 21 points - only 0.00% unknown
+deleting segment 8 with 21 points - only 0.00% unknown
+deleting segment 9 with 13 points - only 0.00% unknown
+deleting segment 10 with 57 points - only 0.00% unknown
+deleting segment 11 with 8 points - only 0.00% unknown
+mean border=92.4, 107 (101) missing vertices, mean dist -0.3 [1.6 (%44.4)->0.7 (%55.6))]
+%54 local maxima, %34 large gradients and % 7 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=2.0, host=unkno, nav=4, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 0
+randomSeed 0
+
+000: dt: 0.0000, sse=6949760.5, rms=11.45
+001: dt: 0.5000, sse=7019475.0, rms=7.559 (0.000%)
+002: dt: 0.5000, sse=7390724.5, rms=5.146 (0.000%)
+003: dt: 0.5000, sse=7778778.0, rms=4.040 (0.000%)
+004: dt: 0.5000, sse=8037180.0, rms=3.670 (0.000%)
+005: dt: 0.5000, sse=8103699.0, rms=3.597 (0.000%)
+006: dt: 0.5000, sse=8138107.5, rms=3.539 (0.000%)
+rms = 3.54, time step reduction 1 of 3 to 0.250...
+007: dt: 0.2500, sse=5607660.5, rms=2.478 (0.000%)
+008: dt: 0.2500, sse=4695756.5, rms=1.955 (0.000%)
+009: dt: 0.2500, sse=4435559.5, rms=1.793 (0.000%)
+010: dt: 0.2500, sse=4317542.5, rms=1.736 (0.000%)
+rms = 1.70, time step reduction 2 of 3 to 0.125...
+011: dt: 0.2500, sse=4257899.5, rms=1.703 (0.000%)
+012: dt: 0.1250, sse=4162479.5, rms=1.630 (0.000%)
+rms = 1.62, time step reduction 3 of 3 to 0.062...
+013: dt: 0.1250, sse=4124936.0, rms=1.622 (0.000%)
+positioning took 5.3 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 1 vertex label from ripped group
+deleting segment 0 with 1 points - only 0.00% unknown
+deleting segment 2 with 116 points - only 47.41% unknown
+deleting segment 6 with 387 points - only 0.00% unknown
+deleting segment 10 with 187 points - only 4.28% unknown
+removing 2 vertex label from ripped group
+deleting segment 11 with 2 points - only 0.00% unknown
+deleting segment 12 with 24 points - only 0.00% unknown
+deleting segment 13 with 7 points - only 0.00% unknown
+deleting segment 15 with 87 points - only 0.00% unknown
+deleting segment 16 with 26 points - only 0.00% unknown
+mean border=92.0, 158 (37) missing vertices, mean dist -0.1 [0.7 (%50.6)->0.4 (%49.4))]
+%81 local maxima, %13 large gradients and % 2 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=1.0, host=unkno, nav=2, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=5165662.0, rms=5.82
+014: dt: 0.5000, sse=5697577.5, rms=4.215 (0.000%)
+015: dt: 0.5000, sse=6409815.0, rms=3.693 (0.000%)
+016: dt: 0.5000, sse=6845396.0, rms=3.628 (0.000%)
+rms = 3.64, time step reduction 1 of 3 to 0.250...
+017: dt: 0.2500, sse=5240838.5, rms=2.396 (0.000%)
+018: dt: 0.2500, sse=4697906.5, rms=1.724 (0.000%)
+019: dt: 0.2500, sse=4504708.5, rms=1.559 (0.000%)
+020: dt: 0.2500, sse=4407388.5, rms=1.500 (0.000%)
+rms = 1.48, time step reduction 2 of 3 to 0.125...
+021: dt: 0.2500, sse=4363945.5, rms=1.476 (0.000%)
+022: dt: 0.1250, sse=4288189.0, rms=1.410 (0.000%)
+rms = 1.41, time step reduction 3 of 3 to 0.062...
+023: dt: 0.1250, sse=4255249.5, rms=1.408 (0.000%)
+positioning took 3.9 minutes
+inhibiting deformation at non-cortical midline structures...
+deleting segment 0 with 5 points - only 0.00% unknown
+deleting segment 1 with 125 points - only 44.00% unknown
+deleting segment 2 with 353 points - only 0.00% unknown
+removing 4 vertex label from ripped group
+deleting segment 4 with 15 points - only 0.00% unknown
+deleting segment 5 with 160 points - only 4.38% unknown
+deleting segment 6 with 10 points - only 10.00% unknown
+deleting segment 7 with 21 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+deleting segment 8 with 3 points - only 0.00% unknown
+removing 4 vertex label from ripped group
+deleting segment 9 with 4 points - only 0.00% unknown
+deleting segment 10 with 87 points - only 0.00% unknown
+deleting segment 11 with 24 points - only 0.00% unknown
+mean border=92.6, 137 (29) missing vertices, mean dist -0.1 [0.4 (%55.1)->0.2 (%44.9))]
+%87 local maxima, % 8 large gradients and % 1 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=0.5, host=unkno, nav=1, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=4385549.5, rms=2.71
+rms = 2.66, time step reduction 1 of 3 to 0.250...
+024: dt: 0.5000, sse=5016487.0, rms=2.664 (0.000%)
+025: dt: 0.2500, sse=4662951.5, rms=1.731 (0.000%)
+026: dt: 0.2500, sse=4568415.5, rms=1.451 (0.000%)
+rms = 1.44, time step reduction 2 of 3 to 0.125...
+027: dt: 0.2500, sse=4511673.5, rms=1.444 (0.000%)
+028: dt: 0.1250, sse=4423706.5, rms=1.327 (0.000%)
+rms = 1.32, time step reduction 3 of 3 to 0.062...
+029: dt: 0.1250, sse=4390586.5, rms=1.316 (0.000%)
+positioning took 1.6 minutes
+inhibiting deformation at non-cortical midline structures...
+deleting segment 0 with 5 points - only 0.00% unknown
+deleting segment 1 with 126 points - only 43.65% unknown
+deleting segment 3 with 349 points - only 0.00% unknown
+removing 4 vertex label from ripped group
+deleting segment 5 with 160 points - only 4.38% unknown
+deleting segment 6 with 10 points - only 10.00% unknown
+deleting segment 7 with 18 points - only 0.00% unknown
+deleting segment 8 with 26 points - only 0.00% unknown
+deleting segment 9 with 9 points - only 0.00% unknown
+deleting segment 10 with 85 points - only 0.00% unknown
+deleting segment 11 with 24 points - only 0.00% unknown
+mean border=92.9, 152 (22) missing vertices, mean dist -0.1 [0.3 (%52.4)->0.2 (%47.6))]
+%89 local maxima, % 6 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=0.2, host=unkno, nav=0, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=4421763.0, rms=1.72
+rms = 1.85, time step reduction 1 of 3 to 0.250...
+030: dt: 0.2500, sse=4541716.0, rms=1.292 (0.000%)
+031: dt: 0.2500, sse=4789181.5, rms=1.064 (0.000%)
+rms = 1.05, time step reduction 2 of 3 to 0.125...
+032: dt: 0.2500, sse=4849741.0, rms=1.054 (0.000%)
+rms = 1.04, time step reduction 3 of 3 to 0.062...
+033: dt: 0.1250, sse=4878132.0, rms=1.043 (0.000%)
+positioning took 1.9 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 3 vertex label from ripped group
+deleting segment 1 with 3 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+deleting segment 6 with 3 points - only 0.00% unknown
+smoothing surface for 5 iterations...
+mean border=63.8, 77 (77) missing vertices, mean dist 0.8 [0.1 (%0.0)->1.7 (%100.0))]
+%20 local maxima, %26 large gradients and %50 min vals, 2623 gradients ignored
+tol=1.0e-04, sigma=2.0, host=unkno, nav=16, nbrs=2, l_surf_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=29233580.0, rms=29.61
+001: dt: 0.5000, sse=22043890.0, rms=25.244 (0.000%)
+002: dt: 0.5000, sse=16743976.0, rms=21.474 (0.000%)
+003: dt: 0.5000, sse=13048541.0, rms=18.255 (0.000%)
+004: dt: 0.5000, sse=10544606.0, rms=15.492 (0.000%)
+005: dt: 0.5000, sse=8986896.0, rms=13.276 (0.000%)
+006: dt: 0.5000, sse=8239038.0, rms=11.600 (0.000%)
+007: dt: 0.5000, sse=7828425.5, rms=10.224 (0.000%)
+008: dt: 0.5000, sse=7628544.0, rms=9.008 (0.000%)
+009: dt: 0.5000, sse=7565524.5, rms=7.858 (0.000%)
+010: dt: 0.5000, sse=7546136.5, rms=6.798 (0.000%)
+011: dt: 0.5000, sse=7673155.0, rms=5.947 (0.000%)
+012: dt: 0.5000, sse=7808493.0, rms=5.339 (0.000%)
+013: dt: 0.5000, sse=7946773.0, rms=4.943 (0.000%)
+014: dt: 0.5000, sse=8094630.5, rms=4.721 (0.000%)
+015: dt: 0.5000, sse=8202975.5, rms=4.608 (0.000%)
+016: dt: 0.5000, sse=8227064.0, rms=4.521 (0.000%)
+rms = 4.49, time step reduction 1 of 3 to 0.250...
+017: dt: 0.5000, sse=8290762.5, rms=4.489 (0.000%)
+018: dt: 0.2500, sse=5847755.0, rms=3.698 (0.000%)
+019: dt: 0.2500, sse=5664263.5, rms=3.459 (0.000%)
+rms = 3.44, time step reduction 2 of 3 to 0.125...
+020: dt: 0.2500, sse=5543647.5, rms=3.440 (0.000%)
+021: dt: 0.1250, sse=5180066.5, rms=3.222 (0.000%)
+rms = 3.18, time step reduction 3 of 3 to 0.062...
+022: dt: 0.1250, sse=5126104.0, rms=3.184 (0.000%)
+positioning took 7.0 minutes
+mean border=57.3, 2518 (12) missing vertices, mean dist 0.2 [0.3 (%20.7)->0.6 (%79.3))]
+%36 local maxima, %15 large gradients and %43 min vals, 3585 gradients ignored
+tol=1.0e-04, sigma=1.0, host=unkno, nav=8, nbrs=2, l_surf_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=8458949.0, rms=10.66
+023: dt: 0.5000, sse=7218040.0, rms=7.814 (0.000%)
+024: dt: 0.5000, sse=8474134.0, rms=6.558 (0.000%)
+025: dt: 0.5000, sse=8204287.0, rms=5.812 (0.000%)
+026: dt: 0.5000, sse=8908365.0, rms=5.471 (0.000%)
+027: dt: 0.5000, sse=8428437.0, rms=5.159 (0.000%)
+028: dt: 0.5000, sse=9052437.0, rms=5.104 (0.000%)
+029: dt: 0.5000, sse=8568006.0, rms=4.989 (0.000%)
+rms = 5.04, time step reduction 1 of 3 to 0.250...
+030: dt: 0.2500, sse=6945245.0, rms=3.981 (0.000%)
+031: dt: 0.2500, sse=6579524.5, rms=3.746 (0.000%)
+rms = 3.77, time step reduction 2 of 3 to 0.125...
+032: dt: 0.1250, sse=6357876.0, rms=3.580 (0.000%)
+033: dt: 0.1250, sse=5998428.5, rms=3.335 (0.000%)
+rms = 3.29, time step reduction 3 of 3 to 0.062...
+034: dt: 0.1250, sse=5905247.5, rms=3.286 (0.000%)
+positioning took 4.3 minutes
+mean border=56.1, 3624 (5) missing vertices, mean dist 0.0 [0.2 (%43.7)->0.3 (%56.3))]
+%41 local maxima, %12 large gradients and %41 min vals, 2082 gradients ignored
+tol=1.0e-04, sigma=0.5, host=unkno, nav=4, nbrs=2, l_surf_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=6074375.5, rms=4.00
+rms = 4.89, time step reduction 1 of 3 to 0.250...
+035: dt: 0.2500, sse=5864912.0, rms=3.662 (0.000%)
+036: dt: 0.2500, sse=6032441.5, rms=3.587 (0.000%)
+rms = 3.70, time step reduction 2 of 3 to 0.125...
+037: dt: 0.1250, sse=5939967.5, rms=3.514 (0.000%)
+038: dt: 0.1250, sse=5861640.5, rms=3.429 (0.000%)
+rms = 3.40, time step reduction 3 of 3 to 0.062...
+039: dt: 0.1250, sse=5858061.0, rms=3.398 (0.000%)
+positioning took 2.1 minutes
+mean border=55.4, 8196 (2) missing vertices, mean dist 0.0 [0.2 (%49.8)->0.3 (%50.2))]
+%42 local maxima, %10 large gradients and %38 min vals, 1820 gradients ignored
+tol=1.0e-04, sigma=0.2, host=unkno, nav=2, nbrs=2, l_surf_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=5908976.0, rms=3.65
+rms = 4.36, time step reduction 1 of 3 to 0.250...
+040: dt: 0.2500, sse=5822476.0, rms=3.485 (0.000%)
+rms = 3.45, time step reduction 2 of 3 to 0.125...
+041: dt: 0.2500, sse=6148134.5, rms=3.451 (0.000%)
+042: dt: 0.1250, sse=5913265.0, rms=3.334 (0.000%)
+043: dt: 0.1250, sse=5961095.5, rms=3.283 (0.000%)
+rms = 3.26, time step reduction 3 of 3 to 0.062...
+044: dt: 0.1250, sse=5985161.0, rms=3.265 (0.000%)
+positioning took 2.1 minutes
+writing curvature file /home/fs0/rosas/scratch/FUNC/07/T1w/07/surf/lh.curv.pial
+writing curvature file /home/fs0/rosas/scratch/FUNC/07/T1w/07/surf/lh.area.pial
+0 of 156135 vertices processed
+25000 of 156135 vertices processed
+50000 of 156135 vertices processed
+75000 of 156135 vertices processed
+100000 of 156135 vertices processed
+125000 of 156135 vertices processed
+150000 of 156135 vertices processed
+0 of 156135 vertices processed
+25000 of 156135 vertices processed
+50000 of 156135 vertices processed
+75000 of 156135 vertices processed
+100000 of 156135 vertices processed
+125000 of 156135 vertices processed
+150000 of 156135 vertices processed
+thickness calculation complete, 160:397 truncations.
+35430 vertices at 0 distance
+107149 vertices at 1 distance
+94399 vertices at 2 distance
+41889 vertices at 3 distance
+14389 vertices at 4 distance
+4263 vertices at 5 distance
+1262 vertices at 6 distance
+409 vertices at 7 distance
+160 vertices at 8 distance
+79 vertices at 9 distance
+52 vertices at 10 distance
+30 vertices at 11 distance
+15 vertices at 12 distance
+27 vertices at 13 distance
+19 vertices at 14 distance
+17 vertices at 15 distance
+17 vertices at 16 distance
+9 vertices at 17 distance
+12 vertices at 18 distance
+9 vertices at 19 distance
+16 vertices at 20 distance
+writing curvature file /home/fs0/rosas/scratch/FUNC/07/T1w/07/surf/lh.thickness
+using aseg volume aseg.hires to prevent surfaces crossing the midline
+using /home/fs0/rosas/scratch/FUNC/07/T1w as SUBJECTS_DIR...
+INFO: assuming MGZ format for volumes.
+using T1w_hires.norm as T1 volume...
+$Id: mris_make_surfaces.c,v 1.127.2.6 2013/05/12 22:28:01 nicks Exp $
+$Id: mrisurf.c,v 1.693.2.7 2013/05/12 22:28:01 nicks Exp $
+smoothing contralateral hemisphere...
+changing type of input wm volume to UCHAR...
+using class modes intead of means, discounting robust sigmas....
+intensity peaks found at WM=110,    GM=71
+mean inside = 101.8, mean outside = 81.7
+smoothing surface for 5 iterations...
+inhibiting deformation at non-cortical midline structures...
+removing 2 vertex label from ripped group
+deleting segment 0 with 2 points - only 0.00% unknown
+deleting segment 3 with 7 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+deleting segment 5 with 126 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+removing 3 vertex label from ripped group
+deleting segment 11 with 25 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+deleting segment 12 with 3 points - only 0.00% unknown
+deleting segment 13 with 54 points - only 0.00% unknown
+removing 2 vertex label from ripped group
+deleting segment 14 with 2 points - only 0.00% unknown
+deleting segment 15 with 9 points - only 0.00% unknown
+deleting segment 16 with 19 points - only 0.00% unknown
+mean border=92.9, 176 (170) missing vertices, mean dist -0.4 [1.6 (%47.5)->0.7 (%52.5))]
+%55 local maxima, %33 large gradients and % 8 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=2.0, host=unkno, nav=4, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+complete_dist_mat 0
+rms 0
+smooth_averages 0
+remove_neg 0
+ico_order 0
+which_surface 0
+target_radius 0.000000
+nfields 0
+scale 0.000000
+desired_rms_height 0.000000
+momentum 0.000000
+nbhd_size 0
+max_nbrs 0
+niterations 25
+nsurfaces 0
+SURFACES 3
+flags 0 (0)
+use curv 0
+no sulc 0
+no rigid align 0
+mris->nsize 2
+mris->hemisphere 1
+randomSeed 0
+
+000: dt: 0.0000, sse=6942599.0, rms=11.14
+001: dt: 0.5000, sse=7239552.5, rms=7.343 (0.000%)
+002: dt: 0.5000, sse=7705601.5, rms=4.992 (0.000%)
+003: dt: 0.5000, sse=8052767.5, rms=3.926 (0.000%)
+004: dt: 0.5000, sse=8281015.0, rms=3.585 (0.000%)
+005: dt: 0.5000, sse=8348258.5, rms=3.525 (0.000%)
+006: dt: 0.5000, sse=8387109.0, rms=3.472 (0.000%)
+rms = 3.48, time step reduction 1 of 3 to 0.250...
+007: dt: 0.2500, sse=5799880.0, rms=2.446 (0.000%)
+008: dt: 0.2500, sse=4888603.0, rms=1.955 (0.000%)
+009: dt: 0.2500, sse=4605304.0, rms=1.815 (0.000%)
+010: dt: 0.2500, sse=4485096.0, rms=1.764 (0.000%)
+rms = 1.74, time step reduction 2 of 3 to 0.125...
+011: dt: 0.2500, sse=4434145.5, rms=1.736 (0.000%)
+012: dt: 0.1250, sse=4324497.0, rms=1.655 (0.000%)
+rms = 1.65, time step reduction 3 of 3 to 0.062...
+013: dt: 0.1250, sse=4285605.0, rms=1.648 (0.000%)
+positioning took 4.9 minutes
+inhibiting deformation at non-cortical midline structures...
+deleting segment 0 with 37 points - only 29.73% unknown
+removing 3 vertex label from ripped group
+deleting segment 5 with 102 points - only 0.00% unknown
+deleting segment 8 with 210 points - only 40.00% unknown
+deleting segment 9 with 14 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+removing 4 vertex label from ripped group
+deleting segment 12 with 4 points - only 0.00% unknown
+deleting segment 14 with 19 points - only 52.63% unknown
+deleting segment 15 with 5 points - only 0.00% unknown
+deleting segment 16 with 9 points - only 0.00% unknown
+deleting segment 17 with 10 points - only 0.00% unknown
+deleting segment 18 with 25 points - only 0.00% unknown
+mean border=92.3, 236 (81) missing vertices, mean dist -0.1 [0.7 (%49.8)->0.4 (%50.2))]
+%81 local maxima, %13 large gradients and % 2 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=1.0, host=unkno, nav=2, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=5402938.5, rms=5.92
+014: dt: 0.5000, sse=5870153.0, rms=4.257 (0.000%)
+015: dt: 0.5000, sse=6647129.5, rms=3.671 (0.000%)
+016: dt: 0.5000, sse=7105368.5, rms=3.553 (0.000%)
+rms = 3.59, time step reduction 1 of 3 to 0.250...
+017: dt: 0.2500, sse=5484853.0, rms=2.359 (0.000%)
+018: dt: 0.2500, sse=4932565.5, rms=1.724 (0.000%)
+019: dt: 0.2500, sse=4739390.0, rms=1.566 (0.000%)
+020: dt: 0.2500, sse=4646107.0, rms=1.510 (0.000%)
+rms = 1.49, time step reduction 2 of 3 to 0.125...
+021: dt: 0.2500, sse=4601475.0, rms=1.488 (0.000%)
+022: dt: 0.1250, sse=4518544.5, rms=1.412 (0.000%)
+rms = 1.41, time step reduction 3 of 3 to 0.062...
+023: dt: 0.1250, sse=4481604.5, rms=1.406 (0.000%)
+positioning took 3.1 minutes
+inhibiting deformation at non-cortical midline structures...
+deleting segment 0 with 6 points - only 33.33% unknown
+removing 2 vertex label from ripped group
+deleting segment 1 with 2 points - only 0.00% unknown
+deleting segment 2 with 44 points - only 31.82% unknown
+deleting segment 4 with 96 points - only 0.00% unknown
+deleting segment 5 with 246 points - only 39.02% unknown
+deleting segment 6 with 11 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+deleting segment 9 with 6 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+deleting segment 11 with 3 points - only 0.00% unknown
+deleting segment 12 with 9 points - only 0.00% unknown
+deleting segment 13 with 12 points - only 0.00% unknown
+deleting segment 14 with 25 points - only 0.00% unknown
+mean border=92.8, 205 (36) missing vertices, mean dist -0.1 [0.4 (%54.2)->0.2 (%45.8))]
+%87 local maxima, % 8 large gradients and % 1 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=0.5, host=unkno, nav=1, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=4613116.5, rms=2.70
+024: dt: 0.5000, sse=5289023.5, rms=2.633 (0.000%)
+rms = 3.29, time step reduction 1 of 3 to 0.250...
+025: dt: 0.2500, sse=4878829.5, rms=1.763 (0.000%)
+026: dt: 0.2500, sse=4792212.5, rms=1.485 (0.000%)
+027: dt: 0.2500, sse=4736500.5, rms=1.399 (0.000%)
+rms = 1.40, time step reduction 2 of 3 to 0.125...
+028: dt: 0.2500, sse=4719970.5, rms=1.397 (0.000%)
+029: dt: 0.1250, sse=4648497.5, rms=1.325 (0.000%)
+rms = 1.32, time step reduction 3 of 3 to 0.062...
+030: dt: 0.1250, sse=4619278.5, rms=1.320 (0.000%)
+positioning took 2.5 minutes
+inhibiting deformation at non-cortical midline structures...
+deleting segment 0 with 9 points - only 44.44% unknown
+removing 3 vertex label from ripped group
+deleting segment 1 with 3 points - only 0.00% unknown
+deleting segment 2 with 39 points - only 28.21% unknown
+deleting segment 5 with 102 points - only 0.00% unknown
+deleting segment 7 with 13 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+removing 4 vertex label from ripped group
+deleting segment 9 with 4 points - only 50.00% unknown
+deleting segment 10 with 133 points - only 0.00% unknown
+deleting segment 11 with 6 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+deleting segment 12 with 3 points - only 0.00% unknown
+deleting segment 13 with 9 points - only 0.00% unknown
+deleting segment 14 with 12 points - only 0.00% unknown
+deleting segment 15 with 27 points - only 0.00% unknown
+mean border=93.0, 206 (30) missing vertices, mean dist -0.1 [0.3 (%52.1)->0.2 (%47.9))]
+%89 local maxima, % 7 large gradients and % 0 min vals, 0 gradients ignored
+tol=1.0e-04, sigma=0.2, host=unkno, nav=0, nbrs=2, l_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=4643216.5, rms=1.76
+rms = 1.84, time step reduction 1 of 3 to 0.250...
+031: dt: 0.2500, sse=4779217.0, rms=1.335 (0.000%)
+032: dt: 0.2500, sse=5056817.0, rms=1.093 (0.000%)
+rms = 1.09, time step reduction 2 of 3 to 0.125...
+033: dt: 0.2500, sse=5132052.0, rms=1.092 (0.000%)
+rms = 1.07, time step reduction 3 of 3 to 0.062...
+034: dt: 0.1250, sse=5152630.0, rms=1.069 (0.000%)
+positioning took 1.4 minutes
+inhibiting deformation at non-cortical midline structures...
+removing 3 vertex label from ripped group
+deleting segment 1 with 3 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+removing 3 vertex label from ripped group
+removing 3 vertex label from ripped group
+deleting segment 11 with 3 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+deleting segment 12 with 3 points - only 0.00% unknown
+removing 3 vertex label from ripped group
+smoothing surface for 5 iterations...
+mean border=64.0, 168 (168) missing vertices, mean dist 0.8 [0.3 (%0.0)->1.7 (%100.0))]
+%20 local maxima, %24 large gradients and %53 min vals, 2604 gradients ignored
+tol=1.0e-04, sigma=2.0, host=unkno, nav=16, nbrs=2, l_surf_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50
+000: dt: 0.0000, sse=30369824.0, rms=29.75
+001: dt: 0.5000, sse=23065862.0, rms=25.479 (0.000%)
+002: dt: 0.5000, sse=17579892.0, rms=21.734 (0.000%)
+003: dt: 0.5000, sse=13708830.0, rms=18.501 (0.000%)
+004: dt: 0.5000, sse=11030952.0, rms=15.710 (0.000%)
+005: dt: 0.5000, sse=9398380.0, rms=13.482 (0.000%)
+006: dt: 0.5000, sse=8621170.0, rms=11.788 (0.000%)
+007: dt: 0.5000, sse=8168075.5, rms=10.379 (0.000%)
+008: dt: 0.5000, sse=8125707.5, rms=9.183 (0.000%)
+009: dt: 0.5000, sse=7964501.0, rms=8.038 (0.000%)
+010: dt: 0.5000, sse=8067330.5, rms=7.075 (0.000%)
+011: dt: 0.5000, sse=8092523.0, rms=6.213 (0.000%)
+012: dt: 0.5000, sse=8253225.5, rms=5.673 (0.000%)
+013: dt: 0.5000, sse=8348831.5, rms=5.234 (0.000%)
+014: dt: 0.5000, sse=8524819.0, rms=5.051 (0.000%)
+015: dt: 0.5000, sse=8558660.0, rms=4.846 (0.000%)
+rms = 4.82, time step reduction 1 of 3 to 0.250...
+016: dt: 0.5000, sse=8667403.0, rms=4.819 (0.000%)
+017: dt: 0.2500, sse=6172925.5, rms=4.035 (0.000%)
+018: dt: 0.2500, sse=6010880.5, rms=3.847 (0.000%)
+rms = 3.83, time step reduction 2 of 3 to 0.125...
+019: dt: 0.2500, sse=5922453.0, rms=3.835 (0.000%)
+020: dt: 0.1250, sse=5475281.0, rms=3.570 (0.000%)
+021: dt: 0.1250, sse=5421629.0, rms=3.518 (0.000%)
+rms = 3.51, time step reduction 3 of 3 to 0.062...
+022: dt: 0.1250, sse=5397719.5, rms=3.508 (0.000%)
+positioning took 8.5 minutes
+mean border=57.6, 2438 (49) missing vertices, mean dist 0.2 [0.3 (%21.0)->0.7 (%79.0))]
+%34 local maxima, %14 large gradients and %47 min vals, 3652 gradients ignored
+tol=1.0e-04, sigma=1.0, host=unkno, nav=8, nbrs=2, l_surf_repulse=5.000, l_tspring=1.000, l_nspring=0.500, l_intensity=0.200, l_curv=1.000
+mom=0.00, dt=0.50

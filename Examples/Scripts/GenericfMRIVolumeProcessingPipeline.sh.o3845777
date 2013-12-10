@@ -1,0 +1,827 @@
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40 . . . . . . . . . 50 . . . . . . . . . 60 . . . . . . . . . 70 . .
+ 
+ END: GradientDistortionUnwarp
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40 . . . . . . . . . 50 . . . . . . . . . 60 . . . . . . . . . 70 . .
+ 
+ END: GradientDistortionUnwarp
+ 
+ START: MotionCorrection_FLIRTBased
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0000
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0001
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0002
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0003
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0004
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0005
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0006
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0007
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0008
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0009
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0010
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0011
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0012
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0013
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0014
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0015
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0016
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0017
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0018
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0019
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0020
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0021
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0022
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0023
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0024
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0025
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0026
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0027
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0028
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0029
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0030
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0031
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0032
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0033
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0034
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0035
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0036
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0037
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0038
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0039
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0040
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0041
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0042
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0043
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0044
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0045
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0046
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0047
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0048
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0049
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0050
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0051
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0052
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0053
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0054
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0055
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0056
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0057
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0058
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0059
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0060
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0061
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0062
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0063
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0064
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0065
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0066
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0067
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0068
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0069
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0070
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0071
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0072
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0073
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0074
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0075
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0076
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0077
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0078
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0079
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0080
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0081
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0082
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0083
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0084
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0085
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0086
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0087
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0088
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0089
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0090
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0091
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0092
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0093
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0094
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0095
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0096
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0097
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0098
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0099
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0100
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0101
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0102
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0103
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0104
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0105
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0106
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0107
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0108
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0109
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0110
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0111
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0112
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0113
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0114
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0115
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0116
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0117
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0118
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0119
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0120
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0121
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0122
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0123
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0124
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0125
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0126
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0127
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0128
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0129
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0130
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0131
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0132
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0133
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0134
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0135
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0136
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0137
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0138
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0139
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0140
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0141
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0142
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0143
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0144
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0145
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0146
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0147
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0148
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0149
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0150
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0151
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0152
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0153
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0154
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0155
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0156
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0157
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0158
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0159
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0160
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0161
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0162
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0163
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0164
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0165
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0166
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0167
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0168
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0169
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0170
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0171
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0172
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0173
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0174
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0175
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0176
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0177
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0178
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0179
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0180
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0181
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0182
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0183
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0184
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0185
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0186
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0187
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0188
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0189
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0190
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0191
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0192
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0193
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0194
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0195
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0196
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0197
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0198
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0199
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0200
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0201
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0202
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0203
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0204
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0205
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0206
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0207
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0208
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0209
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0210
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0211
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0212
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0213
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0214
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0215
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0216
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0217
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0218
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0219
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0220
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0221
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0222
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0223
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0224
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0225
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0226
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0227
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0228
+processing /home/fs0/rosas/scratch/FUNC/10/t/MotionCorrection_FLIRTbased/t_mc_tmp0229
+   END: MotionCorrection_FLIRTBased
+ 
+ START: DistortionCorrectionEpiToT1wReg_FLIRTBBRAndFreeSurferBBRBased
+doing distortion correction with FIELDMAP option OK
+ 
+ START: Field Map Preprocessing and Gradient Unwarping
+Loading volumes
+Phase loaded
+Magnitude loaded
+Mask loaded
+Rewrapping phase range to [-pi,pi]
+Number of phase splits = 8
+Calculating starting matrices (2317 by 2317)
+Finished connection_matrices
+6423 constraints left
+2023 constraints left
+460 constraints left
+Did while loop 2316 times
+Done. Created /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/FieldMap/FieldMap for use with FEAT.
+DONE: fmrib_prepare_fieldmap.sh
+ 
+ START: GradientDistortionUnwarp
+. . . . . . . . . 10 . . . . . . . . . 20 . . . . . . . . . 30 . . . . . . . . . 40
+ 
+ END: GradientDistortionUnwarp
+ 
+ END: Field Map Preprocessing and Gradient Unwarping
+Running FAST segmentation
+FLIRT pre-alignment
+Registering fieldmap to structural
+Running BBR with fieldmap
+0.590149 0.999838 -0.006220 0.016897 0.000000 0.005649 0.999418 0.033639 0.000000 -0.017096 -0.033539 0.999291 0.000000 0.665377 3.830755 -5.342591 1.000000 
+Making warp fields and applying registration to EPI series
+all distortion correction OK. going to FS-BBR.....
+Log file is /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat.log
+Fri Nov  8 12:50:53 GMT 2013
+
+setenv SUBJECTS_DIR /home/fs0/rosas/scratch/FUNC/10/T1w
+cd /vols/Scratch/rosas/Pipelines/Examples/Scripts
+/usr/local/freesurfer-5.3.0/bin/bbregister --s 10 --mov /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w_init.nii.gz --surf white.deformed --init-reg /home/fs0/rosas/scratch/FUNC/10/T1w/10/mri/transforms/eye.dat --bold --reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat --o /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w.nii.gz
+
+$Id: bbregister,v 1.49.2.3 2013/03/25 18:04:53 greve Exp $
+Linux jalapeno06.fmrib.ox.ac.uk 2.6.32-358.18.1.el6.x86_64 #1 SMP Fri Aug 2 17:04:38 EDT 2013 x86_64 x86_64 x86_64 GNU/Linux
+FREESURFER_HOME /usr/local/freesurfer-5.3.0
+mri_convert /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w_init.nii.gz /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii
+mri_convert /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w_init.nii.gz /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii 
+$Id: mri_convert.c,v 1.179.2.7 2012/09/05 21:55:16 mreuter Exp $
+reading from /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w_init.nii.gz...
+TR=1300.00, TE=0.00, TI=0.00, flip angle=0.00
+i_ras = (-1, 0, 0)
+j_ras = (0, 1, 0)
+k_ras = (0, 0, 1)
+writing to /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii...
+mri_segreg --mov /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii --init-reg /home/fs0/rosas/scratch/FUNC/10/T1w/10/mri/transforms/eye.dat --out-reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/bbr.pass1.dat --subsamp-brute 100 --subsamp 100 --tol 1e-4 --tol1d 1e-3 --brute -4 4 4 --surf white.deformed --gm-proj-frac 0.5 --gm-gt-wm 0.5
+$Id: mri_segreg.c,v 1.103.2.1 2011/10/07 19:14:42 greve Exp $
+setenv SUBJECTS_DIR /home/fs0/rosas/scratch/FUNC/10/T1w
+cd /vols/Scratch/rosas/Pipelines/Examples/Scripts
+mri_segreg --mov /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii --init-reg /home/fs0/rosas/scratch/FUNC/10/T1w/10/mri/transforms/eye.dat --out-reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/bbr.pass1.dat --subsamp-brute 100 --subsamp 100 --tol 1e-4 --tol1d 1e-3 --brute -4 4 4 --surf white.deformed --gm-proj-frac 0.5 --gm-gt-wm 0.5 
+sysname  Linux
+hostname jalapeno06.fmrib.ox.ac.uk
+machine  x86_64
+user     rosas
+movvol /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii
+regfile /home/fs0/rosas/scratch/FUNC/10/T1w/10/mri/transforms/eye.dat
+subject 10
+dof 6
+outregfile /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/bbr.pass1.dat
+UseMask 0
+UseLH 1
+UseRH 1
+nsubsamp 100
+PenaltySign  -1
+PenaltySlope 0.500000
+PenaltyCenter 0.000000
+surfname white.deformed
+GMProjFrac 0.500000
+WMProjAbs 2.000000
+lhcostfile (null)
+rhcostfile (null)
+interp  trilinear (1)
+frame  0
+TolPowell 0.000100
+nMaxItersPowell 36
+n1dmin  3
+Profile   0
+Gdiag_no  -1
+AddNoise  0 (0)
+SynthSeed 1384865781
+TransRandMax 0.000000
+RotRandMax 0.000000
+Translations 0.000000 0.000000 0.000000
+Rotations   0.000000 0.000000 0.000000
+Input reg
+ 1.000   0.000   0.000   0.000;
+ 0.000   1.000   0.000   0.000;
+ 0.000   0.000   1.000   0.000;
+ 0.000   0.000   0.000   1.000;
+
+Loading mov
+Projecting LH Surfs
+Loading lh.white.deformed surf
+Loading lh.thickness for GM
+GM Proj: 1 0.500000 2.000000
+WM Proj: 0 0.500000 2.000000
+Projecting RH Surfs
+Loading rh.white.deformed surf
+Loading rh.thickness
+Projecting RH Surfs
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   0.969960
+ 1  -25.0 -25.0  25.0   0.996949
+ 2  -25.0  25.0 -25.0   0.990344
+ 3  -25.0  25.0  25.0   0.940578
+ 4   25.0 -25.0 -25.0   1.006279
+ 5   25.0 -25.0  25.0   1.026018
+ 6   25.0  25.0 -25.0   0.985933
+ 7   25.0  25.0  25.0   1.002415
+REL:  8  0.662706    7.918475  0.989809 rel = 0.669529 
+Initial costs ----------------
+Number of surface hits 2966
+WM  Intensity   763.1970 +/- 175.0251
+Ctx Intensity   809.1581 +/- 214.4365
+Pct Contrast      4.7610 +/-  23.4706
+Cost   0.6627
+RelCost   0.6695
+
+------------------------------------
+Brute force preopt -4 4 4, n = 729
+     0  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000      0.9717   0.9717  0.0
+     1  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000   0.0000      0.9354   0.9354  0.0
+     2  -4.0000  -4.0000  -4.0000  -4.0000  -4.0000   4.0000      0.8873   0.8873  0.0
+    24  -4.0000  -4.0000  -4.0000   4.0000   4.0000  -4.0000      0.8854   0.8854  0.0
+    42  -4.0000  -4.0000   0.0000   0.0000   4.0000  -4.0000      0.8615   0.8615  0.0
+    46  -4.0000  -4.0000   0.0000   4.0000  -4.0000   0.0000      0.8557   0.8557  0.0
+    47  -4.0000  -4.0000   0.0000   4.0000  -4.0000   4.0000      0.8516   0.8516  0.0
+    49  -4.0000  -4.0000   0.0000   4.0000   0.0000   0.0000      0.8422   0.8422  0.0
+   132  -4.0000   0.0000   0.0000   4.0000   4.0000  -4.0000      0.8299   0.8299  0.0
+   148  -4.0000   0.0000   4.0000   0.0000   0.0000   0.0000      0.8265   0.8265  0.0
+   283   0.0000  -4.0000   0.0000   0.0000   0.0000   0.0000      0.8160   0.8160  0.0
+   292   0.0000  -4.0000   0.0000   4.0000   0.0000   0.0000      0.7846   0.7846  0.0
+   293   0.0000  -4.0000   0.0000   4.0000   0.0000   4.0000      0.7744   0.7744  0.0
+   364   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000      0.6627   0.6627  0.0
+   373   0.0000   0.0000   0.0000   4.0000   0.0000   0.0000      0.6173   0.6173  0.0
+Brute Force --------------------------
+Min cost was 0.617336
+Number of iterations   729
+Search time 2.456000 sec
+Parameters at best (transmm, rotdeg)
+  0.000   0.000   0.000  4.000  0.000  0.000 
+--------------------------------------------
+
+Starting Powell Minimization
+Init Powel Params dof = 6
+0 0
+1 0
+2 0
+3 4
+4 0
+5 0
+   6  0.382  0.000  0.000  4.000  0.000  0.000   0.6023429397
+   7  0.618  0.000  0.000  4.000  0.000  0.000   0.6007642467
+  10  0.605  0.000  0.000  4.000  0.000  0.000   0.6007346347
+  11  0.602  0.000  0.000  4.000  0.000  0.000   0.6007336643
+  12  0.603  0.000  0.000  4.000  0.000  0.000   0.6007336504
+  20  0.603 -0.180  0.000  4.000  0.000  0.000   0.5985551021
+  21  0.603 -0.174  0.000  4.000  0.000  0.000   0.5985347083
+  22  0.603 -0.157  0.000  4.000  0.000  0.000   0.5984453995
+  23  0.603 -0.097  0.000  4.000  0.000  0.000   0.5982962309
+  25  0.603 -0.115  0.000  4.000  0.000  0.000   0.5982798954
+  27  0.603 -0.110  0.000  4.000  0.000  0.000   0.5982798859
+  29  0.603 -0.109  0.000  4.000  0.000  0.000   0.5982795348
+  31  0.603 -0.107  0.000  4.000  0.000  0.000   0.5982793672
+  34  0.603 -0.107  1.000  4.000  0.000  0.000   0.5886296799
+  38  0.603 -0.107  0.618  4.000  0.000  0.000   0.5880655996
+  39  0.603 -0.107  0.774  4.000  0.000  0.000   0.5877250398
+  40  0.603 -0.107  0.763  4.000  0.000  0.000   0.5875766896
+  41  0.603 -0.107  0.705  4.000  0.000  0.000   0.5869618359
+  43  0.603 -0.107  0.701  4.000  0.000  0.000   0.5869569775
+  44  0.603 -0.107  0.700  4.000  0.000  0.000   0.5869565384
+  48  0.603 -0.107  0.700  2.382  0.000  0.000   0.4872333725
+  53  0.603 -0.107  0.700  2.266  0.000  0.000   0.4859014171
+  55  0.603 -0.107  0.700  2.305  0.000  0.000   0.4853531315
+  56  0.603 -0.107  0.700  2.312  0.000  0.000   0.4853446256
+  57  0.603 -0.107  0.700  2.311  0.000  0.000   0.4853445249
+  60  0.603 -0.107  0.700  2.311  1.000  0.000   0.4549379283
+  65  0.603 -0.107  0.700  2.311  0.935  0.000   0.4545476364
+  66  0.603 -0.107  0.700  2.311  0.925  0.000   0.4545244808
+  67  0.603 -0.107  0.700  2.311  0.903  0.000   0.4544407358
+  79  0.603 -0.107  0.700  2.311  0.903  0.382   0.4479364273
+  80  0.603 -0.107  0.700  2.311  0.903  0.458   0.4474101291
+  82  0.603 -0.107  0.700  2.311  0.903  0.484   0.4473228317
+  83  0.603 -0.107  0.700  2.311  0.903  0.494   0.4473209818
+  84  0.603 -0.107  0.700  2.311  0.903  0.490   0.4473194009
+  92 -0.015 -0.107  0.700  2.311  0.903  0.490   0.4376521772
+  94  0.182 -0.107  0.700  2.311  0.903  0.490   0.4351494907
+  97  0.233 -0.107  0.700  2.311  0.903  0.490   0.4347921904
+  98  0.225 -0.107  0.700  2.311  0.903  0.490   0.4347827819
+  99  0.226 -0.107  0.700  2.311  0.903  0.490   0.4347827076
+ 105  0.226 -0.725  0.700  2.311  0.903  0.490   0.4083103278
+ 107  0.226 -0.846  0.700  2.311  0.903  0.490   0.4058684249
+ 108  0.226 -0.883  0.700  2.311  0.903  0.490   0.4058616297
+ 109  0.226 -0.865  0.700  2.311  0.903  0.490   0.4058272066
+ 110  0.226 -0.866  0.700  2.311  0.903  0.490   0.4058269793
+ 111  0.226 -0.867  0.700  2.311  0.903  0.490   0.4058269136
+ 116  0.226 -0.868  1.700  2.311  0.903  0.490   0.3729878101
+ 120  0.226 -0.868  1.318  2.311  0.903  0.490   0.3667837707
+ 121  0.226 -0.868  1.365  2.311  0.903  0.490   0.3662247618
+ 122  0.226 -0.868  1.412  2.311  0.903  0.490   0.3661190850
+ 123  0.226 -0.868  1.400  2.311  0.903  0.490   0.3660993819
+ 130  0.226 -0.868  1.400  1.693  0.903  0.490   0.3361396959
+ 134  0.226 -0.868  1.400  1.678  0.903  0.490   0.3360508868
+ 137  0.226 -0.868  1.400  1.676  0.903  0.490   0.3360474983
+ 139  0.226 -0.868  1.400  1.675  0.903  0.490   0.3360451473
+ 149  0.226 -0.868  1.400  1.675  0.887  0.490   0.3359788344
+ 150  0.226 -0.868  1.400  1.675  0.886  0.490   0.3359784523
+ 151  0.226 -0.868  1.400  1.675  0.885  0.490   0.3359780398
+ 159  0.226 -0.868  1.400  1.675  0.885 -0.128   0.3354950362
+ 161  0.226 -0.868  1.400  1.675  0.885  0.173   0.3283103834
+ 162  0.226 -0.868  1.400  1.675  0.885  0.176   0.3283033243
+ 163  0.226 -0.868  1.400  1.675  0.885  0.197   0.3282623211
+ 165  0.226 -0.868  1.400  1.675  0.885  0.206   0.3282580964
+ 166  0.226 -0.868  1.400  1.675  0.885  0.205   0.3282577668
+ 175  0.057 -0.868  1.400  1.675  0.885  0.205   0.3238629188
+ 176  0.036 -0.868  1.400  1.675  0.885  0.205   0.3237434209
+ 179  0.039 -0.868  1.400  1.675  0.885  0.205   0.3237431903
+ 182  0.038 -0.868  1.400  1.675  0.885  0.205   0.3237427444
+ 190  0.038 -0.820  1.400  1.675  0.885  0.205   0.3234907248
+ 192  0.038 -0.831  1.400  1.675  0.885  0.205   0.3234781114
+ 193  0.038 -0.829  1.400  1.675  0.885  0.205   0.3234776538
+ 201  0.038 -0.829  1.547  1.675  0.885  0.205   0.3201059734
+ 202  0.038 -0.829  1.562  1.675  0.885  0.205   0.3200353794
+ 203  0.038 -0.829  1.576  1.675  0.885  0.205   0.3200065653
+ 204  0.038 -0.829  1.579  1.675  0.885  0.205   0.3200056625
+ 205  0.038 -0.829  1.580  1.675  0.885  0.205   0.3200053403
+ 216  0.038 -0.829  1.580  1.700  0.885  0.205   0.3199921812
+ 217  0.038 -0.829  1.580  1.689  0.885  0.205   0.3199634756
+ 218  0.038 -0.829  1.580  1.688  0.885  0.205   0.3199634665
+ 226  0.038 -0.829  1.580  1.688  0.936  0.205   0.3188830810
+ 227  0.038 -0.829  1.580  1.688  0.984  0.205   0.3184456075
+ 228  0.038 -0.829  1.580  1.688  0.999  0.205   0.3184133971
+ 229  0.038 -0.829  1.580  1.688  1.001  0.205   0.3184122818
+ 230  0.038 -0.829  1.580  1.688  1.002  0.205   0.3184122582
+ 238  0.038 -0.829  1.580  1.688  1.002  0.139   0.3183303926
+ 239  0.038 -0.829  1.580  1.688  1.002  0.166   0.3182664027
+ 242  0.038 -0.829  1.580  1.688  1.002  0.171   0.3182647000
+ 245  0.038 -0.829  1.580  1.688  1.002  0.172   0.3182645472
+ 256  0.043 -0.829  1.580  1.688  1.002  0.172   0.3182619515
+ 257  0.042 -0.829  1.580  1.688  1.002  0.172   0.3182615197
+ 266  0.042 -0.789  1.580  1.688  1.002  0.172   0.3182517814
+ 268  0.042 -0.809  1.580  1.688  1.002  0.172   0.3181263989
+ 269  0.042 -0.810  1.580  1.688  1.002  0.172   0.3181259002
+ 278  0.042 -0.810  1.604  1.688  1.002  0.172   0.3180302761
+ 279  0.042 -0.810  1.606  1.688  1.002  0.172   0.3180296431
+ 289  0.042 -0.810  1.607  1.676  1.002  0.172   0.3179720280
+ 290  0.042 -0.810  1.607  1.668  1.002  0.172   0.3179552913
+ 301  0.042 -0.810  1.607  1.668  0.995  0.172   0.3179483472
+ 303  0.042 -0.810  1.607  1.668  0.994  0.172   0.3179480912
+ 327  0.043 -0.810  1.607  1.668  0.994  0.172   0.3179467701
+ 329  0.044 -0.810  1.607  1.668  0.994  0.172   0.3179466149
+ 340  0.044 -0.813  1.607  1.668  0.994  0.172   0.3179428501
+ 350  0.044 -0.813  1.616  1.668  0.994  0.172   0.3179286025
+ 351  0.044 -0.813  1.617  1.668  0.994  0.172   0.3179278851
+ 361  0.044 -0.813  1.617  1.664  0.994  0.172   0.3179255734
+ 362  0.044 -0.813  1.617  1.663  0.994  0.172   0.3179252881
+ 373  0.044 -0.813  1.617  1.663  0.995  0.172   0.3179249807
+Powell done niters = 4
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   0.993104
+ 1  -25.0 -25.0  25.0   0.993098
+ 2  -25.0  25.0 -25.0   1.011891
+ 3  -25.0  25.0  25.0   0.951717
+ 4   25.0 -25.0 -25.0   1.031457
+ 5   25.0 -25.0  25.0   0.984408
+ 6   25.0  25.0 -25.0   0.991423
+ 7   25.0  25.0  25.0   0.982276
+REL:  8  0.317925    7.939374  0.992422 rel = 0.320353 
+Number of iterations     4
+Min cost was 0.317925
+Number of FunctionCalls   384
+TolPowell 0.000100
+nMaxItersPowell 36
+OptimizationTime 1.358000 sec
+Parameters at optimum (transmm)  0.04429 -0.81275  1.61746
+Parameters at optimum (rotdeg)  1.66313  0.99491  0.17165 
+Final costs ----------------
+Number of surface hits 2966
+WM  Intensity   726.7265 +/- 158.1303
+Ctx Intensity   813.0007 +/- 191.7745
+Pct Contrast     10.2000 +/-  24.7531
+Cost   0.3179
+RelCost   0.6695
+Reg at min cost was 
+ 1.000  -0.002   0.017   0.044;
+ 0.003   1.000  -0.029  -0.813;
+-0.017   0.029   0.999   1.617;
+ 0.000   0.000   0.000   1.000;
+
+Writing optimal reg to /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/bbr.pass1.dat, type = 14 
+Original Reg 
+ 1.000   0.000   0.000   0.000;
+ 0.000   1.000   0.000   0.000;
+ 0.000   0.000   1.000   0.000;
+ 0.000   0.000   0.000   1.000;
+
+Original Reg - Optimal Reg
+ 0.000   0.002  -0.017  -0.044;
+-0.003   0.000   0.029   0.813;
+ 0.017  -0.029   0.001  -1.617;
+ 0.000   0.000   0.000   0.000;
+
+Computing change in lh position
+LH rmsDiffMean 2.657410
+Computing change in rh position
+Surface RMS Diff (mm) 2.278132 4.099731
+mri_segreg done
+mri_segreg --mov /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii --init-reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/bbr.pass1.dat --out-reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat --brute -0.1 0.1 0.1 --interp trilinear --wm-proj-abs 2 --tol 1e-8 --tol1d 1e-3 --c0 0 --mincost /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat.mincost --dof 6 --nmax 36 --param /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat.param --surf white.deformed --cur-reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/reg.curopt.dat --gm-proj-frac 0.5 --nsub 1 --o /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w.nii.gz --gm-gt-wm 0.5
+$Id: mri_segreg.c,v 1.103.2.1 2011/10/07 19:14:42 greve Exp $
+setenv SUBJECTS_DIR /home/fs0/rosas/scratch/FUNC/10/T1w
+cd /vols/Scratch/rosas/Pipelines/Examples/Scripts
+mri_segreg --mov /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii --init-reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/bbr.pass1.dat --out-reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat --brute -0.1 0.1 0.1 --interp trilinear --wm-proj-abs 2 --tol 1e-8 --tol1d 1e-3 --c0 0 --mincost /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat.mincost --dof 6 --nmax 36 --param /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat.param --surf white.deformed --cur-reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/reg.curopt.dat --gm-proj-frac 0.5 --nsub 1 --o /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w.nii.gz --gm-gt-wm 0.5 
+sysname  Linux
+hostname jalapeno06.fmrib.ox.ac.uk
+machine  x86_64
+user     rosas
+movvol /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/template.nii
+regfile /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/tmp.bbregister.7447/bbr.pass1.dat
+subject 10
+dof 6
+outregfile /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat
+outfile /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w.nii.gz
+UseMask 0
+UseLH 1
+UseRH 1
+nsubsamp 1
+PenaltySign  -1
+PenaltySlope 0.500000
+PenaltyCenter 0.000000
+surfname white.deformed
+GMProjFrac 0.500000
+WMProjAbs 2.000000
+lhcostfile (null)
+rhcostfile (null)
+interp  trilinear (1)
+frame  0
+TolPowell 0.000000
+nMaxItersPowell 36
+n1dmin  3
+Profile   0
+Gdiag_no  -1
+AddNoise  0 (0)
+SynthSeed 1384857887
+TransRandMax 0.000000
+RotRandMax 0.000000
+Translations 0.000000 0.000000 0.000000
+Rotations   0.000000 0.000000 0.000000
+Input reg
+ 1.000  -0.002   0.017   0.044;
+ 0.003   1.000  -0.029  -0.813;
+-0.017   0.029   0.999   1.617;
+ 0.000   0.000   0.000   1.000;
+
+Loading mov
+Projecting LH Surfs
+Loading lh.white.deformed surf
+Loading lh.thickness for GM
+GM Proj: 1 0.500000 2.000000
+WM Proj: 0 0.500000 2.000000
+Projecting RH Surfs
+Loading rh.white.deformed surf
+Loading rh.thickness
+Projecting RH Surfs
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   0.977208
+ 1  -25.0 -25.0  25.0   0.993373
+ 2  -25.0  25.0 -25.0   0.985655
+ 3  -25.0  25.0  25.0   0.977574
+ 4   25.0 -25.0 -25.0   1.012677
+ 5   25.0 -25.0  25.0   0.980603
+ 6   25.0  25.0 -25.0   0.994552
+ 7   25.0  25.0  25.0   1.003751
+REL:  8  0.336992    7.925393  0.990674 rel = 0.340165 
+Initial costs ----------------
+Number of surface hits 295928
+WM  Intensity   726.5601 +/- 159.1298
+Ctx Intensity   813.6117 +/- 193.8344
+Pct Contrast     10.2700 +/-  23.9626
+Cost   0.3370
+RelCost   0.3402
+
+------------------------------------
+Brute force preopt -0.1 0.1 0.1, n = 729
+     0  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000  -0.1000      0.3226   0.3226  0.0
+     3  -0.1000  -0.1000  -0.1000  -0.1000   0.0000  -0.1000      0.3224   0.3224  0.0
+     9  -0.1000  -0.1000  -0.1000   0.0000  -0.1000  -0.1000      0.3214   0.3214  0.0
+    12  -0.1000  -0.1000  -0.1000   0.0000   0.0000  -0.1000      0.3214   0.3214  0.0
+    13  -0.1000  -0.1000  -0.1000   0.0000   0.0000   0.0000      0.3213   0.3213  0.0
+    30  -0.1000  -0.1000   0.0000  -0.1000   0.0000  -0.1000      0.3204   0.3204  0.0
+    31  -0.1000  -0.1000   0.0000  -0.1000   0.0000   0.0000      0.3202   0.3202  0.0
+    90  -0.1000   0.0000  -0.1000   0.0000  -0.1000  -0.1000      0.3198   0.3198  0.0
+    93  -0.1000   0.0000  -0.1000   0.0000   0.0000  -0.1000      0.3196   0.3196  0.0
+   103  -0.1000   0.0000  -0.1000   0.1000   0.0000   0.0000      0.3194   0.3194  0.0
+   120  -0.1000   0.0000   0.0000   0.0000   0.0000  -0.1000      0.3190   0.3190  0.0
+   274   0.0000  -0.1000   0.0000  -0.1000   0.0000   0.0000      0.3188   0.3188  0.0
+   346   0.0000   0.0000  -0.1000   0.1000   0.0000   0.0000      0.3186   0.3186  0.0
+   364   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000      0.3179   0.3179  0.0
+Brute Force --------------------------
+Min cost was 0.317925
+Number of iterations   729
+Search time 2.303000 sec
+Parameters at best (transmm, rotdeg)
+  0.000   0.000   0.000  0.000  0.000  0.000 
+--------------------------------------------
+
+Starting Powell Minimization
+Init Powel Params dof = 6
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+   7 -0.062  0.000  0.000  0.000  0.000  0.000   0.3366430514
+   9 -0.060  0.000  0.000  0.000  0.000  0.000   0.3366430060
+  17 -0.060 -0.046  0.000  0.000  0.000  0.000   0.3364978809
+  18 -0.060 -0.044  0.000  0.000  0.000  0.000   0.3364977296
+  27 -0.060 -0.045  0.047  0.000  0.000  0.000   0.3363453940
+  28 -0.060 -0.045  0.046  0.000  0.000  0.000   0.3363441539
+  29 -0.060 -0.045  0.042  0.000  0.000  0.000   0.3363424072
+  31 -0.060 -0.045  0.041  0.000  0.000  0.000   0.3363423036
+  39 -0.060 -0.045  0.041 -0.141  0.000  0.000   0.3351612809
+  40 -0.060 -0.045  0.041 -0.139  0.000  0.000   0.3351561396
+  41 -0.060 -0.045  0.041 -0.125  0.000  0.000   0.3351402320
+  50 -0.060 -0.045  0.041 -0.125 -0.097  0.000   0.3345696406
+  52 -0.060 -0.045  0.041 -0.125 -0.090  0.000   0.3345673387
+  62 -0.060 -0.045  0.041 -0.125 -0.090 -0.119   0.3338053194
+  63 -0.060 -0.045  0.041 -0.125 -0.090 -0.127   0.3338024718
+  78 -0.083 -0.045  0.041 -0.125 -0.090 -0.127   0.3337676207
+  79 -0.084 -0.045  0.041 -0.125 -0.090 -0.127   0.3337675218
+  80 -0.085 -0.045  0.041 -0.125 -0.090 -0.127   0.3337675196
+  89 -0.085 -0.058  0.041 -0.125 -0.090 -0.127   0.3337573086
+  91 -0.085 -0.061  0.041 -0.125 -0.090 -0.127   0.3337572453
+  94 -0.085 -0.060  0.041 -0.125 -0.090 -0.127   0.3337571259
+ 101 -0.085 -0.060  0.076 -0.125 -0.090 -0.127   0.3336772564
+ 102 -0.085 -0.060  0.073 -0.125 -0.090 -0.127   0.3336764431
+ 103 -0.085 -0.060  0.072 -0.125 -0.090 -0.127   0.3336764258
+ 112 -0.085 -0.060  0.072 -0.136 -0.090 -0.127   0.3336658871
+ 122 -0.085 -0.060  0.072 -0.136 -0.082 -0.127   0.3336629852
+ 123 -0.085 -0.060  0.072 -0.136 -0.084 -0.127   0.3336627362
+ 125 -0.085 -0.060  0.072 -0.136 -0.083 -0.127   0.3336624374
+ 133 -0.085 -0.060  0.072 -0.136 -0.083 -0.123   0.3336613686
+ 135 -0.085 -0.060  0.072 -0.136 -0.083 -0.120   0.3336612530
+ 146 -0.081 -0.060  0.072 -0.136 -0.083 -0.121   0.3336591884
+ 149 -0.079 -0.060  0.072 -0.136 -0.083 -0.121   0.3336590100
+ 158 -0.079 -0.059  0.072 -0.136 -0.083 -0.121   0.3336588285
+ 166 -0.079 -0.059  0.080 -0.136 -0.083 -0.121   0.3336578401
+ 167 -0.079 -0.059  0.077 -0.136 -0.083 -0.121   0.3336568790
+ 177 -0.079 -0.059  0.077 -0.137 -0.083 -0.121   0.3336564814
+ 178 -0.079 -0.059  0.077 -0.139 -0.083 -0.121   0.3336563834
+ 189 -0.079 -0.059  0.077 -0.139 -0.084 -0.121   0.3336561341
+ 190 -0.079 -0.059  0.077 -0.139 -0.085 -0.121   0.3336559829
+ 198 -0.079 -0.059  0.077 -0.139 -0.085 -0.116   0.3336545245
+ 209 -0.077 -0.059  0.077 -0.139 -0.085 -0.116   0.3336541708
+ 217 -0.077 -0.055  0.077 -0.139 -0.085 -0.116   0.3336535895
+ 218 -0.077 -0.056  0.077 -0.139 -0.085 -0.116   0.3336535355
+ 227 -0.077 -0.056  0.079 -0.139 -0.085 -0.116   0.3336533868
+ 255 -0.077 -0.056  0.079 -0.139 -0.085 -0.114   0.3336532690
+ 256 -0.077 -0.056  0.079 -0.139 -0.085 -0.113   0.3336530352
+ 271 -0.076 -0.056  0.079 -0.139 -0.085 -0.113   0.3336529600
+ 279 -0.076 -0.055  0.079 -0.139 -0.085 -0.113   0.3336528954
+ 288 -0.076 -0.055  0.080 -0.139 -0.085 -0.113   0.3336528647
+Powell done niters = 5
+Computing relative cost
+ 0  -25.0 -25.0 -25.0   0.978110
+ 1  -25.0 -25.0  25.0   0.991910
+ 2  -25.0  25.0 -25.0   0.985571
+ 3  -25.0  25.0  25.0   0.976253
+ 4   25.0 -25.0 -25.0   1.012270
+ 5   25.0 -25.0  25.0   0.980548
+ 6   25.0  25.0 -25.0   0.993080
+ 7   25.0  25.0  25.0   1.003386
+REL:  8  0.333653    7.921126  0.990141 rel = 0.336975 
+Number of iterations     5
+Min cost was 0.333653
+Number of FunctionCalls   377
+TolPowell 0.000000
+nMaxItersPowell 36
+OptimizationTime 44.235000 sec
+Parameters at optimum (transmm) -0.07642 -0.05487  0.07951
+Parameters at optimum (rotdeg) -0.13885 -0.08528 -0.11311 
+Final costs ----------------
+Number of surface hits 295928
+WM  Intensity   725.4965 +/- 159.3530
+Ctx Intensity   813.0260 +/- 194.0488
+Pct Contrast     10.3360 +/-  24.1682
+Cost   0.3337
+RelCost   0.3402
+Reg at min cost was 
+ 1.000  -0.001   0.016  -0.036;
+ 0.001   1.000  -0.027  -0.864;
+-0.016   0.027   1.000   1.699;
+ 0.000   0.000   0.000   1.000;
+
+Writing optimal reg to /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat, type = 14 
+Writing output volume to /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w.nii.gz 
+Original Reg 
+ 1.000  -0.002   0.017   0.044;
+ 0.003   1.000  -0.029  -0.813;
+-0.017   0.029   0.999   1.617;
+ 0.000   0.000   0.000   1.000;
+
+Original Reg - Optimal Reg
+-0.000  -0.002   0.002   0.080;
+ 0.002  -0.000  -0.002   0.051;
+-0.001   0.002  -0.000  -0.082;
+ 0.000   0.000   0.000   0.000;
+
+Computing change in lh position
+LH rmsDiffMean 0.159447
+Computing change in rh position
+Surface RMS Diff (mm) 0.193528 0.394238
+mri_segreg done
+Cleaning up
+ 
+Started at Fri Nov 8 12:50:52 GMT 2013 
+Ended   at Fri Nov  8 12:52:14 GMT 2013
+BBR-Run-Time-Sec 81
+ 
+bbregister Done
+To check results, run:
+tkregister2 --mov /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w_init.nii.gz --reg /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat --surf
+ 
+tkregister_tcl /usr/local/freesurfer-5.3.0/tktools/tkregister2.tcl
+target  volume /home/fs0/rosas/scratch/FUNC/10/T1w/T1w_acpc_dc.nii.gz
+movable volume /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w_init.nii.gz
+reg file       /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/EPItoT1w.dat
+LoadVol        0
+ZeroCRAS       0
+$Id: tkregister2.c,v 1.121.2.1 2011/03/28 20:25:16 greve Exp $
+Diagnostic Level -1
+---- Input registration matrix --------
+ 1.000  -0.001   0.016  -0.036;
+ 0.001   1.000  -0.027  -0.864;
+-0.016   0.027   1.000   1.699;
+ 0.000   0.000   0.000   1.000;
+float2int = 0
+---------------------------------------
+INFO: loading target /home/fs0/rosas/scratch/FUNC/10/T1w/T1w_acpc_dc.nii.gz
+INFO: target does not conform to COR format, so I'm going to
+reslice to COR. This will not affect the final registration.
+Ttarg: --------------------
+-1.000   0.000   0.000   128.000;
+ 0.000   0.000   1.000  -128.000;
+ 0.000  -1.000   0.000   128.000;
+ 0.000   0.000   0.000   1.000;
+INFO: loading movable /home/fs0/rosas/scratch/FUNC/10/t/DistortionCorrectionAndEPIToT1wReg_FLIRTBBRAndFreeSurferBBRbased/Scout_gdc_undistorted2T1w_init.nii.gz
+Tmov: --------------------
+-0.700   0.000   0.000   91.000;
+ 0.000   0.000   0.700  -91.000;
+ 0.000  -0.700   0.000   108.850;
+ 0.000   0.000   0.000   1.000;
+mkheaderreg = 0, float2int = 0
+---- Input registration matrix --------
+ 1.000  -0.016  -0.001  -0.036;
+ 0.001   0.027   1.000  -0.864;
+-0.016  -1.000   0.027   1.699;
+ 0.000   0.000   0.000   1.000;
+Determinant 1
+subject = 10
+RegMat ---------------------------
+ 1.000  -0.001   0.016  -0.036;
+ 0.001   1.000  -0.027  -0.864;
+-0.016   0.027   1.000   1.699;
+ 0.000   0.000   0.000   1.000;
+FSLOUTPUTTYPE NIFTI_GZ 
+tkreg2FSL: mov det = -0.343, ref det = -0.343
+ 
+ END: DistortionCorrectionEpiToT1wReg_FLIRTBBRAndFreeSurferBBRBased
+ 
+ START: OneStepResampling
+ 
+END: OneStepResampling
+ 
+ START: IntensityNormalization
+ 
+END: IntensityNormalization

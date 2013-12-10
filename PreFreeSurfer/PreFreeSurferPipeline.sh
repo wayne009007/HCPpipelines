@@ -46,7 +46,7 @@ fi
 #    T1w/BiasFieldCorrection_sqrtT1wXT1w 
 #    MNINonLinear
 # If there is only T1 image:
-#    ROSER: CHECK OUTPUT DIRECTORIES????????????
+
 
 
 # Also exist:
@@ -245,12 +245,13 @@ for TXw in ${Modalities} ; do
 	--outbrainmask=${TXwFolder}/${TXwImage}_acpc_brain_mask \
 	--fnirtconfig=${FNIRTConfig}
 
-done 
+done
 
 
 #### T2w to T1w Registration and Optional Readout Distortion Correction ####
 if [  ! $T2wInputImages = "NONE" ] ; then # T2w is available for distortion correction and registration
-  if [ ${AvgrdcSTRING} = "FIELDMAP" ] ; then
+ echo "T2w is available for distortion correction and registration" 
+ if [ ${AvgrdcSTRING} = "FIELDMAP" ] ; then
     echo "PERFORMING FIELDMAP READOUT DISTORTION CORRECTION"
     wdir=${T2wFolder}/T2wToT1wDistortionCorrectAndReg
     if [ -d ${wdir} ] ; then
@@ -344,13 +345,13 @@ else
   ${RUN} ${FSLDIR}/bin/fast --nopve -b -B -o ${T1wFolder}/${T1wImage}_acpc_dc ${T1wFolder}/${T1wImage}_acpc_dc
   rm ${T1wFolder}/${T1wImage}_acpc_dc_seg.nii.gz
   mv ${T1wFolder}/${T1wImage}_acpc_dc_bias.nii.gz ${T1wFolder}/BiasField_acpc_dc.nii.gz
-  ######IMPORTANT CHANGE NAME OF BIAS FIELD OUTPUT
+  # CHANGE NAME OF BIAS FIELD OUTPUT
   ${RUN} ${FSLDIR}/bin/fslmaths ${T1wFolder}/${T1wImage}_acpc_dc_restore -mul ${T1wFolder}/${T1wImage}_acpc_brain_mask ${T1wFolder}/${T1wImage}_acpc_dc_restore_brain    
 fi
 
 #### Atlas Registration to MNI152: FLIRT + FNIRT  #Also applies registration to T1w and T2w images ####
 #Consider combining all transforms and recreating files with single resampling steps
-if [ ! $T2winputImages = "NONE" ] ; then
+if [ ! $T2wInputImages = "NONE" ] ; then
     regT2=${T1wFolder}/${T2wImage}_acpc_dc                        
     regT2rest=${T1wFolder}/${T2wImage}_acpc_dc_restore            
     regT2restbrain=${T1wFolder}/${T2wImage}_acpc_dc_restore_brain 
@@ -367,14 +368,14 @@ else
 fi
 
 ${RUN} ${PipelineScripts}/AtlasRegistrationToMNI152_FLIRTandFNIRT.sh \
-    --workingdir=${AtlasSpaceFolder} \     
+    --workingdir=${AtlasSpaceFolder} \
     --t1=${T1wFolder}/${T1wImage}_acpc_dc \
-    --t1rest=${T1Folder}/${T1Image}_acpc_dc_restore \
-    --t1restbrain=${T1Folder}/${T1Image}_acpc_dc_restore_brain \
+    --t1rest=${T1wFolder}/${T1wImage}_acpc_dc_restore \
+    --t1restbrain=${T1wFolder}/${T1wImage}_acpc_dc_restore_brain \
     --t2=${regT2} \
     --t2rest=${regT2rest} \
-    --t2restbrain=${regT2restbrain} \ 
-    --ref=${T1wTemplate} \   
+    --t2restbrain=${regT2restbrain} \
+    --ref=${T1wTemplate} \
     --refbrain=${T1wTemplateBrain} \
     --refmask=${TemplateMask} \
     --ref2mm=${T1wTemplate2mm} \
