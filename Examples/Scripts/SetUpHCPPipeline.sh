@@ -7,7 +7,7 @@ echo "This script must be SOURCED to correctly setup the environment prior to ru
 #. ${FSLDIR}/etc/fslconf/fsl.sh
 
 # Set up FreeSurfer (if not already done so in the running environment)
-FREESURFER_HOME=/usr/local/freesurfer-5.3.0
+FREESURFER_HOME=/opt/fmrib/freesurfer-5.3.0
 . ${FREESURFER_HOME}/SetUpFreeSurfer.sh > /dev/null 2>&1
 
 # Set up specific environment variables for the HCP Pipeline
@@ -30,6 +30,7 @@ export HCPPIPEDIR_dMRI=${HCPPIPEDIR}/DiffusionPreprocessing/scripts
 export HCPPIPEDIR_dMRITract=${HCPPIPEDIR}/DiffusionTractography/scripts
 export HCPPIPEDIR_Global=${HCPPIPEDIR}/global/scripts
 export HCPPIPEDIR_tfMRIAnalysis=${HCPPIPEDIR}/TaskfMRIAnalysis/scripts
+export MSMBin=${HCPPIPEDIR}/MSMBinaries
 
 ## WASHU config - as understood by MJ - (different structure from the GIT repository)
 ## Also look at: /nrgpackages/scripts/tools_setup.sh

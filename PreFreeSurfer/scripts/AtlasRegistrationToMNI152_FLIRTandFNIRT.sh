@@ -137,7 +137,7 @@ ${FSLDIR}/bin/fslmaths ${OutputT1wImageRestore} -mas ${OutputT1wImageRestoreBrai
 
 # RS # ONLY IF I HAVE T2
 # T2w set of warped outputs (brain/whole-head + restored/orig) 
-if [ ! $T2wInputImages = "NONE" ] ; then
+if [ ! ${T2wImage} = "NONE" ] ; then
   ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${T2wImage} -r ${Reference} -w ${OutputTransform} -o ${OutputT2wImage}
   ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${T2wRestore} -r ${Reference} -w ${OutputTransform} -o ${OutputT2wImageRestore}
   ${FSLDIR}/bin/applywarp --rel --interp=nn -i ${T2wRestoreBrain} -r ${Reference} -w ${OutputTransform} -o ${OutputT2wImageRestoreBrain}

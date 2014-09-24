@@ -65,19 +65,20 @@ Tasklist="v t"
 
 for Subject in $Subjlist ; do
   for fMRIName in $Tasklist ; do
-    fMRITimeSeries="${StudyFolder}/${Subject}/${fMRIName}.nii.gz"
-    fMRISBRef="NONE" #A single band reference image (SBRef) is recommended if using multiband, set to NONE if you want to use the first volume of the timeseries for motion correction
-    DwellTime="0.00072" #Echo Spacing or Dwelltime of fMRI image
-    DistortionCorrection="FIELDMAP" #FIELDMAP or TOPUP, distortion correction is required for accurate processing
-    SpinEchoPhaseEncodeNegative="NONE" #For the spin echo field map volume with a negative phase encoding direction (LR in HCP data), set to NONE if using regular FIELDMAP
-    SpinEchoPhaseEncodePositive="NONE" #For the spin echo field map volume with a positive phase encoding direction (RL in HCP data), set to NONE if using regular FIELDMAP
-    MagnitudeInputName="${StudyFolder}/${Subject}/mag_raw_concat_${Subject}" #Expects 4D Magnitude volume with two 3D timepoints, set to NONE if using TOPUP
-    PhaseInputName="${StudyFolder}/${Subject}/ph_MB_${Subject}.nii.gz" #Expects a 3D Phase volume, set to NONE if using TOPUP
-    DeltaTE="2.46" #2.46ms for 3T, 1.02ms for 7T, set to NONE if using TOPUP
-    Unwarpdir="-y"
-    FinalFMRIResolution="2" #Target final resolution of fMRI data. 2mm is recommended.  
-    GradientDistortionCoeffs="/home/fs0/rosas/scratch/analysis/coeff_verio.grad.grad"  #Gradient distortion correction coefficents, set to NONE to turn off
-    TopUpConfig="NONE" #Topup config if using TOPUP, set to NONE if using regular FIELDMAP
+
+    UnwarpDir=`echo $PhaseEncodinglist | cut -d " " -f $i`
+    fMRITimeSeries="${StudyFolder}/${Subject}/unprocessed/3T/${fMRIName}/${Subject}_3T_${fMRIName}.nii.gz"
+    fMRISBRef="${StudyFolder}/${Subject}/unprocessed/3T/${fMRIName}/${Subject}_3T_${fMRIName}_SBRef.nii.gz" #A single band reference image (SBRef) is recommended if using multiband, set to NONE if you want to use the first volume of the timeseries for motion correction
+    DwellTime="0.00058" #Echo Spacing or Dwelltime of fMRI image = 1/(BandwidthPerPixelPhaseEncode * # of phase encoding samples): DICOM field (0019,1028) = BandwidthPerPixelPhaseEncode, DICOM field (0051,100b) AcquisitionMatrixText first value (# of phase encoding samples) 
+    DistortionCorrection="TOPUP" #FIELDMAP or TOPUP, distortion correction is required for accurate processing
+    SpinEchoPhaseEncodeNegative="${StudyFolder}/${Subject}/unprocessed/3T/${fMRIName}/${Subject}_3T_SpinEchoFieldMap_LR.nii.gz" #For the spin echo field map volume with a negative phase encoding direction (LR in HCP data), set to NONE if using regular FIELDMAP
+    SpinEchoPhaseEncodePositive="${StudyFolder}/${Subject}/unprocessed/3T/${fMRIName}/${Subject}_3T_SpinEchoFieldMap_RL.nii.gz" #For the spin echo field map volume with a positive phase encoding direction (RL in HCP data), set to NONE if using regular FIELDMAP
+    MagnitudeInputName="NONE" #Expects 4D Magnitude volume with two 3D timepoints, set to NONE if using TOPUP
+    PhaseInputName="NONE" #Expects a 3D Phase volume, set to NONE if using TOPUP
+    DeltaTE="NONE" #2.46ms for 3T, 1.02ms for 7T, set to NONE if using TOPUP
+    FinalFMRIResolution="2" #Target final resolution of fMRI data. 2mm is recommended.  Use 2.0 or 1.0 to avoid standard FSL templates
+    GradientDistortionCoeffs="${HCPPIPEDIR_Config}/coeff_SC72C_Skyra.grad" #Gradient distortion correction coefficents, set to NONE to turn off
+    TopUpConfig="${HCPPIPEDIR_Config}/b02b0.cnf" #Topup config if using TOPUP, set to NONE if using regular FIELDMAP
 
     ${FSLDIR}/bin/fsl_sub $QUEUE \
       ${HCPPIPEDIR}/fMRIVolume/GenericfMRIVolumeProcessingPipeline.sh \

@@ -13,7 +13,14 @@ FinalSmoothingFWHM="$9"
 TemporalFilter="${10}"
 VolumeBasedProcessing="${11}"
 
+# Load Function Libraries
+source ${HCPPIPEDIR}/global/scripts/log.shlib # Logging related functions
+
+# Establish tool name for logging
+log_SetToolName "TaskfMRILevel2.sh"
+
 #Set up some things
+log_Msg "Set up some things"
 LevelOnefMRINames=`echo $LevelOnefMRINames | sed 's/@/ /g'`
 LevelOnefsfNames=`echo $LevelOnefMRINames | sed 's/@/ /g'`
 
@@ -43,21 +50,28 @@ fi
 cat ${ResultsFolder}/${LevelTwofMRIName}/${LevelTwofsfName}_hp200_s4_level2.fsf | sed s/_hp200_s4/${TemporalFilterString}${SmoothingString}/g > ${LevelTwoFEATDir}/design.fsf
 
 #Make design files
+log_Msg "Make design files"
 DIR=`pwd`
 cd ${LevelTwoFEATDir}
 feat_model ${LevelTwoFEATDir}/design
 cd $DIR
 
 #Loop over Grayordinates and Standard Volume (if requested) Level 2 Analyses
+log_Msg "Loop over Grayordinates and Standard Volume (if requested) Level 2 Analyses"
 if [ ${VolumeBasedProcessing} = "YES" ] ; then
   Analyses="GrayordinatesStats StandardVolumeStats"
 else
   Analyses="GrayordinatesStats"
 fi
+
+log_Msg "Analyses: ${Analyses}"
 for Analysis in ${Analyses} ; do
+  log_Msg "Analysis: ${Analysis}}"
+  log_Msg "About to mkdir -p ${LevelTwoFEATDir}/${Analysis}"
   mkdir -p ${LevelTwoFEATDir}/${Analysis}
   
   #Copy over level one folders and convert CIFTI to NIFTI if required
+  log_Msg "Copy over level one folders and convert CIFTI to NIFTI if required"
   if [ -e ${FirstFolder}/${Analysis}/cope1.nii.gz ] ; then
     Grayordinates="NO"
     i=1
@@ -86,6 +100,7 @@ for Analysis in ${Analyses} ; do
   fi
   
   #Create dof and Mask
+  log_Msg "Create dof and Mask"
   MERGESTRING=""
   i=1
   while [ $i -le ${NumFirstLevelFolders} ] ; do
@@ -98,8 +113,10 @@ for Analysis in ${Analyses} ; do
   fslmaths ${LevelTwoFEATDir}/${Analysis}/dof.nii.gz -Tmin -bin ${LevelTwoFEATDir}/${Analysis}/mask.nii.gz
   
   #Merge COPES and VARCOPES and run 2nd level analysis
+  log_Msg "Merge COPES and VARCOPES and run 2nd level analysis, NumContrasts: ${NumContrasts}"
   i=1
   while [ $i -le ${NumContrasts} ] ; do
+    log_Msg "Contrast Number i: ${i}"
     COPEMERGE=""
     VARCOPEMERGE=""
     j=1
@@ -110,11 +127,44 @@ for Analysis in ${Analyses} ; do
     done
     fslmerge -t ${LevelTwoFEATDir}/${Analysis}/cope${i}.nii.gz $COPEMERGE
     fslmerge -t ${LevelTwoFEATDir}/${Analysis}/varcope${i}.nii.gz $VARCOPEMERGE
-    flameo --cope=${LevelTwoFEATDir}/${Analysis}/cope${i}.nii.gz --vc=${LevelTwoFEATDir}/${Analysis}/varcope${i}.nii.gz --dvc=${LevelTwoFEATDir}/${Analysis}/dof.nii.gz --mask=${LevelTwoFEATDir}/${Analysis}/mask.nii.gz --ld=${LevelTwoFEATDir}/${Analysis}/cope${i}.feat --dm=${LevelTwoFEATDir}/design.mat --cs=${LevelTwoFEATDir}/design.grp --tc=${LevelTwoFEATDir}/design.con --runmode=fe
+
+    log_Msg "About to use flameo"
+    which flameo
+    curdir=`pwd`
+    cd ${LevelTwoFEATDir}
+
+    log_Msg "Command: flameo --verbose \\"
+    log_Msg "  --cope=${Analysis}/cope${i}.nii.gz \\"
+    log_Msg "  --vc=${Analysis}/varcope${i}.nii.gz \\"
+    log_Msg "  --dvc=${Analysis}/dof.nii.gz \\"
+    log_Msg "  --mask=${Analysis}/mask.nii.gz \\"
+    log_Msg "  --ld=${Analysis}/cope${i}.feat \\"
+    log_Msg "  --dm=design.mat \\"
+    log_Msg "  --cs=design.grp \\"
+    log_Msg "  --tc=design.con \\"
+    log_Msg "  --runmode=fe"
+
+    flameo --verbose \
+      --cope=${Analysis}/cope${i}.nii.gz \
+      --vc=${Analysis}/varcope${i}.nii.gz \
+      --dvc=${Analysis}/dof.nii.gz \
+      --mask=${Analysis}/mask.nii.gz \
+      --ld=${Analysis}/cope${i}.feat \
+      --dm=design.mat \
+      --cs=design.grp \
+      --tc=design.con \
+      --runmode=fe
+
+    log_Msg "Successfully completed flameo"
+
+    cd ${curdir}
+
+    log_Msg "Incrementing contrast number"
     i=$(($i+1))
   done
 
   #Cleanup Temporary Files
+  log_Msg "Cleanup Temporary Files"
   j=1
   while [ $j -le ${NumFirstLevelFolders} ] ; do
     rm -r ${LevelTwoFEATDir}/${Analysis}/${j}
@@ -122,6 +172,7 @@ for Analysis in ${Analyses} ; do
   done
 
   #Convert Grayordinates NIFTI Files to CIFTI if necessary
+  log_Msg "Convert Grayordinates NIFTI Files to CIFTI if necessary"
   if [ $Grayordinates = "YES" ] ; then
     cd ${LevelTwoFEATDir}/${Analysis}
     Files=`ls | grep .nii.gz | cut -d "." -f 1`
@@ -144,7 +195,8 @@ for Analysis in ${Analyses} ; do
   fi
 done  
 
-#Genereate Files for Viewing
+#Generate Files for Viewing
+log_Msg "Generate Files for Viewing"
 i=1
 MergeSTRING=""
 if [ ${VolumeBasedProcessing} = "YES" ] ; then
@@ -177,4 +229,4 @@ if [ ${VolumeBasedProcessing} = "YES" ] ; then
   ${CARET7DIR}/wb_command -cifti-merge ${LevelTwoFEATDir}/${Subject}_${LevelTwofsfName}_level2vol${TemporalFilterString}${SmoothingString}.dscalar.nii ${VolMergeSTRING}  
 fi
 
-
+log_Msg "Complete"

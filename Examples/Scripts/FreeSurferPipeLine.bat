@@ -14,9 +14,9 @@ EnvironmentScript="/home/fs0/rosas/scratch/Pipelines/Examples/Scripts/SetUpHCPPi
 # Log the originating call
 echo "$@"
 
-if [ X$SGE_ROOT != X ] ; then
+#if [ X$SGE_ROOT != X ] ; then
     QUEUE="-q long.q"
-fi
+#fi
 
 PRINTCOM=""
 #PRINTCOM="echo"

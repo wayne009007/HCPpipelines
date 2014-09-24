@@ -7,8 +7,10 @@ EddyJacFlag="JacobianResampling"
 
 workingdir=$1
 GdCoeffs=$2  #Coefficients for gradient nonlinearity distortion correction. If "NONE" this corrections is turned off
+CombineDataFlag=$3   #2 for including in the ouput all volumes uncombined (i.e. output file of eddy)
+                     #1 for including in the ouput and combine only volumes where both LR/RL (or AP/PA) pairs have been acquired
+                     #0 As 1, but also include uncombined single volumes"
 
-binarydir=${HCPPIPEDIR_Bin}
 configdir=${HCPPIPEDIR_Config}
 globalscriptsdir=${HCPPIPEDIR_Global}
 
@@ -22,18 +24,24 @@ datadir=${workingdir}/data
 #    cp ${eddydir}/Pos.bvec ${datadir}/bvecs
 #    $FSLDIR/bin/imcp ${eddydir}/eddy_unwarped_images ${datadir}/data
 #else
-     echo "JAC resampling has been used. Eddy Output is now combined."
-     PosVols=`wc ${eddydir}/Pos.bval | awk {'print $2'}`
-     NegVols=`wc ${eddydir}/Neg.bval | awk {'print $2'}`    #Split Pos and Neg Volumes
-     ${FSLDIR}/bin/fslroi ${eddydir}/eddy_unwarped_images ${eddydir}/eddy_unwarped_Pos 0 ${PosVols}
-     ${FSLDIR}/bin/fslroi ${eddydir}/eddy_unwarped_images ${eddydir}/eddy_unwarped_Neg ${PosVols} ${NegVols}
-     ${binarydir}/eddy_combine ${eddydir}/eddy_unwarped_Pos ${eddydir}/Pos.bval ${eddydir}/Pos.bvec ${eddydir}/Pos_SeriesVolNum.txt \
-                                        ${eddydir}/eddy_unwarped_Neg ${eddydir}/Neg.bval ${eddydir}/Neg.bvec ${eddydir}/Neg_SeriesVolNum.txt ${datadir} 1
+    if [ ${CombineDataFlag} -eq 2 ]; then
+	${FSLDIR}/bin/imcp  ${eddydir}/eddy_unwarped_images ${datadir}/data
+	cp ${eddydir}/Pos_Neg.bvals ${datadir}/bvals
+	cp ${eddydir}/Pos_Neg.bvecs ${datadir}/bvecs
+    else
+	echo "JAC resampling has been used. Eddy Output is now combined."
+	PosVols=`wc ${eddydir}/Pos.bval | awk {'print $2'}`
+	NegVols=`wc ${eddydir}/Neg.bval | awk {'print $2'}`    #Split Pos and Neg Volumes
+	${FSLDIR}/bin/fslroi ${eddydir}/eddy_unwarped_images ${eddydir}/eddy_unwarped_Pos 0 ${PosVols}
+	${FSLDIR}/bin/fslroi ${eddydir}/eddy_unwarped_images ${eddydir}/eddy_unwarped_Neg ${PosVols} ${NegVols}
+	${FSLDIR}/bin/eddy_combine ${eddydir}/eddy_unwarped_Pos ${eddydir}/Pos.bval ${eddydir}/Pos.bvec ${eddydir}/Pos_SeriesVolNum.txt \
+                                        ${eddydir}/eddy_unwarped_Neg ${eddydir}/Neg.bval ${eddydir}/Neg.bvec ${eddydir}/Neg_SeriesVolNum.txt ${datadir} ${CombineDataFlag}
 
-     ${FSLDIR}/bin/imrm ${eddydir}/eddy_unwarped_Pos
-     ${FSLDIR}/bin/imrm ${eddydir}/eddy_unwarped_Neg
-     #rm ${eddydir}/Pos.bv*
-     #rm ${eddydir}/Neg.bv*
+	${FSLDIR}/bin/imrm ${eddydir}/eddy_unwarped_Pos
+	${FSLDIR}/bin/imrm ${eddydir}/eddy_unwarped_Neg
+	#rm ${eddydir}/Pos.bv*
+	#rm ${eddydir}/Neg.bv*
+    fi
 #fi
 
 
@@ -43,7 +51,7 @@ if [ ! $GdCoeffs = "NONE" ] ; then
     ${globalscriptsdir}/GradientDistortionUnwarp.sh --workingdir="${datadir}" --coeffs="${GdCoeffs}" --in="${datadir}/data_warped" --out="${datadir}/data" --owarp="${datadir}/fullWarp"
 
     echo "Computing gradient coil tensor to correct for gradient nonlinearities"
-    ${binarydir}/calc_grad_perc_dev --fullwarp=${datadir}/fullWarp -o ${datadir}/grad_dev
+    ${FSLDIR}/bin/calc_grad_perc_dev --fullwarp=${datadir}/fullWarp -o ${datadir}/grad_dev
     ${FSLDIR}/bin/fslmerge -t ${datadir}/grad_dev ${datadir}/grad_dev_x ${datadir}/grad_dev_y ${datadir}/grad_dev_z
     ${FSLDIR}/bin/fslmaths ${datadir}/grad_dev -div 100 ${datadir}/grad_dev #Convert from % deviation to absolute
     ${FSLDIR}/bin/imrm ${datadir}/grad_dev_?
