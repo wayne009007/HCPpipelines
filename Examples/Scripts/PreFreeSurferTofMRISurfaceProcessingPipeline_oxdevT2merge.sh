@@ -179,7 +179,7 @@ for Subject in $Subjlist ; do
   T1wInputImages=`echo ${T1wInputImages} | sed 's/@/ /g'`
   for Tmp in ${T1wInputImages} ; do
       Tt="${StudyFolder}/${Subject}/${Tmp}"
-      T1wInputImage=`echo ${T1wInputImage} | sed "s%${Tmp}%${Tt}%"`
+      T1wInputImage=`echo ${T1wInputImage} | sed "s!${Tmp}!${Tt}!"`
   done
   T1wInputImage="`echo ${T1wInputImage} | sed s/%subjectID%/${Subject}/g`"
 
@@ -214,7 +214,7 @@ for Subject in $Subjlist ; do
       T2wInputImages=`echo ${T2wInputImages} | sed 's/@/ /g'`
       for Tmp in ${T2wInputImages} ; do
 	  Tt="${StudyFolder}/${Subject}/${Tmp}"
-	  T2wInputImage=`echo ${T2wInputImage} | sed "s%${Tmp}%${Tt}%"`
+	  T2wInputImage=`echo ${T2wInputImage} | sed "s!${Tmp}!${Tt}!"`
       done
       T2wInputImage="`echo ${T2wInputImage} | sed s/%subjectID%/${Subject}/g`"
   else
