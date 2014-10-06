@@ -543,6 +543,15 @@ else
             ${T1wFolder}/xfms/${T1wImage}_dc \
             ${T1wFolder}/${T2wImage}_acpc_dc \
             ${T1wFolder}/xfms/${T2wImage}_reg_dc
+    else  # no T2, no readout distortion correction, only copying images
+	log_Msg "cp ${T1wFolder}/${T1wImage}_acpc.nii.gz  ${T1wFolder}/${T1wImage}_acpc_dc.nii.gz"
+	cp ${T1wFolder}/${T1wImage}_acpc.nii.gz  ${T1wFolder}/${T1wImage}_acpc_dc.nii.gz
+	log_Msg "cp  ${T1wFolder}/${T1wImage}_acpc_brain.nii.gz   ${T1wFolder}/${T1wImage}_acpc_dc_brain.nii.gz"
+	cp  ${T1wFolder}/${T1wImage}_acpc_brain.nii.gz   ${T1wFolder}/${T1wImage}_acpc_dc_brain.nii.gz
+	# N.B. JBM: not sure if output transform ${T1wFolder}/xfms/${T1wImage}_dc is needed, but still doing it
+	${FSLDIR}/bin/fslmerge -t ${T1wFolder}/xfms/${T1wImage}_dc ${T1wFolder}/${T1wImage}_acpc.nii.gz ${T1wFolder}/${T1wImage}_acpc.nii.gz ${T1wFolder}/${T1wImage}_acpc.nii.gz
+	${FSLDIR}/bin/fslmaths ${T1wFolder}/xfms/${T1wImage}_dc -mul 0 ${T1wFolder}/xfms/${T1wImage}_dc
+
     fi
 fi
 
