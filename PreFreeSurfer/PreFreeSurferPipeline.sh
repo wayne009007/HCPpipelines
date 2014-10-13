@@ -360,13 +360,10 @@ log_Msg "POSIXLY_CORRECT="${POSIXLY_CORRECT}
 #  - Perform Brain Extraction(FNIRT-based Masking)
 # ------------------------------------------------------------------------------
 
-#Modalities="T1w T2w"
-
 for TXw in ${Modalities} ; do
     log_Msg "Processing Modality: " $TXw
     
     # set up appropriate input variables
-    echo "processing $TXw images"
     if [ $TXw = T1w ] ; then
         TXwInputImages="${T1wInputImages}"
         TXwFolder=${T1wFolder}
