@@ -7,15 +7,16 @@ EddyJacFlag="JacobianResampling"
 
 workingdir=$1
 GdCoeffs=$2  #Coefficients for gradient nonlinearity distortion correction. If "NONE" this corrections is turned off
-CombineDataFlag=$3   #2 for including in the ouput all volumes uncombined (i.e. output file of eddy)
-                     #1 for including in the ouput and combine only volumes where both LR/RL (or AP/PA) pairs have been acquired
-                     #0 As 1, but also include uncombined single volumes"
+CombineDataFlag=$3   #1 for including in the ouput and combine only volumes where both LR/RL (or AP/PA) pairs have been acquired
+                     #2 for including in the ouput all volumes uncombined (i.e. output file of eddy)
+                     #3 for including in the output only volumes from the direction with more slices - useful for data were one direction has more than 100 volumes and the other less than 10, e.g. Biobank data
 
 configdir=${HCPPIPEDIR_Config}
 globalscriptsdir=${HCPPIPEDIR_Global}
 
 eddydir=${workingdir}/eddy
 datadir=${workingdir}/data
+rawdatadir=${workingdir}/rawdata
 
 #Prepare for next eddy Release
 #if [ ! -e ${eddydir}/${EddyJacFlag} ]; then 
@@ -28,14 +29,30 @@ datadir=${workingdir}/data
 	${FSLDIR}/bin/imcp  ${eddydir}/eddy_unwarped_images ${datadir}/data
 	cp ${eddydir}/Pos_Neg.bvals ${datadir}/bvals
 	cp ${eddydir}/Pos_Neg.bvecs ${datadir}/bvecs
+	
     else
-	echo "JAC resampling has been used. Eddy Output is now combined."
 	PosVols=`wc ${eddydir}/Pos.bval | awk {'print $2'}`
 	NegVols=`wc ${eddydir}/Neg.bval | awk {'print $2'}`    #Split Pos and Neg Volumes
 	${FSLDIR}/bin/fslroi ${eddydir}/eddy_unwarped_images ${eddydir}/eddy_unwarped_Pos 0 ${PosVols}
 	${FSLDIR}/bin/fslroi ${eddydir}/eddy_unwarped_images ${eddydir}/eddy_unwarped_Neg ${PosVols} ${NegVols}
-	${FSLDIR}/bin/eddy_combine ${eddydir}/eddy_unwarped_Pos ${eddydir}/Pos.bval ${eddydir}/Pos.bvec ${eddydir}/Pos_SeriesVolNum.txt \
-                                        ${eddydir}/eddy_unwarped_Neg ${eddydir}/Neg.bval ${eddydir}/Neg.bvec ${eddydir}/Neg_SeriesVolNum.txt ${datadir} ${CombineDataFlag}
+
+	if  [  ${CombineDataFlag} -eq 3 ] ; then
+	    if [ ${PosVols} -ge ${NegVols} ] ; then
+		echo "More volumes in positive direction then in negative - copying Eddy Output with positive direction"
+		${FSLDIR}/bin/imcp ${eddydir}/eddy_unwarped_Pos ${datadir}/data
+		cp ${eddydir}/Pos.bval ${datadir}/bvals
+		cp ${eddydir}/Pos.bvec ${datadir}/bvecs
+	    else
+		echo "More volumes in negative direction then in positive - copying Eddy Output with negative direction"
+		${FSLDIR}/bin/imcp ${eddydir}/eddy_unwarped_Neg ${datadir}/data
+		cp ${eddydir}/Neg.bval ${datadir}/bvals
+		cp ${eddydir}/Neg.bvec ${datadir}/bvecs
+	    fi
+	else
+	    echo "JAC resampling has been used. Eddy Output is now combined."
+	    ${FSLDIR}/bin/eddy_combine ${eddydir}/eddy_unwarped_Pos ${eddydir}/Pos.bval ${eddydir}/Pos.bvec ${eddydir}/Pos_SeriesVolNum.txt \
+                                       ${eddydir}/eddy_unwarped_Neg ${eddydir}/Neg.bval ${eddydir}/Neg.bvec ${eddydir}/Neg_SeriesVolNum.txt ${datadir} ${CombineDataFlag}
+	fi
 
 	${FSLDIR}/bin/imrm ${eddydir}/eddy_unwarped_Pos
 	${FSLDIR}/bin/imrm ${eddydir}/eddy_unwarped_Neg

@@ -146,6 +146,14 @@ usage() {
     echo "    : path to file containing coefficients that describe spatial variations"
     echo "      of the scanner gradients. Use --gdcoeffs=NONE if not available"
     echo ""
+    echo "    --combinedata=<combine-data-flag>"
+    echo "    : flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file"
+    echo "      1 for including in the output and combine only volumes where both LR/RL "
+    echo "      2 for including in the output all volumes uncombined (i.e. output file of eddy)"
+    echo "        (or AP/PA) pairs have been acquired  - should be used with HCP data"
+    echo "      3 for including in the output only volumes from the direction with more slices "
+    echo "        useful for data were one direction has much more volumes and the other, e.g. 100 vs. 10"
+    echo ""
     echo "    [--printcom=<print-command>]"
     echo "    : Use the specified <print-command> to echo or otherwise output the commands"
     echo "      that would be executed instead of actually running them"
@@ -199,6 +207,12 @@ usage() {
 #  ${echospacing}    - echo spacing in msecs
 #  ${GdCoeffs}       - Path to file containing coefficients that describe spatial variations
 #                      of the scanner gradients. Use NONE if not available.
+#  ${CombineDataFlag}- flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file
+#                      1 for including in the output and combine only volumes where both LR/RL 
+#                        (or AP/PA) pairs have been acquired  - should be used with HCP data
+#                      2 for including in the output all volumes uncombined (i.e. output file of eddy)
+#                      3 for including in the output only volumes from the direction with more slices - 
+#                        useful for data were one direction has much more volumes and then the other
 #  ${runcmd}         - Set to a user specifed command to use if user has requested
 #                      that commands be echo'd (or printed) instead of actually executed.
 #                      Otherwise, set to empty string.
@@ -215,6 +229,7 @@ get_options() {
     unset NegInputImages
     unset echospacing
     unset GdCoeffs
+    unset CombineDataFlag
     runcmd=""
 
     # parse arguments
@@ -260,6 +275,10 @@ get_options() {
                 ;;
             --gdcoeffs=*)
                 GdCoeffs=${argument/*=/""}
+                index=$(( index + 1 ))
+                ;;
+	    --combinedata=*)
+                CombineDataFlag=${argument/*=/""}
                 index=$(( index + 1 ))
                 ;;
             --printcom=*)
@@ -317,6 +336,12 @@ get_options() {
         exit 1
     fi
 
+    if [ -z ${CombineDataFlag} ]; then
+        usage
+        echo "ERROR: <combine-data-flag> not specified"
+        exit 1
+    fi
+
     # report options
     echo "-- ${scriptName}: Specified Command-Line Options - Start --"
     echo "   StudyFolder: ${StudyFolder}"
@@ -326,6 +351,7 @@ get_options() {
     echo "   NegInputImages: ${NegInputImages}"
     echo "   echospacing: ${echospacing}"
     echo "   GdCoeffs: ${GdCoeffs}"
+    echo "   CombineDataFlag: ${CombineDataFlag}"
     echo "   runcmd: ${runcmd}"
     echo "-- ${scriptName}: Specified Command-Line Options - End --"
 }
@@ -390,6 +416,12 @@ main() {
     #  ${echospacing}    - echo spacing in msecs
     #  ${GdCoeffs}       - Path to file containing coefficients that describe spatial variations
     #                      of the scanner gradients. Use NONE if not available.
+    #  ${CombineDataFlag}- flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file
+    #                      1 for including in the output and combine only volumes where both LR/RL 
+    #                        (or AP/PA) pairs have been acquired  - should be used with HCP data
+    #                      2 for including in the output all volumes uncombined (i.e. output file of eddy)
+    #                      3 for including in the output only volumes from the direction with more slices - 
+    #                        useful for data were one direction has much more volumes and then the other
     #  ${runcmd}         - Set to a user specifed command to use if user has requested
     #                      that commands be echo'd (or printed) instead of actually executed.
     #                      Otherwise, set to empty string.
@@ -422,6 +454,7 @@ main() {
         --path=${StudyFolder} \
         --subject=${Subject} \
         --gdcoeffs=${GdCoeffs} \
+	--combinedata=${CombineDataFlag} \  
         --printcom="${runcmd}"
 
     log_Msg "Completed"

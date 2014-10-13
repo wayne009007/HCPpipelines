@@ -106,6 +106,14 @@ usage() {
     echo "    : path to file containing coefficients that describe spatial variations"
     echo "      of the scanner gradients. Use --gdcoeffs=NONE if not available"
     echo ""
+    echo "    --combinedata=<combine-data-flag>"
+    echo "    : flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file"
+    echo "      1 for including in the output and combine only volumes where both LR/RL "
+    echo "      2 for including in the output all volumes uncombined (i.e. output file of eddy)"
+    echo "        (or AP/PA) pairs have been acquired  - should be used with HCP data"
+    echo "      3 for including in the output only volumes from the direction with more slices "
+    echo "        useful for data were one direction has much more volumes and the other, e.g. 100 vs. 10"
+    echo ""
     echo "    [--printcom=<print-command>]"
     echo "    : Use the specified <print-command> to echo or otherwise output the commands"
     echo "      that would be executed instead of actually running them"
@@ -147,6 +155,12 @@ usage() {
 #  ${Subject}     - Subject ID
 #  ${GdCoeffs}    - Path to file containing coefficients that describe spatial variations
 #                   of the scanner gradients. Use NONE if not available.
+#  ${CombineDataFlag}- flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file
+#                      1 for including in the output and combine only volumes where both LR/RL 
+#                        (or AP/PA) pairs have been acquired  - should be used with HCP data
+#                      2 for including in the output all volumes uncombined (i.e. output file of eddy)
+#                      3 for including in the output only volumes from the direction with more slices - 
+#                        useful for data were one direction has much more volumes and then the other
 #  ${runcmd}      - Set to a user specifed command to use if user has requested
 #                   that commands be echo'd (or printed) instead of actually executed.
 #                   Otherwise, set to empty string.
@@ -190,6 +204,10 @@ get_options() {
                 GdCoeffs=${argument/*=/""}
                 index=$(( index + 1 ))
                 ;;
+	    --combinedata=*)
+                CombineDataFlag=${argument/*=/""}
+                index=$(( index + 1 ))
+                ;;
             --printcom=*)
                 runcmd=${argument/*=/""}
                 index=$(( index + 1 ))
@@ -221,11 +239,18 @@ get_options() {
         exit 1
     fi
 
+    if [ -z ${CombineDataFlag} ]; then
+        usage
+        echo "ERROR: <combine-data-flag> not specified"
+        exit 1
+    fi
+
     # report options
     echo "-- ${scriptName}: Specified Command-Line Options - Start --"
     echo "   StudyFolder: ${StudyFolder}"
     echo "   Subject: ${Subject}"
     echo "   GdCoeffs: ${GdCoeffs}"
+    echo "   CombineDataFlag: ${CombineDataFlag}"
     echo "   runcmd: ${runcmd}"
     echo "-- ${scriptName}: Specified Command-Line Options - End --"
 }
@@ -275,13 +300,7 @@ validate_environment_vars() {
 #  Gets user specified command line options, runs Post-Eddy steps of Diffusion Preprocessing
 #
 main() {
-    # Hard-Coded variables for the pipeline
-    CombineDataFlag=1  # If JAC resampling has been used in eddy, decide what to do with the output file
-                       # 2 for including in the output all volumes uncombined (i.e. output file of eddy)
-                       # 1 for including in the output and combine only volumes where both LR/RL 
-                       #   (or AP/PA) pairs have been acquired
-                       # 0 As 1, but also include uncombined single volumes
-
+ 
     # Get Command Line Options
     #
     # Global Variables Set

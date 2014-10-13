@@ -7,6 +7,13 @@ EchoSpacing=0.78 #EPI Echo Spacing for data (in msec)
 PEdir=1 #Use 1 for Left-Right Phase Encoding, 2 for Anterior-Posterior
 Gdcoeffs="/vols/Data/HCP/Pipelines/global/config/coeff_SC72C_Skyra.grad" #Coefficients that describe spatial variations of the scanner gradients. Use NONE if not available.
 
+CombineDataFlag=3  # flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file
+                       # 1 for including in the output and combine only volumes where both LR/RL 
+                       #   (or AP/PA) pairs have been acquired  - should be used with HCP data
+                       # 2 for including in the output all volumes uncombined (i.e. output file of eddy)
+                       # 3 for including in the output only volumes from the direction with more slices - useful for data were one direction has more than 100 volumes and the other less than 10, e.g. Biobank data
+  
+
 # Requirements for this script
 #  installed versions of: FSL5.0.5 or higher , FreeSurfer (version 5.2 or higher) , gradunwarp (python code from MGH)
 #  environment: FSLDIR , FREESURFER_HOME , HCPPIPEDIR , CARET7DIR , PATH (for gradient_unwarp.py)
@@ -45,6 +52,7 @@ for Subject in $Subjlist ; do
       --path="${StudyFolder}" --subject="${SubjectID}" \
       --echospacing="${EchoSpacing}" --PEdir=${PEdir} \
       --gdcoeffs="${Gdcoeffs}" \
+      --combinedata="$CombineDataFlag" \ 
       --printcom=$PRINTCOM
 
 done
