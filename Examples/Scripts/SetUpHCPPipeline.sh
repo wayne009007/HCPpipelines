@@ -11,10 +11,8 @@ echo "This script must be SOURCED to correctly setup the environment prior to ru
 #. ${FREESURFER_HOME}/SetUpFreeSurfer.sh > /dev/null 2>&1
 
 # Set up specific environment variables for the HCP Pipeline
-# All the following variables can be left as is if the structure of the GIT repository is maintained
-export HCPPIPEDIR=/media/2TBB/Connectome_Project/Pipelines
-export CARET7DIR=${HCPPIPEDIR}/global/binaries/caret7/bin_rh_linux64
-#export CARET5DIR=${HCPPIPEDIR}/global/binaries/caret5
+export HCPPIPEDIR=${HOME}/projects/Pipelines
+export CARET7DIR=${HOME}/workbench/bin_linux64
 
 export HCPPIPEDIR_Templates=${HCPPIPEDIR}/global/templates
 export HCPPIPEDIR_Bin=${HCPPIPEDIR}/global/binaries
@@ -43,8 +41,7 @@ export MSMBin=${HCPPIPEDIR}/MSMBinaries
 #FREESURFER_HOME=/nrgpackages/tools/freesurfer5
 #. ${FREESURFER_HOME}/SetUpFreeSurfer.sh
 
-#NRG_SCRIPTS=/nrgpackages/scripts
-#. ${NRG_SCRIPTS}/epd-python_setup.sh
+#NRG_SCRIPTS=/nrgpackages/scripts#. ${NRG_SCRIPTS}/epd-python_setup.sh
 
 #export HCPPIPEDIR=/home/NRG/jwilso01/dev/Pipelines
 #export HCPPIPEDIR_PreFS=${HCPPIPEDIR}/PreFreeSurfer/scripts
@@ -61,9 +58,8 @@ export MSMBin=${HCPPIPEDIR}/MSMBinaries
 #export HCPPIPEDIR_Config=${HCPPIPETOOLS}/conf
 #export HCPPIPEDIR_Global=${HCPPIPETOOLS}/scripts_v2
 
-#export CARET5DIR=${HCPPIPEDIR_Bin}/caret5
 #export CARET7DIR=${HCPPIPEDIR_Bin}/caret7/bin_linux64
-## may or may not want the above variables from CARET5DIR to HCPPIPEDIR_Global to be setup as above or not
+## may or may not want the above variables to be setup as above
 ##    (if so then the HCPPIPEDIR line needs to go before them)
 ## end of WASHU config
 

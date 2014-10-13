@@ -20,19 +20,11 @@
 #
 # ## Product
 #
-# [Human Connectome Project][HCP] (HCP) Pipeline Tools 
+# [Human Connectome Project][HCP] (HCP) Pipelines 
 #
 # ## License
 #
-# * Human Connectome Project Pipeline Tools = the "Software"
-# * The Software is distributed "AS IS" without warranty of any kind, either 
-# * expressed or implied, including, but not limited to, the implied warranties
-# * of merchantability and fitness for a particular purpose.
-#
-# ### TODO
-#
-# Find out what actual license terms are to be applied. Commercial use allowed? 
-# If so, this would likely violate FSL terms.
+# See the [LICENSE](https://github.com/Washington-University/Pipelines/blob/master/LICENCE.md) file
 #
 # ## Description 
 #   
@@ -61,7 +53,7 @@
 # 
 # ### Installed Software
 #
-# * [FSL][FSL] - FMRIB's Software Library Version 5.0.6 or later 
+# * [FSL][FSL] - FMRIB's Software Library (version 5.0.6) 
 #
 # ### Environment Variables
 #
@@ -289,9 +281,39 @@ BiasFieldSmoothingSigma=`opts_GetOpt1 "--bfsigma" $@`
 # running the commands (the default is to actually run the commands)
 RUN=`opts_GetOpt1 "--printcom" $@`
 
+# ------------------------------------------------------------------------------
+#  Show Command Line Options
+# ------------------------------------------------------------------------------
+
 log_Msg "Finished Parsing Command Line Options"
-log_Msg "StudyFolder: $StudyFolder"
-log_Msg "Subject: $Subject"
+log_Msg "StudyFolder: ${StudyFolder}"
+log_Msg "Subject: ${Subject}"
+log_Msg "T1wInputImages: ${T1wInputImages}"
+log_Msg "T2wInputImages: ${T2wInputImages}"
+log_Msg "T1wTemplate: ${T1wTemplate}"
+log_Msg "T1wTemplateBrain: ${T1wTemplateBrain}"
+log_Msg "T1wTemplate2mm: ${T1wTemplate2mm}"
+log_Msg "T2wTemplate: ${T2wTemplate}"
+log_Msg "T2wTemplateBrain: ${T2wTemplateBrain}"
+log_Msg "T2wTemplate2mm: ${T2wTemplate2mm}"
+log_Msg "TemplateMask: ${TemplateMask}"
+log_Msg "Template2mmMask: ${Template2mmMask}"
+log_Msg "BrainSize: ${BrainSize}"
+log_Msg "FNIRTConfig: ${FNIRTConfig}"
+log_Msg "MagnitudeInputName: ${MagnitudeInputName}"
+log_Msg "PhaseInputName: ${PhaseInputName}"
+log_Msg "TE: ${TE}"
+log_Msg "SpinEchoPhaseEncodeNegative: ${SpinEchoPhaseEncodeNegative}"
+log_Msg "SpinEchoPhaseEncodePositive: ${SpinEchoPhaseEncodePositive}"
+log_Msg "DwellTime: ${DwellTime}"
+log_Msg "SEUnwarpDir: ${SEUnwarpDir}"
+log_Msg "T1wSampleSpacing: ${T1wSampleSpacing}"
+log_Msg "T2wSampleSpacing: ${T2wSampleSpacing}"
+log_Msg "UnwarpDir: ${UnwarpDir}"
+log_Msg "GradientDistortionCoeffs: ${GradientDistortionCoeffs}"
+log_Msg "AvgrdcSTRING: ${AvgrdcSTRING}"
+log_Msg "TopupConfig: ${TopupConfig}"
+log_Msg "BiasFieldSmoothingSigma: ${BiasFieldSmoothingSigma}"
 
 # Naming Conventions
 T1wImage="T1w"
@@ -406,11 +428,7 @@ for TXw in ${Modalities} ; do
         log_Msg "Averaging ${TXw} Images"
         log_Msg "mkdir -p ${TXwFolder}/Average${TXw}Images"
         mkdir -p ${TXwFolder}/Average${TXw}Images
-        # if [ ${AvgrdcSTRING} = "TOPUP" ] ; then
-        #     echo "PERFORMING TOPUP READOUT DISTORTION CORRECTION AND AVERAGING"
-        #     ${RUN} ${HCPPIPEDIR_PreFS}/TopupDistortionCorrectAndAverage.sh ${TXwFolder}/Average${TXw}Images "${OutputTXwImageSTRING}" ${TXwFolder}/${TXwImage} ${TopupConfig}
-        # else
-	    log_Msg "PERFORMING SIMPLE AVERAGING"
+	log_Msg "PERFORMING SIMPLE AVERAGING"
         ${RUN} ${HCPPIPEDIR_PreFS}/AnatomicalAverage.sh -o ${TXwFolder}/${TXwImage} -s ${TXwTemplate} -m ${TemplateMask} -n -w ${TXwFolder}/Average${TXw}Images --noclean -v -b $BrainSize $OutputTXwImageSTRING
         # fi
     else

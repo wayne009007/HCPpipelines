@@ -26,15 +26,7 @@
 #
 # ## License
 #
-# * Human Connectome Project Pipeline Tools = the "Software"
-# * This Software is distributed "AS IS" without warranty of any kind, either 
-# * expressed or implied, including, but not limited to, the implied warranties
-# * of merchantability and fitness for a particular purpose.
-#
-# ### TODO
-#
-# Find out what actual license terms are to be applied. Commercial use allowed? 
-# If so, this would likely violate FSL terms.
+# See the [LICENSE](https://github.com/Washington-University/Pipelines/blob/master/LICENCE.md) file
 #
 # ## Description
 #
@@ -48,15 +40,13 @@
 #
 # ## Prerequisite Installed Software for the Diffusion Preprocessing Pipeline
 #
-# * [FSL][FSL] - FMRIB's Software Library - Version 5.0.6 or later.
-#                FSL's environment setup script must also be sourced
+# * [FSL][FSL] - FMRIB's Software Library (version 5.0.6)
+#   
+#   FSL's environment setup script must also be sourced
 #
-# * [FreeSurfer][FreeSurfer] - Version 5.2 or greater
+# * [FreeSurfer][FreeSurfer] (version 5.3.0-HCP)
 #
-# * gradunwarp - HCP customized version of [gradunwarp][gradunwarp]. The HCP customized 
-#   version of gradunwarp is in the src/gradient_unwarping directory in this 
-#   distribution.  _It must be installed separately with its prerequisites and the 
-#   PATH environment variable must be setup so that gradient_unwarp.py is found_. 
+# * [HCP-gradunwarp][HCP-gradunwarp] - (HCP version 1.0.2)
 #
 # ## Prerequisite Environment Variables
 #
@@ -422,7 +412,7 @@ main() {
     done
 
     # copy negative raw data
-    log_Msg "Copying negative raw data  to working directory"
+    log_Msg "Copying negative raw data to working directory"
     NegInputImages=`echo ${NegInputImages} | sed 's/@/ /g'`
     log_Msg "NegInputImages: ${NegInputImages}"
 
