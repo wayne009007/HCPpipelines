@@ -77,7 +77,7 @@ echo "0 0 1 0" >> "$mridir"/transforms/eye.dat
 echo "0 0 0 1" >> "$mridir"/transforms/eye.dat
 echo "round" >> "$mridir"/transforms/eye.dat
 
-if [ -f "$T2wImage".nii.gz ] ; then
+if [ -f "$T2wImage" ] ; then
 
     if [ ! -e "$mridir"/transforms/T2wtoT1w.mat ] ; then
       bbregister --s "$SubjectID" --mov "$T2wImage" --surf white.deformed --init-reg "$mridir"/transforms/eye.dat --t2 --reg "$mridir"/transforms/T2wtoT1w.dat --o "$mridir"/T2w_hires.nii.gz
