@@ -117,7 +117,7 @@ else
    # Set up specific environment variables for the HCP Pipeline
    # All the following variables can be left as is if the structure of the GIT repository is maintained
    export HCPPIPEDIR=/vols/Data/HCP/GIT/FMRIB_Pipelines/oxdevT2_merge
-   export CARET7DIR=${HCPPIPEDIR}/global/binaries/caret7/bin_rh_linux64
+   export CARET7DIR=/opt/fmrib/workbench/bin_rh_linux64/
 
    export HCPPIPEDIR_Templates=${HCPPIPEDIR}/global/templates
    export HCPPIPEDIR_Bin=${HCPPIPEDIR}/global/binaries
