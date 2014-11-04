@@ -294,7 +294,7 @@ for Subject in $Subjlist ; do
   ###### FreeSurfer #####
 
   # FreeSurfer may require high memory
-  QUEUE="-q bigmem.q"
+  QUEUE="-q verylong.q"
 
    #Input Variables (created in the PreFreesurfer step)
   SubjectDIR="${StudyFolder}/${Subject}/T1w" #Location to put FreeSurfer Subject's Folder
