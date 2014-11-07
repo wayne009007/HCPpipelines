@@ -133,7 +133,7 @@ else
    export HCPPIPEDIR_dMRITract=${HCPPIPEDIR}/DiffusionTractography/scripts
    export HCPPIPEDIR_Global=${HCPPIPEDIR}/global/scripts
    export HCPPIPEDIR_tfMRIAnalysis=${HCPPIPEDIR}/TaskfMRIAnalysis/scripts
-   export MSMBin=/home/fs0/jmouthuy/scratch/MSM # ${HCPPIPEDIR}/MSMBinaries
+   export MSMBin=/home/fs0/jmouthuy/scratch/MSMv3.0 # ${HCPPIPEDIR}/MSMBinaries
 fi
 
 # Importing input variables from the InputParameterFile.sh
