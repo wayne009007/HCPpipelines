@@ -1,9 +1,13 @@
 #!/bin/bash 
 set -e
+set -xv
 
 # Requirements for this script
 #  installed versions of: FSL (version 5.0.6) and FreeSurfer (version 5.3.0-HCP)
 #  environment: FSLDIR, FREESURFER_HOME + others
+
+#temp variables (dlete this when done with testing
+# export HCPPIPEDIR_Global=/vols/Data/HCP/GIT/FMRIB_Pipelines/oxdevT2_merge/global/scripts
 
 ################################################ SUPPORT FUNCTIONS ##################################################
 
@@ -199,38 +203,103 @@ if [ $DistortionCorrection = "FIELDMAP" ] ; then
     
 ###### TOPUP VERSION (SE FIELDMAPS) ######
 elif [ $DistortionCorrection = "TOPUP" ] ; then
-  # Use topup to distortion correct the scout scans
-  #    using a blip-reversed SE pair "fieldmap" sequence
-  ${GlobalScripts}/TopupPreprocessingAll.sh \
-      --workingdir=${WD}/FieldMap \
-      --phaseone=${SpinEchoPhaseEncodeNegative} \
-      --phasetwo=${SpinEchoPhaseEncodePositive} \
-      --scoutin=${ScoutInputName} \
-      --echospacing=${DwellTime} \
-      --unwarpdir=${UnwarpDir} \
-      --owarp=${WD}/WarpField \
-      --ojacobian=${WD}/Jacobian \
-      --gdcoeffs=${GradientDistortionCoeffs} \
-      --topupconfig=${TopupConfig}
 
-  # create a spline interpolated image of scout (distortion corrected in same space)
-  ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${ScoutInputName} -r ${ScoutInputName} -w ${WD}/WarpField.nii.gz -o ${WD}/${ScoutInputFile}_undistorted
-  # apply Jacobian correction to scout image (optional)
-  if [ $UseJacobian = true ] ; then
-      ${FSLDIR}/bin/fslmaths ${WD}/${ScoutInputFile}_undistorted -mul ${WD}/Jacobian.nii.gz ${WD}/${ScoutInputFile}_undistorted
-  fi
-  # register undistorted scout image to T1w
-  ${FSLDIR}/bin/epi_reg --epi=${WD}/${ScoutInputFile}_undistorted --t1=${T1wImage} --t1brain=${WD}/${T1wBrainImageFile} --out=${WD}/${ScoutInputFile}_undistorted
-  # generate combined warpfields and spline interpolated images + apply bias field correction
-  ${FSLDIR}/bin/convertwarp --relout --rel -r ${T1wImage} --warp1=${WD}/WarpField.nii.gz --postmat=${WD}/${ScoutInputFile}_undistorted.mat -o ${WD}/${ScoutInputFile}_undistorted_warp
-  ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${WD}/Jacobian.nii.gz -r ${T1wImage} --premat=${WD}/${ScoutInputFile}_undistorted.mat -o ${WD}/Jacobian2T1w.nii.gz
-  ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${ScoutInputName} -r ${T1wImage} -w ${WD}/${ScoutInputFile}_undistorted_warp -o ${WD}/${ScoutInputFile}_undistorted
-  # apply Jacobian correction to scout image (optional)
-  if [ $UseJacobian = true ] ; then
-      ${FSLDIR}/bin/fslmaths ${WD}/${ScoutInputFile}_undistorted -div ${BiasField} -mul ${WD}/Jacobian2T1w.nii.gz ${WD}/${ScoutInputFile}_undistorted2T1w_init.nii.gz 
-  else
-      ${FSLDIR}/bin/fslmaths ${WD}/${ScoutInputFile}_undistorted -div ${BiasField} ${WD}/${ScoutInputFile}_undistorted2T1w_init.nii.gz 
-  fi
+     # check if phase images have different resolution from the SBRef. If different then topup-computed fieldmaps should be used and use --scoutin=NONE for TopupPreprocessingAll.sh
+    # rounding up pixdim in the case of slight differences which can be neglected 
+    ScoutDim1=`fslval ${ScoutInputName} dim1`
+    ScoutDim2=`fslval ${ScoutInputName} dim2`
+    ScoutDim3=`fslval ${ScoutInputName} dim3`
+    ScoutPixDim1=`fslval ${ScoutInputName} pixdim1`
+    ScoutPixDim2=`fslval ${ScoutInputName} pixdim2`
+    ScoutPixDim3=`fslval ${ScoutInputName} pixdim3`
+    ScoutPixDim1=`echo "((${ScoutPixDim1}*100)+0.5)/1" | bc `
+    ScoutPixDim2=`echo "((${ScoutPixDim2}*100)+0.5)/1" | bc `
+    ScoutPixDim3=`echo "((${ScoutPixDim3}*100)+0.5)/1" | bc `
+    PhaseDim1=`fslval ${SpinEchoPhaseEncodeNegative} dim1`
+    PhaseDim2=`fslval ${SpinEchoPhaseEncodeNegative} dim2`
+    PhaseDim3=`fslval ${SpinEchoPhaseEncodeNegative} dim3`
+    PhasePixDim1=`fslval ${SpinEchoPhaseEncodeNegative} pixdim1`
+    PhasePixDim2=`fslval ${SpinEchoPhaseEncodeNegative} pixdim2`
+    PhasePixDim3=`fslval ${SpinEchoPhaseEncodeNegative} pixdim3`
+    PhasePixDim1=`echo "((${PhasePixDim1}*100)+0.5)/1" | bc `
+    PhasePixDim2=`echo "((${PhasePixDim2}*100)+0.5)/1" | bc `
+    PhasePixDim3=`echo "((${PhasePixDim3}*100)+0.5)/1" | bc `
+    if [[ ("$ScoutDim1" == "$PhaseDim1") &&  ("$ScoutDim2" == "$PhaseDim2") &&  ("$ScoutDim3" == "$PhaseDim3") && ("$ScoutPixDim1" == "$PhasePixDim1") &&  ("$ScoutPixDim2" == "$PhasePixDim2") && ("$ScoutPixDim3" == "$PhasePixDim3") ]] ; then
+	echo "dimensions of Phase and SBRef images are the same - doing TopUp correction"
+	echo "Use topup warpfield for correction"
+	    
+    # Use topup to distortion correct the scout scans
+    #    using a blip-reversed SE pair "fieldmap" sequence
+       ${GlobalScripts}/TopupPreprocessingAll.sh \
+	   --workingdir=${WD}/FieldMap \
+	   --phaseone=${SpinEchoPhaseEncodeNegative} \
+	   --phasetwo=${SpinEchoPhaseEncodePositive} \
+	   --scoutin=${ScoutInputName} \
+	   --echospacing=${DwellTime} \
+	   --unwarpdir=${UnwarpDir} \
+	   --owarp=${WD}/WarpField \
+	   --ojacobian=${WD}/Jacobian \
+	   --gdcoeffs=${GradientDistortionCoeffs} \
+	   --topupconfig=${TopupConfig}
+
+       # create a spline interpolated image of scout (distortion corrected in same space)
+       ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${ScoutInputName} -r ${ScoutInputName} -w ${WD}/WarpField.nii.gz -o ${WD}/${ScoutInputFile}_undistorted
+       # apply Jacobian correction to scout image (optional)
+       if [ $UseJacobian = true ] ; then
+	   ${FSLDIR}/bin/fslmaths ${WD}/${ScoutInputFile}_undistorted -mul ${WD}/Jacobian.nii.gz ${WD}/${ScoutInputFile}_undistorted
+       fi
+       # register undistorted scout image to T1w
+       ${FSLDIR}/bin/epi_reg --epi=${WD}/${ScoutInputFile}_undistorted --t1=${T1wImage} --t1brain=${WD}/${T1wBrainImageFile} --out=${WD}/${ScoutInputFile}_undistorted
+       # generate combined warpfields and spline interpolated images + apply bias field correction
+       ${FSLDIR}/bin/convertwarp --relout --rel -r ${T1wImage} --warp1=${WD}/WarpField.nii.gz --postmat=${WD}/${ScoutInputFile}_undistorted.mat -o ${WD}/${ScoutInputFile}_undistorted_warp
+       ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${WD}/Jacobian.nii.gz -r ${T1wImage} --premat=${WD}/${ScoutInputFile}_undistorted.mat -o ${WD}/Jacobian2T1w.nii.gz
+       ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${ScoutInputName} -r ${T1wImage} -w ${WD}/${ScoutInputFile}_undistorted_warp -o ${WD}/${ScoutInputFile}_undistorted
+       # apply Jacobian correction to scout image (optional)
+       if [ $UseJacobian = true ] ; then
+	   ${FSLDIR}/bin/fslmaths ${WD}/${ScoutInputFile}_undistorted -div ${BiasField} -mul ${WD}/Jacobian2T1w.nii.gz ${WD}/${ScoutInputFile}_undistorted2T1w_init.nii.gz 
+       else
+	   ${FSLDIR}/bin/fslmaths ${WD}/${ScoutInputFile}_undistorted -div ${BiasField} ${WD}/${ScoutInputFile}_undistorted2T1w_init.nii.gz 
+       fi
+
+    else
+	# phase images and input EPI have different resolutions. Thus, use fieldmaps and magnitude images computed using topup
+	echo "dimensions of Phase and SBRef images are different - using TopUp fieldmap for correction"
+	echo "Use topup computed fieldmap in epi_reg"
+	${GlobalScripts}/TopupPreprocessingAll.sh \
+	    --workingdir=${WD}/FieldMap \
+	    --phaseone=${SpinEchoPhaseEncodeNegative} \
+	    --phasetwo=${SpinEchoPhaseEncodePositive} \
+	    --scoutin="NONE" \
+	    --echospacing=${DwellTime} \
+	    --unwarpdir=${UnwarpDir} \
+	    --ofmapmag=${WD}/Magnitude \
+	    --ofmapmagbrain=${WD}/Magnitude_brain \
+	    --ofmap=${WD}/FieldMap \
+	    --gdcoeffs=${GradientDistortionCoeffs} \
+	    --topupconfig=${TopupConfig}
+    
+	cp ${ScoutInputName}.nii.gz ${WD}/Scout.nii.gz
+
+	# get the Magnitude to the structural space and apply transformation to the FieldMap
+	${FSLDIR}/bin/flirt -interp spline -dof 6 -in ${WD}/Magnitude.nii.gz -ref ${T1wImage} -omat "$WD"/Mag2T1w.mat -out ${WD}/Magnitude2T1w.nii.gz -searchrx -30 30 -searchry -30 30 -searchrz -30 30
+	${FSLDIR}/bin/convert_xfm -omat "$WD"/T1w2Mag.mat -inverse "$WD"/Mag2T1w.mat
+	${FSLDIR}/bin/applywarp --interp=nn -i ${WD}/${T1wBrainImageFile} -r ${WD}/Magnitude.nii.gz --premat="$WD"/T1w2Mag.mat -o ${WD}/Magnitude_brain_mask.nii.gz    
+	${FSLDIR}/bin/fslmaths ${WD}/Magnitude_brain_mask.nii.gz -bin ${WD}/Magnitude_brain_mask.nii.gz
+	${FSLDIR}/bin/fslmaths ${WD}/Magnitude.nii.gz -mas ${WD}/Magnitude_brain_mask.nii.gz ${WD}/Magnitude_brain.nii.gz
+	${FSLDIR}/bin/applywarp --interp=nn -i ${WD}/Magnitude_brain.nii.gz -r ${T1wImage} --premat=${WD}/Mag2T1w.mat -o ${WD}/Magnitude2T1w_brain.nii.gz
+	#${FSLDIR}/bin/applywarp --interp=nn -i ${WD}/TopupField.nii.gz -r ${T1wImage} --premat="$WD"/Mag2T1w.mat -o ${WD}/FieldMap.nii.gz 
+
+        # register scout to T1w image using fieldmap
+	${FSLDIR}/bin/epi_reg --epi=${WD}/Scout.nii.gz --t1=${T1wImage} --t1brain=${WD}/${T1wBrainImageFile} --out=${WD}/${ScoutInputFile}_undistorted --fmap=${WD}/FieldMap.nii.gz --fmapmag=${WD}/Magnitude.nii.gz --fmapmagbrain=${WD}/Magnitude_brain.nii.gz --echospacing=${DwellTime} --pedir=${UnwarpDir}
+	
+        # create spline interpolated output for scout to T1w + apply bias field correction
+	${FSLDIR}/bin/applywarp --rel --interp=spline -i ${ScoutInputName} -r ${T1wImage} -w ${WD}/${ScoutInputFile}_undistorted_warp.nii.gz -o ${WD}/${ScoutInputFile}_undistorted_1vol.nii.gz
+	${FSLDIR}/bin/fslmaths ${WD}/${ScoutInputFile}_undistorted_1vol.nii.gz -div ${BiasField} ${WD}/${ScoutInputFile}_undistorted_1vol.nii.gz
+	${FSLDIR}/bin/immv ${WD}/${ScoutInputFile}_undistorted_1vol.nii.gz ${WD}/${ScoutInputFile}_undistorted2T1w_init.nii.gz
+        ###Jacobian Volume FAKED for Regular Fieldmaps (all ones), should be changed so it uses Jacobian from topup. However, Jacobian2T1w.nii.gz is not used in the remainder of the scripts (its use is hardcoded to "false") (Note from JBM) ###
+	${FSLDIR}/bin/fslmaths ${T1wImage} -abs -add 1 -bin ${WD}/Jacobian2T1w.nii.gz
+    fi
+    
 else
   echo "UNKNOWN DISTORTION CORRECTION METHOD"
   exit

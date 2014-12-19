@@ -99,7 +99,10 @@ echo " " >> $WD/log.txt
 # PhaseOne and PhaseTwo are sets of SE EPI images with opposite phase encodes
 ${FSLDIR}/bin/imcp $PhaseEncodeOne ${WD}/PhaseOne.nii.gz
 ${FSLDIR}/bin/imcp $PhaseEncodeTwo ${WD}/PhaseTwo.nii.gz
-${FSLDIR}/bin/imcp $ScoutInputName ${WD}/SBRef.nii.gz
+# check if SBRef is not set to none
+if [ ! $ScoutInputName = "NONE" ] ; then
+    ${FSLDIR}/bin/imcp $ScoutInputName ${WD}/SBRef.nii.gz
+fi
 
 # Apply gradient non-linearity distortion correction to input images (SE pair)
 if [ ! $GradientDistortionCoeffs = "NONE" ] ; then
@@ -211,44 +214,49 @@ if [ ! $(($numslice % 2)) -eq "0" ] ; then
   done
 fi
 
-# UNWARP DIR = x,y
-if [[ $UnwarpDir = "x" || $UnwarpDir = "y" ]] ; then
-  # select the first volume from PhaseTwo
-  VolumeNumber=$(($dimtOne + 1))
-  vnum=`${FSLDIR}/bin/zeropad $VolumeNumber 2`
-  # register scout to SE input (PhaseTwo) + combine motion and distortion correction
-  ${FSLDIR}/bin/flirt -dof 6 -interp spline -in ${WD}/SBRef.nii.gz -ref ${WD}/PhaseTwo_gdc -omat ${WD}/SBRef2PhaseTwo_gdc.mat -out ${WD}/SBRef2PhaseTwo_gdc
-  ${FSLDIR}/bin/convert_xfm -omat ${WD}/SBRef2WarpField.mat -concat ${WD}/MotionMatrix_${vnum}.mat ${WD}/SBRef2PhaseTwo_gdc.mat
-  ${FSLDIR}/bin/convertwarp --relout --rel -r ${WD}/PhaseTwo_gdc --premat=${WD}/SBRef2WarpField.mat --warp1=${WD}/WarpField_${vnum} --out=${WD}/WarpField.nii.gz
-  ${FSLDIR}/bin/imcp ${WD}/Jacobian_${vnum}.nii.gz ${WD}/Jacobian.nii.gz
-  SBRefPhase=Two
-# UNWARP DIR = -x,-y
-elif [[ $UnwarpDir = "x-" || $UnwarpDir = "-x" || $UnwarpDir = "y-" || $UnwarpDir = "-y" ]] ; then
-  # select the first volume from PhaseOne
-  VolumeNumber=$((0 + 1))
-  vnum=`${FSLDIR}/bin/zeropad $VolumeNumber 2`
-  # register scout to SE input (PhaseOne) + combine motion and distortion correction
-  ${FSLDIR}/bin/flirt -dof 6 -interp spline -in ${WD}/SBRef.nii.gz -ref ${WD}/PhaseOne_gdc -omat ${WD}/SBRef2PhaseOne_gdc.mat -out ${WD}/SBRef2PhaseOne_gdc
-  ${FSLDIR}/bin/convert_xfm -omat ${WD}/SBRef2WarpField.mat -concat ${WD}/MotionMatrix_${vnum}.mat ${WD}/SBRef2PhaseOne_gdc.mat
-  ${FSLDIR}/bin/convertwarp --relout --rel -r ${WD}/PhaseOne_gdc --premat=${WD}/SBRef2WarpField.mat --warp1=${WD}/WarpField_${vnum} --out=${WD}/WarpField.nii.gz
-  ${FSLDIR}/bin/imcp ${WD}/Jacobian_${vnum}.nii.gz ${WD}/Jacobian.nii.gz
-  SBRefPhase=One
+# skip all this if SBRef (Scout) is set to none, which is when Phase images are different dimensions compared to SBRef (Scout)
+if [ ! $ScoutInputName = "NONE" ] ; then
+
+    # UNWARP DIR = x,y
+    if [[ $UnwarpDir = "x" || $UnwarpDir = "y" ]] ; then
+        # select the first volume from PhaseTwo
+	VolumeNumber=$(($dimtOne + 1))
+	vnum=`${FSLDIR}/bin/zeropad $VolumeNumber 2`
+        # register scout to SE input (PhaseTwo) + combine motion and distortion correction
+	${FSLDIR}/bin/flirt -dof 6 -interp spline -in ${WD}/SBRef.nii.gz -ref ${WD}/PhaseTwo_gdc -omat ${WD}/SBRef2PhaseTwo_gdc.mat -out ${WD}/SBRef2PhaseTwo_gdc
+	${FSLDIR}/bin/convert_xfm -omat ${WD}/SBRef2WarpField.mat -concat ${WD}/MotionMatrix_${vnum}.mat ${WD}/SBRef2PhaseTwo_gdc.mat
+	${FSLDIR}/bin/convertwarp --relout --rel -r ${WD}/PhaseTwo_gdc --premat=${WD}/SBRef2WarpField.mat --warp1=${WD}/WarpField_${vnum} --out=${WD}/WarpField.nii.gz
+	${FSLDIR}/bin/imcp ${WD}/Jacobian_${vnum}.nii.gz ${WD}/Jacobian.nii.gz
+	SBRefPhase=Two
+    # UNWARP DIR = -x,-y
+    elif [[ $UnwarpDir = "x-" || $UnwarpDir = "-x" || $UnwarpDir = "y-" || $UnwarpDir = "-y" ]] ; then
+        # select the first volume from PhaseOne
+	VolumeNumber=$((0 + 1))
+	vnum=`${FSLDIR}/bin/zeropad $VolumeNumber 2`
+        # register scout to SE input (PhaseOne) + combine motion and distortion correction
+	${FSLDIR}/bin/flirt -dof 6 -interp spline -in ${WD}/SBRef.nii.gz -ref ${WD}/PhaseOne_gdc -omat ${WD}/SBRef2PhaseOne_gdc.mat -out ${WD}/SBRef2PhaseOne_gdc
+	${FSLDIR}/bin/convert_xfm -omat ${WD}/SBRef2WarpField.mat -concat ${WD}/MotionMatrix_${vnum}.mat ${WD}/SBRef2PhaseOne_gdc.mat
+	${FSLDIR}/bin/convertwarp --relout --rel -r ${WD}/PhaseOne_gdc --premat=${WD}/SBRef2WarpField.mat --warp1=${WD}/WarpField_${vnum} --out=${WD}/WarpField.nii.gz
+	${FSLDIR}/bin/imcp ${WD}/Jacobian_${vnum}.nii.gz ${WD}/Jacobian.nii.gz
+	SBRefPhase=One
+    fi
+
+    # PhaseTwo (first vol) - warp and Jacobian modulate to get distortion corrected output
+    VolumeNumber=$(($dimtOne + 1))
+    vnum=`${FSLDIR}/bin/zeropad $VolumeNumber 2`
+    ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${WD}/PhaseTwo_gdc -r ${WD}/PhaseTwo_gdc --premat=${WD}/MotionMatrix_${vnum}.mat -w ${WD}/WarpField_${vnum} -o ${WD}/PhaseTwo_gdc_dc
+    ${FSLDIR}/bin/fslmaths ${WD}/PhaseTwo_gdc_dc -mul ${WD}/Jacobian_${vnum} ${WD}/PhaseTwo_gdc_dc_jac
+    # PhaseOne (first vol) - warp and Jacobian modulate to get distortion corrected output
+    VolumeNumber=$((0 + 1))
+    vnum=`${FSLDIR}/bin/zeropad $VolumeNumber 2`
+    ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${WD}/PhaseOne_gdc -r ${WD}/PhaseOne_gdc --premat=${WD}/MotionMatrix_${vnum}.mat -w ${WD}/WarpField_${vnum} -o ${WD}/PhaseOne_gdc_dc
+    ${FSLDIR}/bin/fslmaths ${WD}/PhaseOne_gdc_dc -mul ${WD}/Jacobian_${vnum} ${WD}/PhaseOne_gdc_dc_jac
+
+    # Scout - warp and Jacobian modulate to get distortion corrected output
+    ${FSLDIR}/bin/applywarp --rel --interp=spline -i ${WD}/SBRef.nii.gz -r ${WD}/SBRef.nii.gz -w ${WD}/WarpField.nii.gz -o ${WD}/SBRef_dc.nii.gz
+    ${FSLDIR}/bin/fslmaths ${WD}/SBRef_dc.nii.gz -mul ${WD}/Jacobian.nii.gz ${WD}/SBRef_dc_jac.nii.gz
+
 fi
-
-# PhaseTwo (first vol) - warp and Jacobian modulate to get distortion corrected output
-VolumeNumber=$(($dimtOne + 1))
-  vnum=`${FSLDIR}/bin/zeropad $VolumeNumber 2`
-${FSLDIR}/bin/applywarp --rel --interp=spline -i ${WD}/PhaseTwo_gdc -r ${WD}/PhaseTwo_gdc --premat=${WD}/MotionMatrix_${vnum}.mat -w ${WD}/WarpField_${vnum} -o ${WD}/PhaseTwo_gdc_dc
-${FSLDIR}/bin/fslmaths ${WD}/PhaseTwo_gdc_dc -mul ${WD}/Jacobian_${vnum} ${WD}/PhaseTwo_gdc_dc_jac
-# PhaseOne (first vol) - warp and Jacobian modulate to get distortion corrected output
-VolumeNumber=$((0 + 1))
-  vnum=`${FSLDIR}/bin/zeropad $VolumeNumber 2`
-${FSLDIR}/bin/applywarp --rel --interp=spline -i ${WD}/PhaseOne_gdc -r ${WD}/PhaseOne_gdc --premat=${WD}/MotionMatrix_${vnum}.mat -w ${WD}/WarpField_${vnum} -o ${WD}/PhaseOne_gdc_dc
-${FSLDIR}/bin/fslmaths ${WD}/PhaseOne_gdc_dc -mul ${WD}/Jacobian_${vnum} ${WD}/PhaseOne_gdc_dc_jac
-
-# Scout - warp and Jacobian modulate to get distortion corrected output
-${FSLDIR}/bin/applywarp --rel --interp=spline -i ${WD}/SBRef.nii.gz -r ${WD}/SBRef.nii.gz -w ${WD}/WarpField.nii.gz -o ${WD}/SBRef_dc.nii.gz
-${FSLDIR}/bin/fslmaths ${WD}/SBRef_dc.nii.gz -mul ${WD}/Jacobian.nii.gz ${WD}/SBRef_dc_jac.nii.gz
 
 # Calculate Equivalent Field Map
 ${FSLDIR}/bin/fslmaths ${WD}/TopupField -mul 6.283 ${WD}/TopupField
@@ -257,19 +265,19 @@ ${FSLDIR}/bin/bet ${WD}/Magnitude ${WD}/Magnitude_brain -f 0.35 -m #Brain extrac
 
 # copy images to specified outputs
 if [ ! -z ${DistortionCorrectionWarpFieldOutput} ] ; then
-  ${FSLDIR}/bin/imcp ${WD}/WarpField.nii.gz ${DistortionCorrectionWarpFieldOutput}.nii.gz
+    ${FSLDIR}/bin/imcp ${WD}/WarpField.nii.gz ${DistortionCorrectionWarpFieldOutput}.nii.gz
 fi
 if [ ! -z ${JacobianOutput} ] ; then
-  ${FSLDIR}/bin/imcp ${WD}/Jacobian.nii.gz ${JacobianOutput}.nii.gz
+    ${FSLDIR}/bin/imcp ${WD}/Jacobian.nii.gz ${JacobianOutput}.nii.gz
 fi
 if [ ! -z ${DistortionCorrectionFieldOutput} ] ; then
-  ${FSLDIR}/bin/imcp ${WD}/TopupField.nii.gz ${DistortionCorrectionFieldOutput}.nii.gz
+    ${FSLDIR}/bin/imcp ${WD}/TopupField.nii.gz ${DistortionCorrectionFieldOutput}.nii.gz
 fi
 if [ ! -z ${DistortionCorrectionMagnitudeOutput} ] ; then
-  ${FSLDIR}/bin/imcp ${WD}/Magnitude.nii.gz ${DistortionCorrectionMagnitudeOutput}.nii.gz
+    ${FSLDIR}/bin/imcp ${WD}/Magnitude.nii.gz ${DistortionCorrectionMagnitudeOutput}.nii.gz
 fi
 if [ ! -z ${DistortionCorrectionMagnitudeBrainOutput} ] ; then
-  ${FSLDIR}/bin/imcp ${WD}/Magnitude_brain.nii.gz ${DistortionCorrectionMagnitudeBrainOutput}.nii.gz
+    ${FSLDIR}/bin/imcp ${WD}/Magnitude_brain.nii.gz ${DistortionCorrectionMagnitudeBrainOutput}.nii.gz
 fi
 
 echo " "
