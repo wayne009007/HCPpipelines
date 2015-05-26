@@ -104,7 +104,15 @@ usage() {
     echo "      2 for including in the output all volumes uncombined (i.e. output file of eddy)"
     echo "        (or AP/PA) pairs have been acquired  - should be used with HCP data"
     echo "      3 for including in the output only volumes from the direction with more slices "
-    echo "        useful for data were one direction has much more volumes and the other, e.g. 100 vs. 10"
+    echo "        useful for data where one direction has much more volumes then the other, e.g. 100 vs. 10"
+    echo ""
+    echo "    [--dwiname=<DWIName>]"
+    echo "    : name to give DWI output directories"
+    echo "      defaults to Diffusion"
+    echo ""
+    echo "    [--dof=<Degrees of Freedom>]"
+    echo "    : Degrees of Freedom for registration to structural images"
+    echo "      defaults to 6"
     echo ""
     echo "    [--printcom=<print-command>]"
     echo "    : Use the specified <print-command> to echo or otherwise output the commands"
@@ -143,21 +151,38 @@ usage() {
 #  Get the command line options for this script
 #
 # Global Output Variables
-#  ${StudyFolder} - Path to subject's data folder
-#  ${Subject}     - Subject ID
-#  ${GdCoeffs}    - Path to file containing coefficients that describe spatial variations
-#                   of the scanner gradients. Use NONE if not available.
-#  ${CombineDataFlag}- flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file
+#
+#  ${StudyFolder}
+#    Path to subject's data folder
+#
+#  ${Subject}
+#    Subject ID
+#
+#  ${GdCoeffs}
+#    Path to file containing coefficients that describe spatial variations of
+#    the scanner gradients. Use NONE if not available.
+#
+#  ${CombineDataFlag}
+#    Flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file
 #                      1 for including in the output and combine only volumes where both LR/RL 
 #                        (or AP/PA) pairs have been acquired  - should be used with HCP data
 #                      2 for including in the output all volumes uncombined (i.e. output file of eddy)
 #                      3 for including in the output only volumes from the direction with more slices - 
 #                        useful for data were one direction has much more volumes and then the other
-#  ${runcmd}      - Set to a user specifed command to use if user has requested
-#                   that commands be echo'd (or printed) instead of actually executed.
-#                   Otherwise, set to empty string.
 #
-get_options() {
+#  ${DegreesOfFreedom}
+#    Degrees of Freedom for registration to structural images
+#
+#  ${DWIName}
+#    Name to give DWI output directories"
+#
+#  ${runcmd}
+#    Set to a user specifed command to use if user has requested that commands
+#    be echo'd (or printed) instead of actually executed.  Otherwise, set to 
+#    empty string.
+#
+get_options() 
+{
     local scriptName=$(basename ${0})
     local arguments=($@)
 
@@ -165,6 +190,8 @@ get_options() {
     unset StudyFolder
     unset Subject
     unset GdCoeffs
+    DWIName="Diffusion"
+    DegreesOfFreedom=6
     runcmd=""
 
     # parse arguments
@@ -200,10 +227,18 @@ get_options() {
                 CombineDataFlag=${argument/*=/""}
                 index=$(( index + 1 ))
                 ;;
-            --printcom=*)
-                runcmd=${argument/*=/""}
-                index=$(( index + 1 ))
-                ;;
+	    --dof=*)
+	        DegreesOfFreedom=${argument/*=/""}
+		index=$(( index + 1 ))
+		;;
+	    --printcom=*)
+		runcmd=${argument/*=/""}
+		index=$(( index + 1 ))
+		;;
+	    --dwiname=*)
+		DWIName=${argument/*=/""}
+		index=$(( index + 1 ))
+		;;
             *)
                 usage
                 echo "ERROR: Unrecognized Option: ${argument}"
@@ -213,36 +248,49 @@ get_options() {
     done
 
     # check required parameters
-    if [ -z ${StudyFolder} ]; then
+    if [ -z ${StudyFolder} ]
+    then
         usage
         echo "ERROR: <study-path> not specified"
         exit 1
     fi
 
-    if [ -z ${Subject} ]; then
+    if [ -z ${Subject} ]
+    then
         usage
         echo "ERROR: <subject-id> not specified"
         exit 1
     fi
 
-    if [ -z ${GdCoeffs} ]; then
+    if [ -z ${GdCoeffs} ]
+    then
         usage
         echo "ERROR: <path-to-gradients-coefficients-file> not specified"
         exit 1
     fi
 
-    if [ -z ${CombineDataFlag} ]; then
+    if [ -z ${CombineDataFlag} ]
+    then
         usage
         echo "ERROR: <combine-data-flag> not specified"
         exit 1
     fi
 
+    if [ -z ${DWIName} ]
+    then
+		usage
+		echo "ERROR: <DWIName> not specified"
+		exit 1
+	fi
+
     # report options
     echo "-- ${scriptName}: Specified Command-Line Options - Start --"
     echo "   StudyFolder: ${StudyFolder}"
     echo "   Subject: ${Subject}"
+    echo "   DWIName: ${DWIName}"
     echo "   GdCoeffs: ${GdCoeffs}"
     echo "   CombineDataFlag: ${CombineDataFlag}"
+    echo "   DegreesOfFreedom: ${DegreesOfFreedom}"
     echo "   runcmd: ${runcmd}"
     echo "-- ${scriptName}: Specified Command-Line Options - End --"
 }
@@ -251,38 +299,44 @@ get_options() {
 # Function Description
 #  Validate necessary environment variables
 #
-validate_environment_vars() {
-    local scriptName=$(basename ${0})
-    # validate
-    if [ -z ${HCPPIPEDIR_dMRI} ]; then
-        usage
-        echo "ERROR: HCPPIPEDIR_dMRI environment variable not set"
-        exit 1
-    fi
-
-    if [ ! -e ${HCPPIPEDIR_dMRI}/eddy_postproc.sh ]; then 
-        usage
-        echo "ERROR: HCPPIPEDIR_dMRI/eddy_postproc.sh not found"
-        exit 1
-    fi
-
-    if [ ! -e ${HCPPIPEDIR_dMRI}/DiffusionToStructural.sh ]; then 
-        usage
-        echo "ERROR: HCPPIPEDIR_dMRI/DiffusionToStructural.sh not found"
-        exit 1
-    fi
-
-    if [ -z ${FSLDIR} ]; then
-        usage
-        echo "ERROR: FSLDIR environment variable not set"
-        exit 1
-    fi
-
-    # report
-    echo "-- ${scriptName}: Environment Variables Used - Start --"
-    echo "   HCPPIPEDIR_dMRI: ${HCPPIPEDIR_dMRI}"
-    echo "   FSLDIR: ${FSLDIR}"
-    echo "-- ${scriptName}: Environment Variables Used - End --"
+validate_environment_vars()
+{
+	local scriptName=$(basename ${0})
+	
+	# validate
+	if [ -z ${HCPPIPEDIR_dMRI} ]
+	then
+		usage
+		echo "ERROR: HCPPIPEDIR_dMRI environment variable not set"
+		exit 1
+	fi
+	
+	if [ ! -e ${HCPPIPEDIR_dMRI}/eddy_postproc.sh ]
+	then
+		usage
+		echo "ERROR: HCPPIPEDIR_dMRI/eddy_postproc.sh not found"
+		exit 1
+	fi
+	
+	if [ ! -e ${HCPPIPEDIR_dMRI}/DiffusionToStructural.sh ]
+	then
+		usage
+		echo "ERROR: HCPPIPEDIR_dMRI/DiffusionToStructural.sh not found"
+		exit 1
+	fi
+	
+	if [ -z ${FSLDIR} ]
+	then
+		usage
+		echo "ERROR: FSLDIR environment variable not set"
+		exit 1
+	fi
+	
+	# report
+	echo "-- ${scriptName}: Environment Variables Used - Start --"
+	echo "   HCPPIPEDIR_dMRI: ${HCPPIPEDIR_dMRI}"
+	echo "   FSLDIR: ${FSLDIR}"
+	echo "-- ${scriptName}: Environment Variables Used - End --"
 }
 
 #
@@ -300,6 +354,13 @@ main() {
     #  ${Subject}     - Subject ID
     #  ${GdCoeffs}    - Path to file containing coefficients that describe spatial variations
     #                   of the scanner gradients. Use NONE if not available.
+    #  ${DWIName}     - Name to give DWI output directories
+    #  ${combinedata} - flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file"
+    #                  1 for including in the output and combine only volumes where both LR/RL "
+    #                  (or AP/PA) pairs have been acquired  - should be used with HCP data"
+    #                  2 for including in the output all volumes uncombined (i.e. output file of eddy)"
+    #                  3 for including in the output only volumes from the direction with more slices "
+    #                  useful for data were one direction has much more volumes and the other, e.g. 100 vs. 10"
     #  ${runcmd}      - Set to a user specifed command to use if user has requested
     #                   that commands be echo'd (or printed) instead of actually executed.
     #                   Otherwise, set to empty string.
@@ -312,12 +373,13 @@ main() {
     log_SetToolName "DiffPreprocPipeline_PostEddy.sh"
 
     # Establish output directory paths
-    outdir=${StudyFolder}/${Subject}/Diffusion
-    outdirT1w=${StudyFolder}/${Subject}/T1w/Diffusion
+    outdir=${StudyFolder}/${Subject}/${DWIName}
+    outdirT1w=${StudyFolder}/${Subject}/T1w/${DWIName}
 
     # Determine whether Gradient Nonlinearity Distortion coefficients are supplied
     GdFlag=0
-    if [ ! ${GdCoeffs} = "NONE" ]; then
+    if [ ! ${GdCoeffs} = "NONE" ]
+    then
         log_Msg "Gradient nonlinearity distortion correction coefficients found!"
         GdFlag=1
     fi
@@ -351,7 +413,9 @@ main() {
         --datadiffT1wdir="${outdirT1w}" \
         --regoutput="${RegOutput}" \
         --QAimage="${QAImage}" \
-        --gdflag=${GdFlag} --diffresol=${DiffRes}
+	--dof="${DegreesOfFreedom}" \
+        --gdflag=${GdFlag} \
+	--diffresol=${DiffRes}
 
     log_Msg "Completed"
     exit 0

@@ -359,6 +359,15 @@ else
 fi
 
 # Naming Conventions and Build Paths
+# ------------------------------------------------------------------------------
+#  Show Environment Variables
+# ------------------------------------------------------------------------------
+
+log_Msg "FSLDIR: ${FSLDIR}"
+log_Msg "HCPPIPEDIR: ${HCPPIPEDIR}"
+log_Msg "HCPPIPEDIR_Global: ${HCPPIPEDIR_Global}"
+log_Msg "HCPPIPEDIR_PreFS: ${HCPPIPEDIR_PreFS}"
+
 T1wImage="T1w"
 T1wFolder="T1w" #Location of T1w images
 T1wFolder=${StudyFolder}/${Subject}/${T1wFolder}

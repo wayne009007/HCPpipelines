@@ -1,4 +1,4 @@
-#!/bin/bash
+it #!/bin/bash
 #~ND~FORMAT~MARKDOWN~
 #~ND~START~
 #
@@ -29,7 +29,7 @@
 # See the [LICENSE](https://github.com/Washington-University/Pipelines/blob/master/LICENCE.md) file
 # 
 # ## Description 
-#    
+#
 # This script, <code>DiffPreprocPipeline.sh</code>, implements the Diffusion 
 # MRI Preprocessing Pipeline described in [Glasser et al. 2013][GlasserEtAl]. 
 # It generates the "data" directory that can be used as input to the fibre 
@@ -93,8 +93,11 @@
 set -e
 
 # Load Function Libraries
-source ${HCPPIPEDIR}/global/scripts/log.shlib     # log_ functions
-source ${HCPPIPEDIR}/global/scripts/version.shlib # version_ functions
+source ${HCPPIPEDIR}/global/scripts/log.shlib		# log_ functions
+source ${HCPPIPEDIR}/global/scripts/version.shlib	# version_ functions
+
+# Global default values
+DEFAULT_B0_MAX_BVAL=50
 
 #
 # Function Descripton
@@ -140,10 +143,22 @@ usage() {
     echo "    --combinedata=<combine-data-flag>"
     echo "    : flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file"
     echo "      1 for including in the output and combine only volumes where both LR/RL "
+ echo "        (or AP/PA) pairs have been acquired  - should be used with HCP data"
     echo "      2 for including in the output all volumes uncombined (i.e. output file of eddy)"
-    echo "        (or AP/PA) pairs have been acquired  - should be used with HCP data"
     echo "      3 for including in the output only volumes from the direction with more slices "
-    echo "        useful for data were one direction has much more volumes and the other, e.g. 100 vs. 10"
+    echo "        useful for data where one direction has much more volumes then other, e.g. 100 vs. 10"
+echo ""
+    echo "    [--dwiname=<DWIName>]"
+    echo "    : name to give DWI output directories"
+    echo "      defaults to Diffusion"
+    echo ""
+    echo "    [--dof=<Degrees of Freedom>]"
+    echo "    : Degrees of Freedom for post eddy registration to structural images"
+    echo "      defaults to 6"
+    echo ""
+    echo "    [--b0maxbval=<b0-max-bval>]"
+    echo "    : Volumes with a bvalue smaller than this value will be considered as b0s"
+    echo "      If not specified, defaults to ${DEFAULT_B0_MAX_BVAL}"
     echo ""
     echo "    [--printcom=<print-command>]"
     echo "    : Use the specified <print-command> to echo or otherwise output the commands"
@@ -203,7 +218,10 @@ usage() {
 #                        (or AP/PA) pairs have been acquired  - should be used with HCP data
 #                      2 for including in the output all volumes uncombined (i.e. output file of eddy)
 #                      3 for including in the output only volumes from the direction with more slices - 
-#                        useful for data were one direction has much more volumes and then the other
+#                        useful for data were one direction has much more volumes then the other
+#  ${DWIName}			- Name to give DWI output directories
+#  ${DegreesOfFreedom}	- Degrees of Freedom for post eddy registration to structural images
+#  ${b0maxbval}			- Volumes with a bvalue smaller than this value will be considered as b0s
 #  ${runcmd}         - Set to a user specifed command to use if user has requested
 #                      that commands be echo'd (or printed) instead of actually executed.
 #                      Otherwise, set to empty string.
@@ -221,6 +239,9 @@ get_options() {
     unset echospacing
     unset GdCoeffs
     unset CombineDataFlag
+    DWIName="Diffusion"
+    DegreesOfFreedom=6
+    b0maxbval=${DEFAULT_B0_MAX_BVAL}
     runcmd=""
 
     # parse arguments
@@ -272,6 +293,18 @@ get_options() {
                 CombineDataFlag=${argument/*=/""}
                 index=$(( index + 1 ))
                 ;;
+	    --dwiname=*)
+		DWIName=${argument/*=/""}
+		index=$(( index + 1 ))
+		;;
+	    --dof=*)
+		DegreesOfFreedom=${argument/*=/""}
+		index=$(( index + 1 ))
+		;;
+	    --b0maxbval=*)
+		b0maxbval=${argument/*=/""}
+		index=$(( index + 1 ))
+		;;
             --printcom=*)
                 runcmd=${argument/*=/""}
                 index=$(( index + 1 ))
@@ -285,52 +318,74 @@ get_options() {
     done
 
     # check required parameters
-    if [ -z ${StudyFolder} ]; then
+    if [ -z ${StudyFolder} ]
+    then
         usage
         echo "ERROR: <study-path> not specified"
         exit 1
     fi
 
-    if [ -z ${Subject} ]; then
+    if [ -z ${Subject} ]
+    then
         usage
         echo "ERROR: <subject-id> not specified"
         exit 1
     fi
 
-    if [ -z ${PEdir} ]; then
+    if [ -z ${PEdir} ]
+    then
         usage
         echo "ERROR: <phase-encoding-dir> not specified"
         exit 1
     fi
 
-    if [ -z ${PosInputImages} ]; then
+    if [ -z ${PosInputImages} ]
+    then
         usage
         echo "ERROR: <positive-phase-encoded-data> not specified"
         exit 1
     fi
 
-    if [ -z ${NegInputImages} ]; then
+    if [ -z ${NegInputImages} ]
+    then
         usage
         echo "ERROR: <negative-phase-encoded-data> not specified"
         exit 1
     fi
 
-    if [ -z ${echospacing} ]; then
+    if [ -z ${echospacing} ]
+    then
         usage
         echo "ERROR: <echo-spacing> not specified"
         exit 1
     fi
 
-    if [ -z ${GdCoeffs} ]; then
+    if [ -z ${GdCoeffs} ]
+    then
         usage
         echo "ERROR: <path-to-gradients-coefficients-file> not specified"
         exit 1
     fi
 
-    if [ -z ${CombineDataFlag} ]; then
+    if [ -z ${CombineDataFlag} ]
+    then
         usage
         echo "ERROR: <combine-data-flag> not specified"
         exit 1
+    fi
+
+    if [ -z ${b0maxbval} ]
+    then
+	usage
+	echo "ERROR: <b0-max-bval> not specified"
+	exit 1
+    fi
+	
+    if [ -z ${DWIName} ]
+    then
+	usage
+	echo "ERROR: <DWIName> not specified"
+	exit 1
     fi
 
     # report options
@@ -343,6 +398,9 @@ get_options() {
     echo "   echospacing: ${echospacing}"
     echo "   GdCoeffs: ${GdCoeffs}"
     echo "   CombineDataFlag: ${CombineDataFlag}"
+    echo "   DWIName: ${DWIName}"
+    echo "   DegreesOfFreedom: ${DegreesOfFreedom}"
+    echo "   b0maxbval: ${b0maxbval}"
     echo "   runcmd: ${runcmd}"
     echo "-- ${scriptName}: Specified Command-Line Options - End --"
 }
@@ -351,44 +409,50 @@ get_options() {
 # Function Description
 #  Validate necessary environment variables
 #
-validate_environment_vars() {
-    local scriptName=$(basename ${0}) 
-    # validate
-    if [ -z ${HCPPIPEDIR_dMRI} ]; then
-        usage
-        echo "ERROR: HCPPIPEDIR_dMRI environment variable not set"
-        exit 1
-    fi
-
-    if [ ! -e ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_PreEddy.sh ]; then 
-        usage
-        echo "ERROR: HCPPIPEDIR/DiffusionPreprocessing/DiffPreprocPipeline_PreEddy.sh not found"
-        exit 1
-    fi
-
-    if [ ! -e ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_Eddy.sh ]; then 
-        usage
-        echo "ERROR: HCPPIPEDIR/DiffusionPreprocessing/DiffPreprocPipeline_Eddy.sh not found"
-        exit 1
-    fi
-
-    if [ ! -e ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_PostEddy.sh ]; then 
-        usage
-        echo "ERROR: HCPPIPEDIR/DiffusionPreprocessing/DiffPreprocPipeline_PostEddy.sh not found"
-        exit 1
-    fi
-
-    if [ -z ${FSLDIR} ]; then
-        usage
-        echo "ERROR: FSLDIR environment variable not set"
-        exit 1
-    fi
-
-    # report
-    echo "-- ${scriptName}: Environment Variables Used - Start --"
-    echo "   HCPPIPEDIR_dMRI: ${HCPPIPEDIR_dMRI}"
-    echo "   FSLDIR: ${FSLDIR}"
-    echo "-- ${scriptName}: Environment Variables Used - End --"
+validate_environment_vars()
+{
+	local scriptName=$(basename ${0}) 
+	# validate
+	if [ -z ${HCPPIPEDIR_dMRI} ]
+	then
+		usage
+		echo "ERROR: HCPPIPEDIR_dMRI environment variable not set"
+		exit 1
+	fi
+	
+	if [ ! -e ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_PreEddy.sh ]
+	then
+		usage
+		echo "ERROR: HCPPIPEDIR/DiffusionPreprocessing/DiffPreprocPipeline_PreEddy.sh not found"
+		exit 1
+	fi
+	
+	if [ ! -e ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_Eddy.sh ]
+	then
+		usage
+		echo "ERROR: HCPPIPEDIR/DiffusionPreprocessing/DiffPreprocPipeline_Eddy.sh not found"
+		exit 1
+	fi
+	
+	if [ ! -e ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_PostEddy.sh ]
+	then
+		usage
+		echo "ERROR: HCPPIPEDIR/DiffusionPreprocessing/DiffPreprocPipeline_PostEddy.sh not found"
+		exit 1
+	fi
+	
+	if [ -z ${FSLDIR} ]
+	then
+		usage
+		echo "ERROR: FSLDIR environment variable not set"
+		exit 1
+	fi
+	
+	# report
+	echo "-- ${scriptName}: Environment Variables Used - Start --"
+	echo "   HCPPIPEDIR_dMRI: ${HCPPIPEDIR_dMRI}"
+	echo "   FSLDIR: ${FSLDIR}"
+	echo "-- ${scriptName}: Environment Variables Used - End --"
 }
 
 #
@@ -399,23 +463,7 @@ main() {
     # Get Command Line Options
     # 
     # Global Variables Set
-    #  ${StudyFolder}    - Path to subject's data folder
-    #  ${Subject}        - Subject ID  
-    #  ${PEdir}          - Phase Encoding Direction, 1=LR/RL, 2=AP/PA
-    #  ${PosInputImages} - @ symbol separated list of data with positive phase encoding direction
-    #  ${NegInputImages} - @ symbol separated lsit of data with negative phase encoding direction 
-    #  ${echospacing}    - echo spacing in msecs
-    #  ${GdCoeffs}       - Path to file containing coefficients that describe spatial variations
-    #                      of the scanner gradients. Use NONE if not available.
-    #  ${CombineDataFlag}- flag for eddy_postproc.sh - if JAC resampling has been used in eddy, decide what to do with the output file
-    #                      1 for including in the output and combine only volumes where both LR/RL 
-    #                        (or AP/PA) pairs have been acquired  - should be used with HCP data
-    #                      2 for including in the output all volumes uncombined (i.e. output file of eddy)
-    #                      3 for including in the output only volumes from the direction with more slices - 
-    #                        useful for data were one direction has much more volumes and then the other
-    #  ${runcmd}         - Set to a user specifed command to use if user has requested
-    #                      that commands be echo'd (or printed) instead of actually executed.
-    #                      Otherwise, set to empty string.
+    #  See documentation for get_options function
     get_options $@
 
     # Validate environment variables
@@ -428,23 +476,28 @@ main() {
     ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_PreEddy.sh \
         --path=${StudyFolder} \
         --subject=${Subject} \
+	--dwiname=${DWIName} \
         --PEdir=${PEdir} \
         --posData=${PosInputImages} \
         --negData=${NegInputImages} \
         --echospacing=${echospacing} \
+	--b0maxbval=${b0maxbval} \
         --printcom="${runcmd}"
     
     log_Msg "Invoking Eddy Step"
     ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_Eddy.sh \
         --path=${StudyFolder} \
         --subject=${Subject} \
+	--dwiname=${DWIName} \
         --printcom="${runcmd}"
 
     log_Msg "Invoking Post-Eddy Steps"
     ${HCPPIPEDIR}/DiffusionPreprocessing/DiffPreprocPipeline_PostEddy.sh \
         --path=${StudyFolder} \
         --subject=${Subject} \
+	--dwiname=${DWIName} \
         --gdcoeffs=${GdCoeffs} \
+	--dof=${DegreesOfFreedom} \
 	--combinedata=${CombineDataFlag} \  
         --printcom="${runcmd}"
 
