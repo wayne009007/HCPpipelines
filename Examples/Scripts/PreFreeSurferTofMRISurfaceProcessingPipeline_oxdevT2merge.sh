@@ -110,6 +110,11 @@ fi
 FREESURFER_HOME=/opt/fmrib/freesurfer-5.3.0
 . ${FREESURFER_HOME}/SetUpFreeSurfer.sh > /dev/null 2>&1
 
+# Both the SGE and PBS cluster schedulers use the environment variable NSLOTS to indicate the number of cores
+# a job will use.  If this environment variable is set, we will use it to determine the number of cores to
+# tell recon-all (part of FreeSurfer) to use.
+export NSLOTS=1 # set to 1 for FMRIB's cluster, comment out this variable if you want to use the default value of 8.
+
 #Set up pipeline environment variables and software
 if [[ ${EnvironmentScript} && ${EnvironmentScript-_} ]] ; then
     . ${EnvironmentScript}

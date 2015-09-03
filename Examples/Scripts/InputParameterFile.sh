@@ -72,7 +72,7 @@ Subjlist="770352_withT2"
     # Write space delimited list of fMRI tasks in the Tasklist
     Tasklist="rest_LR"
 
-    # The filename should use the wildcard %Tasklist% as part of the full filename
+    # The filename should use the wildcard %TaskName% (individual fMRI task listed in $Tasklist) as part of the full filename
     # e.g. if the filename is "FUNC_r.nii.gz" (and "r" is in Tasklist) write the input as "FUNC_%TaskName%.nii.gz"
     fMRITimeSeries="%TaskName%.nii.gz"
 
