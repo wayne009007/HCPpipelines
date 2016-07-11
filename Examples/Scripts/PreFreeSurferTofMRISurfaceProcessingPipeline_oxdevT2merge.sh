@@ -249,6 +249,7 @@ for Subject in $Subjlist ; do
 	  --fnirtconfig="$FNIRTConfig" \
 	  --fmapmag="$MagnitudeInputName" \
 	  --fmapphase="$PhaseInputName" \
+          --fmapgeneralelectric="$GEB0InputName" \
 	  --echodiff="$TE" \
 	  --SEPhaseNeg="$SpinEchoPhaseEncodeNegati" \
 	  --SEPhasePos="$SpinEchoPhaseEncodePositi" \
@@ -280,6 +281,7 @@ for Subject in $Subjlist ; do
             --fnirtconfig=${FNIRTConfig} \ 
             --fmapmag=${MagnitudeInputName} \ 
             --fmapphase=${PhaseInputName} \ 
+            --fmapgeneralelectric=${GEB0InputName} \
             --echodiff=${TE} \ 
             --SEPhaseNeg=${SpinEchoPhaseEncodeNegati} \ 
             --SEPhasePos=${SpinEchoPhaseEncodePositi} \ 
@@ -415,6 +417,7 @@ for Subject in $Subjlist ; do
               --SEPhasePos=$SpinEchoPhaseEncodePosit \
               --fmapmag=$MagnitudeInputNameForFUNC \
               --fmapphase=$PhaseInputNameForFUNC \
+              --fmapgeneralelectric=$GEB0InputName \
               --echospacing=$DwellTimeForFUNC \
               --echodiff=$DeltaTE \
               --unwarpdir=$UnwarpdirForFUNC \
@@ -422,7 +425,9 @@ for Subject in $Subjlist ; do
               --dcmethod=$DistortionCorrection \
               --gdcoeffs=$GradientDistortionCoeffsForFUNC \
               --topupconfig=$TopUpConfigForFUNC \
-              --printcom=$PRINTCOM`
+              --printcom=$PRINTCOM \
+              --biascorrection=$BiasCorrection \
+              --mctype=${MCType}`
 	  
           # The following lines are used for interactive debugging to set the positional parameters: $1 $2 $3 ...
 	  echo  "### fMRI Volume  ###"
@@ -435,6 +440,7 @@ for Subject in $Subjlist ; do
             --SEPhasePos=$SpinEchoPhaseEncodePosit \ 
             --fmapmag=$MagnitudeInputNameForFUNC \ 
             --fmapphase=$PhaseInputNameForFUNC \ 
+            --fmapgeneralelectric=$GEB0InputName \
             --echospacing=$DwellTimeForFUNC \ 
             --echodiff=$DeltaTE \ 
             --unwarpdir=$UnwarpdirForFUNC \ 
@@ -442,7 +448,9 @@ for Subject in $Subjlist ; do
             --dcmethod=$DistortionCorrection \ 
             --gdcoeffs=$GradientDistortionCoeffsForFUNC \ 
             --topupconfig=$TopUpConfigForFUNC \ 
-            --printcom=$PRINTCOM"
+            --printcom=$PRINTCOM \
+            --biascorrection=$BiasCorrection \
+            --mctype=${MCType}"
       fi
 
           ##### fMRI Surface #####

@@ -22,7 +22,7 @@
 #   StudyFolder=/home/fs0/myname/scratch/mystud/
 #   Subjlist="CON077 CON078"
 
-StudyFolder="/home/fs0/jmouthuy/scratch/oxdevT2merge_test" 
+StudyFolder="/home/fs0/jelena/scratch/oxdevT2merge_test" 
 
 # Write space delimited list of subject IDs. If the filename of images contains the subject ID (from the Subjlist) use the wildcard %subjectID% instead of writing the actual subject ID, e.g. if the filename on disc is "T1_CON077.nii.gz" use the form "T1_%subjectID%.nii.gz" in the lines for Input images in this file
 Subjlist="770352_withT2"  	
@@ -49,18 +49,34 @@ Subjlist="770352_withT2"
        FmapMagnitudeInputName="FieldMap_Magnitude.nii.gz" # input fieldmap magnitude image - can be a 4D containing more than one
        FmapPhaseInputName="FieldMap_Phase.nii.gz" # input fieldmap phase image - in radians
        TE="2.46" #delta TE in ms for field map
+
+       # The values set below are for the HCP Protocol using the Siemens Connectom Scanner
        #Scan Settings for T1w
        T1wSampleSpacing="0.0000074" #DICOM field (0019,1018) in s
-       UnwarpDir="z" 
+       UnwarpDir="z"           # z appears to be best for Siemens Gradient Echo Field Maps or "NONE" if not used
        #Scan Settings for T2w
        T2wSampleSpacing="0.0000021" #DICOM field (0019,1018) in s
 
        ### If you use AvgrdcMethod="TOPUP" change variables in this part
        SpinEchoPhaseEncodeNegative="NONE" #For the spin echo field map volume with a negative phase encoding direction (LR in HCP data)
         SpinEchoPhaseEncodePositive="NONE" #For the spin echo field map volume with a positive phase encoding direction (RL in HCP data)
-       TopupConfig="NONE" #Topup config file
+       TopupConfig="NONE" #Topup Configuration file ;  "NONE" if not used
        DwellTime="0.00072" # Effective Echo Spacing (or Dwelltime) of fMRI image in seconds - note that this is the echo spacing divided by any in-plane acceleration factor
-        SEUnwarpDir="-y"
+                           # Echo Spacing or Dwelltime of spin echo EPI MRI image. Specified in seconds.
+                           # Set to "NONE" if not used. 
+                           # 
+                           # Dwelltime = 1/(BandwidthPerPixelPhaseEncode * # of phase encoding samples)
+                           # DICOM field (0019,1028) = BandwidthPerPixelPhaseEncode
+                           # DICOM field (0051,100b) = AcquisitionMatrixText first value (# of phase encoding samples).
+                           # On Siemens, iPAT/GRAPPA factors have already been accounted for.  
+                           #
+                           # Example value for when using Spin Echo Field Maps: 0.000580002668012
+        SEUnwarpDir="-y" # Spin Echo Unwarping Direction
+                         # x or y (minus or not does not matter)
+                         # "NONE" if not used
+                         # 
+                         # Example values for when using Spin Echo Field Maps: x, -x, y, -y
+                         # Note: +x or +y are not supported. For positive values, do not include the + sign
 
 ##############################
 ###### Functional input ######
@@ -80,6 +96,10 @@ Subjlist="770352_withT2"
     FinalFMRIResolution="2" #Target final resolution of volumetric and surface fMRI data (in mm). 2mm is recommended.  
     SmoothingFWHM="2" #Smoothing on the surface; Recommended to be roughly the voxel size
 
+    BiasCorrection="SEBASED" #NONE, LEGACY, or SEBASED: LEGACY uses the T1w bias field, SEBASED calculates bias field from spin echo images (which requires TOPUP distortion correction)
+
+    MCType="MCFLIRT" # Use mcflirt motion correction
+
    # The variables for distortion correction have "ForFUNC" in the name to distinguish them from the ones used for the structural scans
     DistortionCorrection="TOPUP" #FIELDMAP or TOPUP, distortion correction is required for accurate processing
   
@@ -97,6 +117,25 @@ Subjlist="770352_withT2"
         FmapMagnitudeInputNameForFUNC="mag_raw_concat_%subjectID%.nii.gz" #Expects 4D Magnitude volume with two 3D timepoints
         FmapPhaseInputNameForFUNC="ph_MB_%subjectID%.nii.gz" #Expects a 3D Phase volume
         DeltaTE="2.46" #2.46ms for 3T, 1.02ms for 7T
+
+
+	# ---------------------------------------------------------------------------------
+	#   Variables related to using General Electric specific Gradient Echo Field Maps
+	# ---------------------------------------------------------------------------------
+
+	# The following variables would be set to values other than "NONE" for
+	# using General Electric specific Gradient Echo Field Maps (i.e. when 
+	# AvgrdcSTRING="GeneralElectricFieldMap")
+	
+	# Example value for when using General Electric Gradient Echo Field Map
+	#
+	# GEB0InputName should be a General Electric style B0 fielmap with two volumes
+	#   1) fieldmap in deg and 
+	#   2) magnitude, 
+	# set to NONE if using TOPUP or FIELDMAP/SiemensFieldMap
+	#
+	#   GEB0InputName="${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR1/${Subject}_3T_GradientEchoFieldMap.nii.gz" 
+	GEB0InputName="NONE"
        
   
 ##########################################################################
@@ -105,10 +144,10 @@ Subjlist="770352_withT2"
 
 ### Gradient non-linearity distortion correction (very important for HCP data!) ###
   # This can be left at NONE for most scanners except the HCP Skyra (or wherever the gradients are very non-linear or the isocentre is far from the brain centre)
-  #GradientDistortionCoeffs=NONE
+  GradientDistortionCoeffs=NONE
   #GradientDistortionCoeffs="/home/fs0/rosas/scratch/analysis/coeff_verio.grad.grad"  # Use this if your data is from the FMRIB Verio, or use the HCP Skyra setting (available in FMRIB or WashU), otherwise contact Siemens or just set to NONE
-  GradientDistortionCoeffs="/home/fs0/stam/scratch/Pipelines/global/config/coeff_SC72C_Skyra.grad"
-  GradientDistortionCoeffsForFUNC="/home/fs0/stam/scratch/Pipelines/global/config/coeff_SC72C_Skyra.grad"
+  #GradientDistortionCoeffs="/home/fs0/stam/scratch/Pipelines/global/config/coeff_SC72C_Skyra.grad"
+  #GradientDistortionCoeffsForFUNC="/home/fs0/stam/scratch/Pipelines/global/config/coeff_SC72C_Skyra.grad"
 
 
 ### Miscellaneous configurations ###
