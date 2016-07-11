@@ -66,6 +66,11 @@ echo "$@"
     QUEUE="-q hcp_priority.q"
 #fi
 
+if [[ -n $HCPPIPEDEBUG ]]
+then
+    set -x
+fi
+
 PRINTCOM=""
 #PRINTCOM="echo"
 #QUEUE="-q veryshort.q"
@@ -204,6 +209,7 @@ for Subject in $Subjlist ; do
     fMRISBRef="${StudyFolder}/${Subject}/unprocessed/3T/${fMRIName}/${Subject}_3T_${fMRIName}_SBRef.nii.gz" #A single band reference image (SBRef) is recommended if using multiband, set to NONE if you want to use the first volume of the timeseries for motion correction
     DwellTime="0.00058" #Echo Spacing or Dwelltime of fMRI image, set to NONE if not used. Dwelltime = 1/(BandwidthPerPixelPhaseEncode * # of phase encoding samples): DICOM field (0019,1028) = BandwidthPerPixelPhaseEncode, DICOM field (0051,100b) AcquisitionMatrixText first value (# of phase encoding samples).  On Siemens, iPAT/GRAPPA factors have already been accounted for.   
     DistortionCorrection="TOPUP" # FIELDMAP, SiemensFieldMap, GeneralElectricFieldMap, or TOPUP: distortion correction is required for accurate processing
+    BiasCorrection="SEBASED" #NONE, LEGACY, or SEBASED: LEGACY uses the T1w bias field, SEBASED calculates bias field from spin echo images (which requires TOPUP distortion correction)
     SpinEchoPhaseEncodeNegative="${StudyFolder}/${Subject}/unprocessed/3T/${fMRIName}/${Subject}_3T_SpinEchoFieldMap_LR.nii.gz" #For the spin echo field map volume with a negative phase encoding direction (LR in HCP data, AP in 7T HCP data), set to NONE if using regular FIELDMAP
     SpinEchoPhaseEncodePositive="${StudyFolder}/${Subject}/unprocessed/3T/${fMRIName}/${Subject}_3T_SpinEchoFieldMap_RL.nii.gz" #For the spin echo field map volume with a positive phase encoding direction (RL in HCP data, PA in 7T HCP data), set to NONE if using regular FIELDMAP
     MagnitudeInputName="NONE" #Expects 4D Magnitude volume with two 3D timepoints, set to NONE if using TOPUP
@@ -224,6 +230,9 @@ for Subject in $Subjlist ; do
     GradientDistortionCoeffs="NONE" # Set to NONE to skip gradient distortion correction
     TopUpConfig="${HCPPIPEDIR_Config}/b02b0.cnf" #Topup config if using TOPUP, set to NONE if using regular FIELDMAP
 
+    # Use mcflirt motion correction
+    MCType="MCFLIRT"
+		
     if [ -n "${command_line_specified_run_local}" ] ; then
         echo "About to run ${HCPPIPEDIR}/fMRIVolume/GenericfMRIVolumeProcessingPipeline.sh"
         queuing_command=""
@@ -250,7 +259,9 @@ for Subject in $Subjlist ; do
       --dcmethod=$DistortionCorrection \
       --gdcoeffs=$GradientDistortionCoeffs \
       --topupconfig=$TopUpConfig \
-      --printcom=$PRINTCOM
+      --printcom=$PRINTCOM \
+      --biascorrection=$BiasCorrection \
+      --mctype=${MCType}
 
   # The following lines are used for interactive debugging to set the positional parameters: $1 $2 $3 ...
 
@@ -271,7 +282,9 @@ for Subject in $Subjlist ; do
       --dcmethod=$DistortionCorrection \
       --gdcoeffs=$GradientDistortionCoeffs \
       --topupconfig=$TopUpConfig \
-      --printcom=$PRINTCOM"
+      --printcom=$PRINTCOM \
+      --biascorrection=$BiasCorrection \
+      --mctype=${MCType}"
 
   echo ". ${EnvironmentScript}"
 	

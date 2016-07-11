@@ -122,6 +122,10 @@ main() {
 	# set up pipeline environment variables and software
 	. ${EnvironmentScript}
 
+	export FSL_FIXDIR=${FixDir}
+	FixScript=${HCPPIPEDIR_Global}/hcp_fix
+	TrainingData=HCP_hp2000.RData
+
 	# validate environment variables
 	# validate_environment_vars $@
 
@@ -157,14 +161,14 @@ main() {
 				
 				if [ "${RunLocal}" == "TRUE" ]
 				then
-					echo "About to run ${FixDir}/hcp_fix ${InputFile} ${bandpass}"
+					echo "About to run ${FixScript} ${InputFile} ${bandpass} ${TrainingData}"
 					queuing_command=""
 				else
-					echo "About to use fsl_sub to queue or run ${FixDir}/hcp_fix ${InputFile} ${bandpass}"
+					echo "About to use fsl_sub to queue or run ${FixScript} ${InputFile} ${bandpass} ${TrainingData}"
 					queuing_command="${FSLDIR}/bin/fsl_sub ${QUEUE}"
 				fi
 
-				${queuing_command} ${FixDir}/hcp_fix ${InputFile} ${bandpass}
+				${queuing_command} ${FixScript} ${InputFile} ${bandpass} ${TrainingData}
 			done
 
 		done
