@@ -2,6 +2,8 @@
 
 # Change the scan parameters below to match your acquisition, these are set to match the HCP Protocol by default
 
+# This file is a input file to the script MinimalPreprocessingAndTaskfMRIAnalysisPipeline_oxdevT2merge.sh
+
 #If using gradient distortion correction, use the coefficents from your scanner
 #The HCP gradient distortion coefficents are only available through Siemens
 #Gradient distortion in standard scanners (even 7T scanners) is much less than for the specific HCP Skyra, and this correction step can typically be skipped.
@@ -83,10 +85,13 @@ Subjlist="770352_withT2"
 
 #Naming conventions:	StudyFolder/SubjectFromSubjlist/task.nii.gz 
 # A Tasklist is a list of names used to identify the particular fMRI experiments (these do not need to be the exact filenames but they need to be included in the filenames)
-# Note that resting-state data is processed the same way as task data, so assign resting-state data to a "task" in the Tasklist
+# Note that resting-state data in the minimal processing pipeline is processed the same way as task data, so assign resting-state data to a "task" in the Tasklist
 
-    # Write space delimited list of fMRI tasks in the Tasklist
+    # Write space delimited list of fMRI tasks in the Tasklist for processing in the minimal processing pipeline (can include resting state)
     Tasklist="rest_LR"
+
+    # Write space delimited list of fMRI tasks to be used/processed in the Task FMRI Analysis pipeline
+    Tasks="Memory"
 
     # The filename should use the wildcard %TaskName% (individual fMRI task listed in $Tasklist) as part of the full filename
     # e.g. if the filename is "FUNC_r.nii.gz" (and "r" is in Tasklist) write the input as "FUNC_%TaskName%.nii.gz"
@@ -100,6 +105,7 @@ Subjlist="770352_withT2"
 
     MCType="MCFLIRT" # Use mcflirt motion correction
 
+    
    # The variables for distortion correction have "ForFUNC" in the name to distinguish them from the ones used for the structural scans
     DistortionCorrection="TOPUP" #FIELDMAP or TOPUP, distortion correction is required for accurate processing
   
@@ -107,6 +113,8 @@ Subjlist="770352_withT2"
         SpinEchoPhaseEncodeNegativeForFUNC="%TaskName%_SEtopup_RL.nii.gz" #For the spin echo field map volume with a negative phase encoding direction (LR in HCP data)
         SpinEchoPhaseEncodePositiveForFUNC="%TaskName%_SEtopup_LR.nii.gz" #For the spin echo field map volume with a positive phase encoding direction (RL in HCP data)
         TopUpConfigForFUNC="${HCPPIPEDIR_Config}/b02b0.cnf" #Topup config if using TOPUP
+
+	UseJacobian="TRUE" # can be TRUE or FALSE; the jacobian option only applies the jacobian of the distortion corrections to the fMRI data, and NOT from the nonlinear T1 to template registration
 
 	DwellTimeForFUNC="0.00058" # Effective Echo Spacing (or Dwelltime) of fMRI image in seconds - note that this is the echo spacing divided by any in-plane acceleration factor
 	UnwarpdirForFUNC="-x" 
@@ -137,7 +145,26 @@ Subjlist="770352_withT2"
 	#   GEB0InputName="${StudyFolder}/${Subject}/unprocessed/3T/T1w_MPR1/${Subject}_3T_GradientEchoFieldMap.nii.gz" 
 	GEB0InputName="NONE"
        
-  
+
+    ### Settings for task fMRI analysis ###
+
+    SmoothingList="2" #Space delimited list for setting different final smoothings.  2mm is no more smoothing (above minimal preprocessing pipelines grayordinates smoothing).  Smoothing is added onto minimal preprocessing smoothing to reach desired amount
+    Confound="NONE" #File located in ${SubjectID}/MNINonLinear/Results/${fMRIName} or NONE
+    TemporalFilter="200" #Use 2000 for linear detrend, 200 is default for HCP task fMRI
+    VolumeBasedProcessing="NO" #YES or NO. CAUTION: Only use YES if you want unconstrained volumetric blurring of your data, otherwise set to NO for faster, less biased, and more senstive processing (grayordinates results do not use unconstrained volumetric blurring and are always produced).  
+    RegNames="NONE" # Use NONE to use the default surface registration
+    ParcellationList="NONE" # Use NONE to perform dense analysis, non-greyordinates parcellations are not supported because they are not valid for cerebral cortex.  Parcellation superseeds smoothing (i.e. smoothing is done)
+    ParcellationFileList="NONE" # Absolute path the parcellation dlabel file
+
+    
+    levels="1" # set this to 1 for doing only level one, or to "2" to do both level one and level two task fMRI analysis 
+
+    HCPdata="NO" # set this to "YES" if data are from the HCP and task fMRI are aquired in RL and LR direction, with filename "tfMRI_${TaskName}_RL"; otherwise set to "NO" if there is one file for task fMRI
+
+    LevelOneFSFpath="/home/fs0/jelena/scratch/TestPipelinesForEmmaAPOE/%TaskName%_1stLevel.fsf"  # location of design files that will be copied in the respective folder after minimal preprocessing pipeline: <StudyFolder>/<SubjectID>/MNINonLinear/Results/<fMRITimeSeries>/%TaskName%_hp200_s4_level1.fsf
+    # The filename should use the wildcard %TaskName% (individual fMRI task listed in $Tasks) as part of the full filename
+    # e.g. if the filename is "FUNC_Memory.fsf" (and "Memory" is in Tasks) and is located in /path/to/file/, write the input as "/path/to/file/FUNC_%TaskName%.fsf"
+
 ##########################################################################
 ######## Standard settings - do not normally need to be changed ##########
 

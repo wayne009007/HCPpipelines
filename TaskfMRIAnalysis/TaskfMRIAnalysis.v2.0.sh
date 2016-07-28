@@ -96,6 +96,9 @@ log_Msg "Parcellation: ${Parcellation}"
 ParcellationFile=`getopt1 "--parcellationfile" $@`
 log_Msg "ParcellationFile: ${ParcellationFile}" 
 
+Levels=`getopt1 "--levels" $@`
+log_Msg "Levels: ${Levels}"
+
 # Setup PATHS
 PipelineScripts=${HCPPIPEDIR_tfMRIAnalysis}
 # GlobalScripts=${HCPPIPEDIR_Global}
@@ -125,10 +128,17 @@ done
 LevelOnefMRINames=`echo $LevelOnefMRINames | sed 's/ /@/g'`
 LevelOnefsfNames=`echo $LevelOnefMRINames | sed 's/ /@/g'`
 
-#Combine Data Across Phase Encoding Directions in the Level Two Analysis
-log_Msg "Combine Data Across Phase Encoding Directions in the Level Two Analysis"
-${PipelineScripts}/TaskfMRILevel2.v2.0.sh $Subject $ResultsFolder $DownSampleFolder $LevelOnefMRINames $LevelOnefsfNames $LevelTwofMRIName $LevelTwofsfNames $LowResMesh $FinalSmoothingFWHM $TemporalFilter $VolumeBasedProcessing $RegName $Parcellation
-echo "set -- $Subject $ResultsFolder $DownSampleFolder $LevelOnefMRINames $LevelOnefsfNames $LevelTwofMRIName $LevelTwofsfNames $LowResMesh $FinalSmoothingFWHM $TemporalFilter $VolumeBasedProcessing $RegName $Parcellation"
+# run Level Two analysis if the flag $Levels set to that
+if [ $Levels == 2 ] ; then
+    #Combine Data Across Phase Encoding Directions in the Level Two Analysis
+    log_Msg "Combine Data Across Phase Encoding Directions in the Level Two Analysis"
+    ${PipelineScripts}/TaskfMRILevel2.v2.0.sh $Subject $ResultsFolder $DownSampleFolder $LevelOnefMRINames $LevelOnefsfNames $LevelTwofMRIName $LevelTwofsfNames $LowResMesh $FinalSmoothingFWHM $TemporalFilter $VolumeBasedProcessing $RegName $Parcellation
+    echo "set -- $Subject $ResultsFolder $DownSampleFolder $LevelOnefMRINames $LevelOnefsfNames $LevelTwofMRIName $LevelTwofsfNames $LowResMesh $FinalSmoothingFWHM $TemporalFilter $VolumeBasedProcessing $RegName $Parcellation"
+
+else log_Msg "Not running level two task fMRI analysis"
+fi
+
+log_Msg "Completed"
 
 
 

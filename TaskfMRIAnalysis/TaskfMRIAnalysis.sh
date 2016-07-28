@@ -183,6 +183,9 @@ log_Msg "Parcellation: ${Parcellation}"
 ParcellationFile=`opts_GetOpt1 "--parcellationfile" $@`
 log_Msg "ParcellationFile: ${ParcellationFile}"
 
+Levels==`opts_GetOpt1 "--levels" $@`
+log_Msg "Levels: ${Levels}"
+
 # Determine the version of FSL that is in use
 get_fsl_version fsl_ver
 log_Msg "FSL version: ${fsl_ver}"
@@ -221,7 +224,8 @@ then
 	    --confound=${Confound} \
 	    --finalsmoothingFWHM=${FinalSmoothingFWHM} \
 	    --temporalfilter=${TemporalFilter} \
-	    --vba=${VolumeBasedProcessing}
+	    --vba=${VolumeBasedProcessing} \
+	    --levels=${Levels}
 
 else
 	log_Msg "INFO: Detected version 5.0.7 or newer of FSL is in use. Invoking v2.0 of Task fMRI Analysis."
@@ -242,7 +246,8 @@ else
 	    --vba=${VolumeBasedProcessing} \
 	    --regname=${RegName} \
 	    --parcellation=${Parcellation} \
-	    --parcellationfile=${ParcellationFile}
+	    --parcellationfile=${ParcellationFile} \
+	    --levels=${Levels}
 
 fi
 

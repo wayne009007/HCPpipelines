@@ -60,6 +60,7 @@ Confound=`opts_GetOpt1 "--confound" $@`
 FinalSmoothingFWHM=`opts_GetOpt1 "--finalsmoothingFWHM" $@`
 TemporalFilter=`opts_GetOpt1 "--temporalfilter" $@`
 VolumeBasedProcessing=`opts_GetOpt1 "--vba" $@`
+Levels=`opts_GetOpt1 "--levels" $@`
 
 # Setup PATHS
 PipelineScripts=${HCPPIPEDIR_tfMRIAnalysis}
@@ -87,10 +88,15 @@ done
 LevelOnefMRINames=`echo $LevelOnefMRINames | sed 's/ /@/g'`
 LevelOnefsfNames=`echo $LevelOnefMRINames | sed 's/ /@/g'`
 
-#Combine Data Across Phase Encoding Directions in the Level Two Analysis
-log_Msg "Combine Data Across Phase Encoding Directions in the Level Two Analysis"
-${PipelineScripts}/TaskfMRILevel2.v1.0.sh $Subject $ResultsFolder $DownSampleFolder $LevelOnefMRINames $LevelOnefsfNames $LevelTwofMRIName $LevelTwofsfNames $LowResMesh $FinalSmoothingFWHM $TemporalFilter $VolumeBasedProcessing
-echo "set -- $Subject $ResultsFolder $DownSampleFolder $LevelOnefMRINames $LevelOnefsfNames $LevelTwofMRIName $LevelTwofsfNames $LowResMesh $FinalSmoothingFWHM $TemporalFilter $VolumeBasedProcessing"
+# run Level Two analysis if the flag $Levels set to that
+if [ $Levels == 2 ] ; then
+    #Combine Data Across Phase Encoding Directions in the Level Two Analysis
+    log_Msg "Combine Data Across Phase Encoding Directions in the Level Two Analysis"
+    ${PipelineScripts}/TaskfMRILevel2.v1.0.sh $Subject $ResultsFolder $DownSampleFolder $LevelOnefMRINames $LevelOnefsfNames $LevelTwofMRIName $LevelTwofsfNames $LowResMesh $FinalSmoothingFWHM $TemporalFilter $VolumeBasedProcessing
+    echo "set -- $Subject $ResultsFolder $DownSampleFolder $LevelOnefMRINames $LevelOnefsfNames $LevelTwofMRIName $LevelTwofsfNames $LowResMesh $FinalSmoothingFWHM $TemporalFilter $VolumeBasedProcessing"
+
+else log_Msg "Not running level two task fMRI analysis"
+fi
 
 log_Msg "Completed"
 
