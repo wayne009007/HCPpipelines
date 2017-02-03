@@ -70,8 +70,8 @@ g_script_name=`basename ${0}`
 source ${HCPPIPEDIR}/global/scripts/log.shlib # Logging related functions
 log_SetToolName "${g_script_name}"
 
-MATLAB_HOME="/export/matlab/R2013a"
-log_Msg "MATLAB_HOME: ${MATLAB_HOME}"
+#MATLAB_HOME="/export/matlab/R2013a"
+#log_Msg "MATLAB_HOME: ${MATLAB_HOME}"
 
 #
 # Function Description:
@@ -135,39 +135,39 @@ get_options()
 				exit 1
 				;;
 			--path=*)
-				g_path_to_study_folder=${argument/*=/""}
+				g_path_to_study_folder=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			--study-folder=*)
-				g_path_to_study_folder=${argument/*=/""}
+				g_path_to_study_folder=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			--subject=*)
-				g_subject=${argument/*=/""}
+				g_subject=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			--fmri-names-list=*)
-				g_fmri_names_list=${argument/*=/""}
+				g_fmri_names_list=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			--output-fmri-name=*)
-				g_output_fmri_name=${argument/*=/""}
+				g_output_fmri_name=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			--fmri-proc-string=*)
-				g_fmri_proc_string=${argument/*=/""}
+				g_fmri_proc_string=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			--migp-vars=*)
-				g_migp_vars=${argument/*=/""}
+				g_migp_vars=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			--output-proc-string=*)
-				g_output_proc_string=${argument/*=/""}
+				g_output_proc_string=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			--matlab-run-mode=*)
-				g_matlab_run_mode=${argument/*=/""}
+				g_matlab_run_mode=${argument#*=}
 				index=$(( index + 1 ))
 				;;
 			*)
@@ -282,7 +282,7 @@ main()
 	OutputConcat="${OutputFolder}/${g_output_fmri_name}${g_fmri_proc_string}${g_output_proc_string}.dtseries.nii"
 	log_Msg "OutputConcat: ${OutputConcat}"
 
-	if [[ ! -e ${OutputConcat} || `echo ${g_migp_var} | cut -d "@" -f 4` = "YES" ]]; then
+	if [[ ! -e ${OutputConcat} || `echo ${g_migp_var} | cut -d "@" -f 4` = "YES" ]] ; then
 
 		if [ ! -e "${OutputFolder}" ] ; then
 			mkdir -p ${OutputFolder}
@@ -323,7 +323,7 @@ main()
 				matlab_exe="${HCPPIPEDIR}"
 				matlab_exe+="/MSMAll/scripts/Compiled_ssConcat/distrib/run_ssConcat.sh"
 				
-				matlab_compiler_runtime="${MATLAB_HOME}/MCR"
+				matlab_compiler_runtime="${MATLAB_COMPILER_RUNTIME}"
 
 				matlab_function_arguments="'${txtfile}' '${CARET7DIR}/wb_command' '${OutputConcat}' '${VN}'"
 			
