@@ -83,7 +83,7 @@ if [ "${Parcellation}" != "NONE" ] ; then
 	runParcellated=true;
 	ParcellationString="_${Parcellation}"
 	Extension="ptseries.nii"
-	log_Msg "MAIN: DETERMINE_ANALYSES: Parcellated Analysis requested"
+	log_Msg "DETERMINE_ANALYSES: Parcellated Analysis requested"
 fi
 
 # Determine whether to run Dense, and set strings used for filenaming
@@ -92,13 +92,13 @@ if [ "${Parcellation}" = "NONE" ]; then
 	runDense=true;
 	ParcellationString=""
 	Extension="dtseries.nii"
-	log_Msg "MAIN: DETERMINE_ANALYSES: Dense Analysis requested"
+	log_Msg "DETERMINE_ANALYSES: Dense Analysis requested"
 fi
 
 # Determine whether to run Volume, and set strings used for filenaming
 if [ "$VolumeBasedProcessing" = "YES" ] ; then
 	runVolume=true;
-	log_Msg "MAIN: DETERMINE_ANALYSES: Volume Analysis requested"
+	log_Msg "DETERMINE_ANALYSES: Volume Analysis requested"
 fi
 
 
@@ -112,29 +112,29 @@ else
 	RegString=""
 fi
 
-log_Msg "MAIN: SET_NAME_STRINGS: SmoothingString: ${SmoothingString}"
-log_Msg "MAIN: SET_NAME_STRINGS: TemporalFilterString: ${TemporalFilterString}"
-log_Msg "MAIN: SET_NAME_STRINGS: RegString: ${RegString}"
-log_Msg "MAIN: SET_NAME_STRINGS: ParcellationString: ${ParcellationString}"
-log_Msg "MAIN: SET_NAME_STRINGS: Extension: ${Extension}"
+log_Msg "SET_NAME_STRINGS: SmoothingString: ${SmoothingString}"
+log_Msg "SET_NAME_STRINGS: TemporalFilterString: ${TemporalFilterString}"
+log_Msg "SET_NAME_STRINGS: RegString: ${RegString}"
+log_Msg "SET_NAME_STRINGS: ParcellationString: ${ParcellationString}"
+log_Msg "SET_NAME_STRINGS: Extension: ${Extension}"
 
 
 ##### IMAGE_INFO: DETERMINE TR AND SCAN LENGTH #####
 # Caution: Reading information for Parcellated and Volume analyses from original CIFTI file
 # Extract TR information from input time series files
 TR_vol=`${CARET7DIR}/wb_command -file-information ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${RegString}.dtseries.nii -no-map-info -only-step-interval`
-log_Msg "MAIN: IMAGE_INFO: TR_vol: ${TR_vol}"
+log_Msg "IMAGE_INFO: TR_vol: ${TR_vol}"
 
 # Extract number of time points in CIFTI time series file
 npts=`${CARET7DIR}/wb_command -file-information ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${RegString}.dtseries.nii -no-map-info -only-number-of-maps`
-log_Msg "MAIN: IMAGE_INFO: npts: ${npts}"
+log_Msg "IMAGE_INFO: npts: ${npts}"
 
 
 ##### MAKE_DESIGNS: MAKE DESIGN FILES #####
 
 # Create output .feat directory ($FEATDir) for this analysis
 FEATDir="${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefsfName}${TemporalFilterString}${SmoothingString}_level1${RegString}${ParcellationString}.feat"
-log_Msg "MAIN: MAKE_DESIGNS: FEATDir: ${FEATDir}"
+log_Msg "MAKE_DESIGNS: FEATDir: ${FEATDir}"
 if [ -e ${FEATDir} ] ; then
 	rm -r ${FEATDir}
 	mkdir ${FEATDir}
@@ -144,19 +144,19 @@ fi
 
 ### Edit fsf file to record the parameters used in this analysis
 # Copy template fsf file into $FEATDir
-log_Msg "MAIN: MAKE_DESIGNS: Copying fsf file to .feat directory"
+log_Msg "MAKE_DESIGNS: Copying fsf file to .feat directory"
 cp ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefsfName}_hp200_s4_level1.fsf ${FEATDir}/design.fsf
 
 # Change the highpass filter string to the desired highpass filter
-log_Msg "MAIN: MAKE_DESIGNS: Change design.fsf: Set highpass filter string to the desired highpass filter to ${TemporalFilter}"
+log_Msg "MAKE_DESIGNS: Change design.fsf: Set highpass filter string to the desired highpass filter to ${TemporalFilter}"
 sed -i -e "s|set fmri(paradigm_hp) \"200\"|set fmri(paradigm_hp) \"${TemporalFilter}\"|g" ${FEATDir}/design.fsf
 
 # Change smoothing to be equal to additional smoothing in FSF file
-log_Msg "MAIN: MAKE_DESIGNS: Change design.fsf: Set smoothing to be equal to final smoothing to ${FinalSmoothingFWHM}"
+log_Msg "MAKE_DESIGNS: Change design.fsf: Set smoothing to be equal to final smoothing to ${FinalSmoothingFWHM}"
 sed -i -e "s|set fmri(smooth) \"4\"|set fmri(smooth) \"${FinalSmoothingFWHM}\"|g" ${FEATDir}/design.fsf
 
 # Change output directory name to match total smoothing and highpass
-log_Msg "MAIN: MAKE_DESIGNS: Change design.fsf: Change string in output directory name to ${TemporalFilterString}${SmoothingString}_level1${RegString}${ParcellationString}"
+log_Msg "MAKE_DESIGNS: Change design.fsf: Change string in output directory name to ${TemporalFilterString}${SmoothingString}_level1${RegString}${ParcellationString}"
 sed -i -e "s|_hp200_s4|${TemporalFilterString}${SmoothingString}_level1${RegString}${ParcellationString}|g" ${FEATDir}/design.fsf
 
 # find current value for npts in template.fsf
@@ -164,16 +164,16 @@ fsfnpts=`grep "set fmri(npts)" ${FEATDir}/design.fsf | cut -d " " -f 3 | sed 's|
 
 # Ensure number of time points in fsf matches time series image
 if [ "$fsfnpts" -eq "$npts" ] ; then
-	log_Msg "MAIN: MAKE_DESIGNS: Change design.fsf: Scan length matches number of timepoints in template.fsf: ${fsfnpts}"
+	log_Msg "MAKE_DESIGNS: Change design.fsf: Scan length matches number of timepoints in template.fsf: ${fsfnpts}"
 else
-	log_Msg "MAIN: MAKE_DESIGNS: Change design.fsf: Warning! Scan length does not match template.fsf!"
-	log_Msg "MAIN: MAKE_DESIGNS: Change design.fsf: Warning! Changing Number of Timepoints in fsf (""${fsfnpts}"") to match time series image (""${npts}"")"
+	log_Msg "MAKE_DESIGNS: Change design.fsf: Warning! Scan length does not match template.fsf!"
+	log_Msg "MAKE_DESIGNS: Change design.fsf: Warning! Changing Number of Timepoints in fsf (""${fsfnpts}"") to match time series image (""${npts}"")"
 	sed -i -e  "s|set fmri(npts) \"\?${fsfnpts}\"\?|set fmri(npts) ${npts}|g" ${FEATDir}/design.fsf
 fi
 
 
 ### Use fsf to create additional design files used by film_gls
-log_Msg "MAIN: MAKE_DESIGNS: Create design files, model confounds if desired"
+log_Msg "MAKE_DESIGNS: Create design files, model confounds if desired"
 # Determine if there is a confound matrix text file (e.g., output of fsl_motion_outliers)
 confound_matrix="";
 if [ "$Confound" != "NONE" ] ; then
@@ -203,10 +203,10 @@ fi
 # Parcellation may be better than adding spatial smoothing to dense time series.
 # Parcellation increases sensitivity and statistical power, but avoids blurring signal 
 # across region boundaries into adjacent, non-activated regions.
-log_Msg "MAIN: SMOOTH_OR_PARCELLATE: PARCELLATE: Parcellate data if a Parcellation was provided"
+log_Msg "SMOOTH_OR_PARCELLATE: PARCELLATE: Parcellate data if a Parcellation was provided"
 if $runParcellated; then
-	log_Msg "MAIN: SMOOTH_OR_PARCELLATE: PARCELLATE: Parcellating data"
-	log_Msg "MAIN: SMOOTH_OR_PARCELLATE: PARCELLATE: Notice: currently parcellated time series has $SmoothingString in file name, but no additional smoothing was applied!"
+	log_Msg "SMOOTH_OR_PARCELLATE: PARCELLATE: Parcellating data"
+	log_Msg "SMOOTH_OR_PARCELLATE: PARCELLATE: Notice: currently parcellated time series has $SmoothingString in file name, but no additional smoothing was applied!"
 	# SmoothingString in parcellated filename allows subsequent commands to work for either dtseries or ptseries
 	${CARET7DIR}/wb_command -cifti-parcellate ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${RegString}.dtseries.nii ${ParcellationFile} COLUMN ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${SmoothingString}${RegString}${ParcellationString}.ptseries.nii
 fi
@@ -219,16 +219,16 @@ if $runDense ; then
 		# by the original smoothing applied earlier
 		AdditionalSmoothingFWHM=`echo "sqrt(( $FinalSmoothingFWHM ^ 2 ) - ( $OriginalSmoothingFWHM ^ 2 ))" | bc -l`
 		AdditionalSigma=`echo "$AdditionalSmoothingFWHM / ( 2 * ( sqrt ( 2 * l ( 2 ) ) ) )" | bc -l`
-		log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: AdditionalSmoothingFWHM: ${AdditionalSmoothingFWHM}"
-		log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: AdditionalSigma: ${AdditionalSigma}"
-		log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: Applying additional surface smoothing to CIFTI Dense data"
+		log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: AdditionalSmoothingFWHM: ${AdditionalSmoothingFWHM}"
+		log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: AdditionalSigma: ${AdditionalSigma}"
+		log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: Applying additional surface smoothing to CIFTI Dense data"
 		${CARET7DIR}/wb_command -cifti-smoothing ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${RegString}.dtseries.nii ${AdditionalSigma} ${AdditionalSigma} COLUMN ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${SmoothingString}${RegString}.dtseries.nii -left-surface ${DownSampleFolder}/${Subject}.L.midthickness.${LowResMesh}k_fs_LR.surf.gii -right-surface ${DownSampleFolder}/${Subject}.R.midthickness.${LowResMesh}k_fs_LR.surf.gii
 	else
 		if [ "$FinalSmoothingFWHM" -eq "$OriginalSmoothingFWHM" ]; then
-			log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: No additional surface smoothing requested for CIFTI Dense data"
+			log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: No additional surface smoothing requested for CIFTI Dense data"
 		else
-			log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: WARNING: For CIFTI Dense data, the surface smoothing requested \($FinalSmoothingFWHM\) is LESS than the surface smoothing already applied \(${OriginalSmoothingFWHM}\)."
-			log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: Continuing analysis with ${OriginalSmoothingFWHM} of total surface smoothing."
+			log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: WARNING: For CIFTI Dense data, the surface smoothing requested \($FinalSmoothingFWHM\) is LESS than the surface smoothing already applied \(${OriginalSmoothingFWHM}\)."
+			log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_CIFTI: Continuing analysis with ${OriginalSmoothingFWHM} of total surface smoothing."
 		fi
 		cp ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${RegString}.dtseries.nii ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${SmoothingString}${RegString}.dtseries.nii
 	fi
@@ -236,10 +236,10 @@ fi
 
 ### Apply spatial smoothing to volume analysis
 if $runVolume ; then
-	log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_NIFTI: Standard NIFTI Volume-based Processsing"
+	log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_NIFTI: Standard NIFTI Volume-based Processsing"
 
 	#Add edge-constrained volume smoothing
-	log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_NIFTI: Add edge-constrained volume smoothing"
+	log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_NIFTI: Add edge-constrained volume smoothing"
 	FinalSmoothingSigma=`echo "$FinalSmoothingFWHM / ( 2 * ( sqrt ( 2 * l ( 2 ) ) ) )" | bc -l`
 	InputfMRI=${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}
 	InputSBRef=${InputfMRI}_SBRef
@@ -283,7 +283,7 @@ if $runVolume ; then
 	#    an unnatural pattern of dark/light/dark intensities at the edge of brain,
 	#    whereas the combination of steps (b) and (c) yields a more natural looking 
 	#    transition of intensities in the added voxels.
-	log_Msg "MAIN: SMOOTH_OR_PARCELLATE: SMOOTH_NIFTI: Add volume dilation"
+	log_Msg "SMOOTH_OR_PARCELLATE: SMOOTH_NIFTI: Add volume dilation"
 
 	# Dilate the original BOLD time series, then do (edge-constrained) smoothing
 	fslmaths ${FEATDir}/mask_orig -dilM -bin ${FEATDir}/mask_dilM
@@ -312,7 +312,7 @@ fi # end Volume spatial smoothing
 # Issue 2: fslmaths -bptf removes timeseries mean (for FSL 5.0.7 onward). film_gls expects mean in image. 
 # So, save the mean to file, then add it back after -bptf.
 if [[ $runParcellated == true || $runDense == true ]]; then
-	log_Msg "MAIN: TEMPORAL_FILTER: Add temporal filtering to CIFTI file"
+	log_Msg "TEMPORAL_FILTER: Add temporal filtering to CIFTI file"
 	# Convert CIFTI to "fake" NIFTI
 	${CARET7DIR}/wb_command -cifti-convert -to-nifti ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${SmoothingString}${RegString}${ParcellationString}.${Extension} ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${SmoothingString}${RegString}${ParcellationString}_FAKENIFTI.nii.gz
 	# Save mean image
@@ -331,7 +331,7 @@ fi
 
 if $runVolume; then
 	#Add temporal filtering to the output from above
-	log_Msg "MAIN: TEMPORAL_FILTER: Add temporal filtering to NIFTI file"
+	log_Msg "TEMPORAL_FILTER: Add temporal filtering to NIFTI file"
 	# Temporal filtering is conducted by fslmaths. 
 	# fslmaths -bptf removes timeseries mean (for FSL 5.0.7 onward), which is expected by film_gls. 
 	# So, save the mean to file, then add it back after -bptf.
@@ -350,31 +350,31 @@ fi
 # Run CIFTI Dense Grayordinates Analysis (if requested)
 if $runDense ; then
 	# Dense Grayordinates Processing
-	log_Msg "MAIN: RUN_GLM: Dense Grayordinates Analysis"
+	log_Msg "RUN_GLM: Dense Grayordinates Analysis"
 	#Split into surface and volume
-	log_Msg "MAIN: RUN_GLM: Split into surface and volume"
+	log_Msg "RUN_GLM: Split into surface and volume"
 	${CARET7DIR}/wb_command -cifti-separate-all ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${TemporalFilterString}${SmoothingString}${RegString}.dtseries.nii -volume ${FEATDir}/${LevelOnefMRIName}_AtlasSubcortical${TemporalFilterString}${SmoothingString}.nii.gz -left ${FEATDir}/${LevelOnefMRIName}${TemporalFilterString}${SmoothingString}${RegString}.atlasroi.L.${LowResMesh}k_fs_LR.func.gii -right ${FEATDir}/${LevelOnefMRIName}${TemporalFilterString}${SmoothingString}${RegString}.atlasroi.R.${LowResMesh}k_fs_LR.func.gii
 
 	#Run film_gls on subcortical volume data
-	log_Msg "MAIN: RUN_GLM: Run film_gls on subcortical volume data"
+	log_Msg "RUN_GLM: Run film_gls on subcortical volume data"
 	film_gls --rn=${FEATDir}/SubcorticalVolumeStats --sa --ms=5 --in=${FEATDir}/${LevelOnefMRIName}_AtlasSubcortical${TemporalFilterString}${SmoothingString}.nii.gz --pd=${DesignMatrix} --con=${DesignContrasts} ${ExtraArgs} --thr=1 --mode=volumetric
 	rm ${FEATDir}/${LevelOnefMRIName}_AtlasSubcortical${TemporalFilterString}${SmoothingString}.nii.gz
 
 	#Run film_gls on cortical surface data 
-	log_Msg "MAIN: RUN_GLM: Run film_gls on cortical surface data"
+	log_Msg "RUN_GLM: Run film_gls on cortical surface data"
 	for Hemisphere in L R ; do
 		#Prepare for film_gls  
-		log_Msg "MAIN: RUN_GLM: Prepare for film_gls"
+		log_Msg "RUN_GLM: Prepare for film_gls"
 		${CARET7DIR}/wb_command -metric-dilate ${FEATDir}/${LevelOnefMRIName}${TemporalFilterString}${SmoothingString}${RegString}.atlasroi.${Hemisphere}.${LowResMesh}k_fs_LR.func.gii ${DownSampleFolder}/${Subject}.${Hemisphere}.midthickness.${LowResMesh}k_fs_LR.surf.gii 50 ${FEATDir}/${LevelOnefMRIName}${TemporalFilterString}${SmoothingString}${RegString}.atlasroi_dil.${Hemisphere}.${LowResMesh}k_fs_LR.func.gii -nearest
 
 		#Run film_gls on surface data
-		log_Msg "MAIN: RUN_GLM: Run film_gls on surface data"
+		log_Msg "RUN_GLM: Run film_gls on surface data"
 		film_gls --rn=${FEATDir}/${Hemisphere}_SurfaceStats --sa --ms=15 --epith=5 --in2=${DownSampleFolder}/${Subject}.${Hemisphere}.midthickness.${LowResMesh}k_fs_LR.surf.gii --in=${FEATDir}/${LevelOnefMRIName}${TemporalFilterString}${SmoothingString}${RegString}.atlasroi_dil.${Hemisphere}.${LowResMesh}k_fs_LR.func.gii --pd=${DesignMatrix} --con=${DesignContrasts} ${ExtraArgs} --mode=surface
 		rm ${FEATDir}/${LevelOnefMRIName}${TemporalFilterString}${SmoothingString}${RegString}.atlasroi_dil.${Hemisphere}.${LowResMesh}k_fs_LR.func.gii ${FEATDir}/${LevelOnefMRIName}${TemporalFilterString}${SmoothingString}${RegString}.atlasroi.${Hemisphere}.${LowResMesh}k_fs_LR.func.gii
 	done
 
 	# Merge Cortical Surface and Subcortical Volume into Grayordinates
-	log_Msg "MAIN: RUN_GLM: Merge Cortical Surface and Subcortical Volume into Grayordinates"
+	log_Msg "RUN_GLM: Merge Cortical Surface and Subcortical Volume into Grayordinates"
 	mkdir ${FEATDir}/GrayordinatesStats
 	cat ${FEATDir}/SubcorticalVolumeStats/dof > ${FEATDir}/GrayordinatesStats/dof
 	cat ${FEATDir}/SubcorticalVolumeStats/logfile > ${FEATDir}/GrayordinatesStats/logfile
@@ -391,7 +391,7 @@ fi
 # Run CIFTI Parcellated Analysis (if requested)
 if $runParcellated ; then
 	# Parcellated Processing
-	log_Msg "MAIN: RUN_GLM: Parcellated Analysis"
+	log_Msg "RUN_GLM: Parcellated Analysis"
 	# Convert CIFTI to "fake" NIFTI
 	${CARET7DIR}/wb_command -cifti-convert -to-nifti ${ResultsFolder}/${LevelOnefMRIName}/${LevelOnefMRIName}_Atlas${TemporalFilterString}${SmoothingString}${RegString}${ParcellationString}.${Extension} ${FEATDir}/${LevelOnefMRIName}_Atlas${TemporalFilterString}${SmoothingString}${RegString}${ParcellationString}_FAKENIFTI.nii.gz
 	# Now run film_gls on the fakeNIFTI file
@@ -409,8 +409,8 @@ fi
 
 # Standard NIFTI Volume-based Processsing###
 if $runVolume ; then
-	log_Msg "MAIN: RUN_GLM: Standard NIFTI Volume Analysis"
-	log_Msg "MAIN: RUN_GLM: Run film_gls on volume data"
+	log_Msg "RUN_GLM: Standard NIFTI Volume Analysis"
+	log_Msg "RUN_GLM: Run film_gls on volume data"
 	film_gls --rn=${FEATDir}/StandardVolumeStats --sa --ms=5 --in=${FEATDir}/${LevelOnefMRIName}${TemporalFilterString}${SmoothingString}.nii.gz --pd=${DesignMatrix} --con=${DesignContrasts} ${ExtraArgs} --thr=1000
 
 	# Cleanup
@@ -420,4 +420,4 @@ if $runVolume ; then
 	rm -f ${SmoothedDilatedResultFile}*.nii.gz
 fi
 
-log_Msg "MAIN: Complete"
+log_Msg "Complete"

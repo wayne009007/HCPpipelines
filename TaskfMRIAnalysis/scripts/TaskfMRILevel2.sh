@@ -77,7 +77,7 @@ if [ "${Parcellation}" != "NONE" ] ; then
 	ExtensionList="${ExtensionList}ptseries.nii "
 	ScalarExtensionList="${ScalarExtensionList}pscalar.nii "
 	Analyses="${Analyses}ParcellatedStats "; # space character at end to separate multiple analyses
-	log_Msg "MAIN: DETERMINE_ANALYSES: Parcellated Analysis requested"
+	log_Msg "DETERMINE_ANALYSES: Parcellated Analysis requested"
 fi
 
 # Determine whether to run Dense, and set strings used for filenaming
@@ -88,7 +88,7 @@ if [ "${Parcellation}" = "NONE" ]; then
 	ExtensionList="${ExtensionList}dtseries.nii "
 	ScalarExtensionList="${ScalarExtensionList}dscalar.nii "
 	Analyses="${Analyses}GrayordinatesStats "; # space character at end to separate multiple analyses
-	log_Msg "MAIN: DETERMINE_ANALYSES: Dense Analysis requested"
+	log_Msg "DETERMINE_ANALYSES: Dense Analysis requested"
 fi
 
 # Determine whether to run Volume, and set strings used for filenaming
@@ -97,13 +97,13 @@ if [ $VolumeBasedProcessing = "YES" ] ; then
 	ExtensionList="${ExtensionList}nii.gz "
 	ScalarExtensionList="${ScalarExtensionList}volume.dscalar.nii "
 	Analyses="${Analyses}StandardVolumeStats "; # space character at end to separate multiple analyses	
-	log_Msg "MAIN: DETERMINE_ANALYSES: Volume Analysis requested"
+	log_Msg "DETERMINE_ANALYSES: Volume Analysis requested"
 fi
 
-log_Msg "MAIN: DETERMINE_ANALYSES: Analyses: ${Analyses}"
-log_Msg "MAIN: DETERMINE_ANALYSES: ParcellationString: ${ParcellationString}"
-log_Msg "MAIN: DETERMINE_ANALYSES: ExtensionList: ${ExtensionList}"
-log_Msg "MAIN: DETERMINE_ANALYSES: ScalarExtensionList: ${ScalarExtensionList}"
+log_Msg "DETERMINE_ANALYSES: Analyses: ${Analyses}"
+log_Msg "DETERMINE_ANALYSES: ParcellationString: ${ParcellationString}"
+log_Msg "DETERMINE_ANALYSES: ExtensionList: ${ExtensionList}"
+log_Msg "DETERMINE_ANALYSES: ScalarExtensionList: ${ScalarExtensionList}"
 
 
 ##### SET VARIABLES REQUIRED FOR FILE NAMING #####
@@ -118,9 +118,9 @@ else
 fi
 SmoothingString="_s${FinalSmoothingFWHM}"
 TemporalFilterString="_hp""$TemporalFilter"
-log_Msg "MAIN: SET_NAME_STRINGS: SmoothingString: ${SmoothingString}"
-log_Msg "MAIN: SET_NAME_STRINGS: TemporalFilterString: ${TemporalFilterString}"
-log_Msg "MAIN: SET_NAME_STRINGS: RegString: ${RegString}"
+log_Msg "SET_NAME_STRINGS: SmoothingString: ${SmoothingString}"
+log_Msg "SET_NAME_STRINGS: TemporalFilterString: ${TemporalFilterString}"
+log_Msg "SET_NAME_STRINGS: RegString: ${RegString}"
 
 ### Figure out where the Level1 .feat directories are located
 # Change '@' delimited arguments to space-delimited lists for use in for loops
