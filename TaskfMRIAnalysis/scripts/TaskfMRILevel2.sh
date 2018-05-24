@@ -345,6 +345,11 @@ for Analysis in ${Analyses} ; do
 	${CARET7DIR}/wb_command -cifti-merge ${LevelTwoFEATDir}/${Subject}_${LevelTwofsfName}_level2_zstat${TemporalFilterString}${SmoothingString}${RegString}${ParcellationString}.${ScalarExtension} ${zMergeSTRING}
 	${CARET7DIR}/wb_command -cifti-merge ${LevelTwoFEATDir}/${Subject}_${LevelTwofsfName}_level2_cope${TemporalFilterString}${SmoothingString}${RegString}${ParcellationString}.${ScalarExtension} ${bMergeSTRING}
 	
+	# Now that the merged scalar file exists for viewing, remove the contrast-specific scalar files
+	rm $( echo $zMergeSTRING | sed -e 's|-cifti ||g'); # these strings have all filenames
+	rm $( echo $bMergeSTRING | sed -e 's|-cifti ||g'); # we just have to remove the '-cifti ' flags
+
+	# increment analysisCounter to run next Level 2 Analysis requested
 	analysisCounter=$(($analysisCounter+1))
 done  # end loop: for Analysis in ${Analyses}
 
